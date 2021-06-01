@@ -1,0 +1,312 @@
+.shop
+  .section-title
+    margin-top: 30px
+    margin-bottom: 30px
+    text-align: left
+    text-transform: none
+
+  &-nav
+    display: flex  
+    align-items: center
+    justify-content: space-between
+  &-products  
+    margin-top: 20px
+    .products__name:first-child
+      text-align: center
+    .products__name 
+      padding: 18px 10px  
+
+  .product__btn
+    display: inline-block
+    padding: 10px 30px
+    border: none
+    border-radius: 27px
+    background-color: #232257  
+    color: #fff
+    font-size: 16px
+    cursor: pointer
+
+  .product__quantity 
+    width: 360px
+  .product__delete
+    margin-left: 12px  
+    margin-right: 12px  
+  .product__value
+    margin-right: 0
+
+.product__info_instock
+  position: absolute
+  display: inline-block
+  vertical-align: middle
+  top: 50%
+  transform: translateY(-50%)
+  left: 8px
+  width: 8px
+  height: 80px
+  border-radius: 3px
+  border: 2px solid #e6e6e6
+  background-color: #39b54a
+
+.sort
+  font-size: 18px
+  font-weight: 600
+  &-btn
+    background-color: transparent  
+    padding: 10px 20px
+    color: #000000
+    border-radius: 24px
+    border: 1px solid #1550a2
+    cursor: pointer
+.tab-content.current 
+  display: inherit
+.tab-content 
+  position: relative
+  display: none
+ 
+
+.catalogs
+  margin-top: 100px
+  display: flex
+  flex-wrap: wrap
+  &__item
+    position: relative
+    width: 122px
+    height: 140px
+    text-align: center
+    cursor: pointer
+    transform: scale(0.8)
+    margin-right: 10px
+    a.catalogs__link
+      display: block
+      position: relative
+      width: 123px
+      height: 139px
+      background: url(../img/catalogs/ctlg-bg.png) no-repeat center 
+      background-size: cover
+      transition: all 0.4s
+      line-height: 139px
+      span
+        display: block
+        color: #fff
+        text-align: center
+        position: relative
+        top: 25px
+    &:hover
+      a.catalogs__link
+        background: url(../img/catalogs/ctlg-bg-act.png) no-repeat center 
+        background-size: cover
+
+    &:before
+      content: ''
+      position: absolute
+      width: 139px
+      height: 156px
+      background: url(../img/catalogs/ctlg-border.png) no-repeat center
+      background-size: cover
+      transition: all 0.4s
+      left: -8px
+      top: -8px
+    &:hover
+      &:before
+        content: ''
+        position: absolute
+        width: 163px
+        height: 180px
+        background: url(../img/catalogs/ctlg-border-act.png) no-repeat center
+        background-size: cover
+        left: -20px
+        top: -20px
+    &:after
+      content: ''
+      position: absolute
+      top: 17px
+      width: 52px
+      height: 53px
+      background: url(../img/catalogs/ctlg-img.svg) no-repeat center
+      background-size: cover
+      left: 35px
+  &__link 
+    position: relative
+
+.ctlg-active
+  a.catalogs__link
+    background: url(../img/catalogs/ctlg-bg-act.png) no-repeat center 
+    background-size: cover
+  &:before
+    content: ''
+    position: absolute
+    width: 163px
+    height: 180px
+    background: url(../img/catalogs/ctlg-border-act.png) no-repeat center
+    background-size: cover  
+    top: -20px
+    left: -20px
+
+.search 
+  position: relative  
+.search__input
+  background-color: transparent  
+  padding: 10px 20px
+  color: #000000
+  border-radius: 24px
+  border: 1px solid $accent      
+.search__button
+  position: absolute
+  top: 10px
+  right: 10px
+  width: 18px
+  height: 18px
+  background: url(../img/icons/search.png) no-repeat center
+  background-size: contain
+  border: none
+  color: transparent
+  cursor: pointer
+   
+.pagination
+  margin-top: 30px
+  padding-bottom: 80px
+  &__list
+    display: flex
+    li 
+      display: block
+      align-items: center
+      justify-content: center
+      width: 39px
+      height: 39px
+      text-align: center
+      line-height: 39px
+      border-radius: 50%
+      margin-right: 8px
+      background-color: #dadada
+      a 
+        display: block
+        width: 39px
+        height: 39px
+        color: #fff
+        cursor: pointer
+      &:hover
+        background-color: #232257
+          
+    .pagination-active 
+      background-color: #232257
+
+.products__result
+  margin-top: 60px  
+  &_wrap
+    display: flex
+    align-items: center
+    justify-content: space-between
+  &_text
+    margin-right: 10px
+    color: #dadada
+    font-size: 16px
+    font-weight: bold
+    line-height: 18.67px
+  &_link
+    margin-right: 10px
+    color: #dadada
+    &:hover
+      color: #1550a2
+
+  .result-active
+    color: #1550a2
+.products__btn
+  a
+    padding: 10px 30px
+    border-radius: 27px
+    background-color: #232257  
+    color: #fff     
+    border: none
+
+
+.radio1 input 
+	position: absolute
+	z-index: -1
+	opacity: 0
+	margin: 10px 0 0 7px
+
+.radio1__text 
+	position: relative
+	padding: 0 0 0 35px
+	cursor: pointer
+
+.radio1__text:before 
+	content: ''
+	position: absolute
+	top: -3px
+	left: 0
+	width: 22px
+	height: 22px
+	border: 1px solid $accent
+	border-radius: 50%
+	background: #FFF
+
+.radio1__text:after 
+	content: ''
+	position: absolute
+	top: 1px
+	left: 4px
+	width: 16px
+	height: 16px
+	border-radius: 50%
+	background: $accent
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.5)
+	opacity: 0
+	transition: .2s
+
+.radio1 input:checked + .radio1__text:after 
+	opacity: 1
+
+.radio1 input:focus + .radio1__text:before 
+  box-shadow: 0 0 0px 2px rgba(0, 0, 0, 0.16)  
+
+.shop-card
+  padding-top: 120px
+  padding-bottom: 160px
+.card
+  &__wrap
+    margin-top: 30px
+    display: flex
+    justify-content: space-between
+  // flex-wrap: wrap
+  &__img
+    max-width: 500px
+    margin-right: 20px
+    img
+      width: 100%
+  &__content
+    max-width: 600px
+  &__value
+    text-align: right
+    margin-top: 30px 
+    .shop-product__quantity 
+      justify-content: flex-end
+  &__block
+    margin-top: 40px
+    display: flex
+    padding: 10px 15px
+    border-radius: 28px
+    border: 1px solid #ffffff
+    background-color: #e6e6e6  
+    color: #5e5e5e
+    font-size: 16px
+    font-weight: 600
+    line-height: 22.4px
+  &__item
+    margin-right: 20px
+  &__instock
+    position: relative
+    margin-left: auto
+    &_hide
+      display: none
+    .card-instock
+      position: absolute
+      top: 3px
+      left: -20px 
+      width: 16px
+      height: 16px
+      border-radius: 50%
+      border: 2px solid #e6e6e6
+      background-color: #39b54a
+
+
