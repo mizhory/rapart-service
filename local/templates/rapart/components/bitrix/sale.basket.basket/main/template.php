@@ -141,6 +141,10 @@ $this->addExternalJs($templateFolder.'/js/action-pool.js');
 $this->addExternalJs($templateFolder.'/js/filter.js');
 $this->addExternalJs($templateFolder.'/js/component.js');
 ?>
+
+<script type="text/javascript">
+    var basketJSParams = <?=CUtil::PhpToJSObject($arBasketJSParams);?>
+</script>
 <?//debug($arResult['ITEMS']['AnDelCanBuy']);?>
 <div class="cart-root">
   <div class="container">
@@ -390,7 +394,6 @@ while($arStoreParam = $storeRes->Fetch()){
 <?}?>
 </div>
 </div>
-
 <script type="text/javascript" language="javascript">
  	function call() {
  	  var msg   = $('#formx').serialize();

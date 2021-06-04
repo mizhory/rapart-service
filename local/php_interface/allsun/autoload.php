@@ -1,13 +1,15 @@
 <?php
-
-//user autoload
+/**
+ * @about AllSun-Integration 2021 - Copyright AllRight Reserved
+ * @author Kokurkin-German
+ */
 function autoload($className)
 {
     $className = ltrim($className, '\\');
     $fileName = '';
-    if ($lastNsPos = strrpos($className, '\\')) {
-        $namespace = substr($className, 0, $lastNsPos);
-        $className = substr($className, $lastNsPos + 1);
+    if ($lastNameSpacePosition = strrpos($className, '\\')) {
+        $namespace = substr($className, 0, $lastNameSpacePosition);
+        $className = substr($className, $lastNameSpacePosition + 1);
         $fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';

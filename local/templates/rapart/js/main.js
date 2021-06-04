@@ -1,6 +1,5 @@
 $(function () {
-
-  $('#fullpage').fullpage({
+  /* $('#fullpage').fullpage({
     navigation: true,
     responsiveWidth: 768,
     scrollBar: true,
@@ -8,7 +7,7 @@ $(function () {
     responsiveHeight: 600,
     verticalCentered: true,
   });
-
+*/
   new WOW().init({
     mobile: false,
   });
@@ -101,6 +100,7 @@ $(function () {
 		  url: "/ajax/add_cart.php",
 		  data: 'id='+id+'&quantity='+quantity,
 		  success: function(msg){
+
 			//alert( "Прибыли данные: " + msg );
 		  }
 		});
@@ -132,6 +132,7 @@ $(function() {
     nav: false
   });
 });
+
 
 
 /* изменение количества в корзине

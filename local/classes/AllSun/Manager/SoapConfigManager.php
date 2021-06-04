@@ -39,7 +39,7 @@ class SoapConfigManager
      * Эта реализация позволяет вам расширять класс Одиночки, сохраняя повсюду
      * только один экземпляр каждого подкласса.
      */
-    public static function getInstance(): Singleton
+    public static function getInstance(): SoapConfigManager
     {
         $cls = static::class;
         if (!isset(self::$instances[$cls])) {
@@ -65,9 +65,9 @@ class SoapConfigManager
     public function getConfigSoapOnBitrix() {
         global $APPLICATION;
 
-        $this->soap_config[SoapConfigEntry::LOGIN] = Option::get(SoapConfigEntry::LOGIN);
-        $this->soap_config[SoapConfigEntry::URI] = Option::get(SoapConfigEntry::URI);
-        $this->soap_config[SoapConfigEntry::PASS] = Option::get(SoapConfigEntry::PASS);
+        $this->soap_config[SoapConfigEntry::LOGIN] = Option::get("main", SoapConfigEntry::LOGIN);
+        $this->soap_config[SoapConfigEntry::URI] = Option::get("main", SoapConfigEntry::URI);
+        $this->soap_config[SoapConfigEntry::PASS] = Option::get("main", SoapConfigEntry::PASS);
 
         if(is_null($this->soap_config[SoapConfigEntry::URI]) || is_bool($this->soap_config[SoapConfigEntry::URI]) || strlen($this->soap_config[SoapConfigEntry::URI])<=0)
             $APPLICATION->ThrowException('Soap Connection URI not found on Bitrix! Fatal Error!');

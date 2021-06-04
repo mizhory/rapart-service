@@ -102,15 +102,20 @@ use Bitrix\Main\Page\Asset;
 <div id="toCart" class="zoom-anim-dialog mfp-hide">
 	
   Товар добавлен в корзину
-	<a href="">ВЕРНУТЬСЯ В КАТАЛОГ</a>
+	<a href="javascript:void(0)" class="close-popup-revertoncatalog">ВЕРНУТЬСЯ В КАТАЛОГ</a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="<?=SITE_TEMPLATE_PATH?>/js/fullpage.js"></script>
+<!--<script src="<?=SITE_TEMPLATE_PATH?>/js/fullpage.js"></script>-->
 <script src="<?=SITE_TEMPLATE_PATH?>/js/wow.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/slick.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/jquery.magnific-popup.min.js"></script>
 <script src="<?=SITE_TEMPLATE_PATH?>/js/main.js"></script>
+<script>
+    $(document).ready(function() {
+        loadLifeCart();
+    })
+</script>
 </body>
 </html>
