@@ -1,5 +1,5 @@
 <?php
-namespace AllSun\Helper;
+namespace GetCode\Helper;
 
 class SoapConfigEntry
 {

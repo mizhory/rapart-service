@@ -1,7 +1,7 @@
 <?php
-namespace AllSun\Manager;
+namespace GetCode\Manager;
 
-use AllSun\Helper\SoapConfigEntry,
+use GetCode\Helper\SoapConfigEntry,
     \Bitrix\Main\Config\Option;
 
 class SoapConfigManager

@@ -1,5 +1,5 @@
 /**
- * @about AllSun-Integration 2021 - Copyright AllRight Reserved
+ * @about GetCode-Integration 2021 - Copyright AllRight Reserved
  * @author Kokurkin-German
  *
  * @todo use "debugger;" for debug on script

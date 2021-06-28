@@ -1,5 +1,5 @@
 <?php
-namespace AllSun\API\SOAP;
+namespace GetCode\API\SOAP;
 
 if(!defined("SOAP_CONFIG_INCLUDED") || SOAP_CONFIG_INCLUDED !== TRUE)
     trowExpection('No loaded soap configuration');
@@ -9,7 +9,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'inc/nusoap.php';
 
 class SoapConnector
 {
-    private static $soap_client;
+    private static $soap_client = false;
     private static $request;
 
     const ON_PAGE = 30;
@@ -82,4 +82,52 @@ class SoapConnector
         $jj = json_encode($arParams);
         static::$request = $jj;
     }
+	public static function test() {
+		if(!static::$soap_client)
+			static::initConnect();
+		
+		$arRequest = [[
+			"method" => "4",
+			"PART" => "000-029",
+			"IDKP" => "",
+			"IDZayavka" => "",
+			"StatusZayavka" => "",
+			"Kontragent" => "",
+			"Partner" => "",
+			"Organiz" => "",
+			"Sdelka" => "",
+			"BooleanActiv" => "", //false,
+			"Tovary" => [
+				[ 
+					"IDNomenklature" => "",
+					"Nomenklature" => ""
+				]
+			],
+			"GUIDKP" => ""
+		]];
+		//var_dump(json_encode($arRequest));
+		$json_request = json_encode($arRequest);
+		var_dump($json_request);
+		$res = static::$soap_client->call(
+			'IntegrationZayInput',  
+			['NameKontr' => $json_request], 
+			'', 
+			'', 
+			false, 
+			null, 
+		'	rpc', 
+			'literal'
+			);
+			var_dump($res);
+		/*
+		$jsonInput = '
+		[{"method": "5", "PART": "' . $curPage . '", "IDKP": "","IDZayavka": "","StatusZayavka": "",
+"Kontragent": "'.$nameKontr.'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
+"Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
+	// var_dump( $jsonInput );
+	$result = $client->call('IntegrationZayInput',  array('NameKontr' => $jsonInput ) , '', '', false, null, 'rpc', 'literal');
+	// var_dump( $client->debug_str );
+	// var_dump( $result );
+	$json = json_decode($result['return']);*/
+	}
 }
