@@ -1,8 +1,19 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Заказы");
-?><BR><BR><BR><?
-require('../cfg.php');
+?>
+<center>
+<?$APPLICATION->IncludeComponent(
+    "getcode:order.list",
+    "",
+    Array(
+        "CACHE_TIME" => 1*24*60*60,
+    )
+);?>
+</center>
+
+<?
+/*require('../cfg.php');
 
 $client = new nusoap_client($nUrl, true,false,false,false,false,0,30);
 // $client->debugLevel = 9;
@@ -41,7 +52,7 @@ else {
 // 	$result = $client->call('IntegrationZayInput',   array('NameKontr' => $jsonInput ), '', '', false, null, 'rpc', 'literal');
 // 	var_dump($result);
 	
-	
+	/*
 ?>
 <style>
 	.products__block {
@@ -116,6 +127,6 @@ else {
 <BR><BR><BR>
 <BR><BR><BR><BR><BR><BR>
 <?
-
+*/
 // LocalRedirect('/personal/');
 ?><?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

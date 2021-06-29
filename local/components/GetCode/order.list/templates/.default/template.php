@@ -7,12 +7,28 @@ var_dump($arResult);
 <table>
 	<thead>
 		<tr>
-			<th>Поле 1</th>
+			<th class="products__name">№</th>
+			<th class="products__name">Дата</th>
+			<th class="products__name">№ клиента</th>
+			<th class="products__name">Дата клиента</th>
+			<th class="products__name">Сумма</th>
+			<th class="products__name">Состояние</th>
+			<th class="products__name">% оплаты</th>
+			<th class="products__name">% отгрузки</th>
+			<th class="products__name">Действия</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td>Поле 1</td>
+			<td class="products__name">№</td>
+			<td class="products__name">Дата</td>
+			<td class="products__name">№ клиента</td>
+			<td class="products__name">Дата клиента</td>
+			<td class="products__name">Сумма</td>
+			<td class="products__name">Состояние</td>
+			<td class="products__name">% оплаты</td>
+			<td class="products__name">% отгрузки</td>
+			<td class="products__name">Действия</td>
 		</tr>
 	</tbody>
 </table>
