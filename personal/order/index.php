@@ -8,6 +8,7 @@ $APPLICATION->SetTitle("Заказы");
     "",
     Array(
         "CACHE_TIME" => 1*24*60*60,
+        "PRIZNAK" => 'order'
     )
 );?>
 </center>
