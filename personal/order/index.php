@@ -3,14 +3,15 @@ require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Заказы");
 ?>
 <center>
-<?$APPLICATION->IncludeComponent(
-    "getcode:order.list",
-    "",
-    Array(
-        "CACHE_TIME" => 1*24*60*60,
-        "PRIZNAK" => 'order'
-    )
-);?>
+    <?$APPLICATION->IncludeComponent(
+        "GetCode:order.list",
+        "",
+        Array(
+            "CACHE_TIME" => "36000000",
+            "CACHE_TYPE" => "A",
+            "PRIZNAK" => "order"
+        )
+    );?>
 </center>
 
 <?

@@ -54,7 +54,7 @@ if($this->startResultCache()) {
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => false,
-			'filter' => ['UF_USER_ID' => $userID]
+			'filter' => ['UF_USER_ID' => "".$userID.""]
 		]);
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][] = $s;
