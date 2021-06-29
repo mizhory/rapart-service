@@ -46,15 +46,15 @@ if(!$USER->isAuthorized()) {
 }
 
 $userID = $USER->getID();
-
+var_dump($userID);
 if(!$arParams['CACHE_TIME'] || !isset($arParams['CACHE_TIME']))
 	$arParams['CACHE_TIME'] = 36000000;
 
 if($this->startResultCache()) {
 	$r = CustomerOrderTable::getList([
-			'select' => ['*'],
-			'order'  => false,
-			'filter' => ['UF_USER_ID' => "".$userID.""]
+			'select' => ['UF_OFFER', 'UF_OFFERS', 'UF_NAME'],
+			'order'  => ['ID' => 'ASC'],
+			'filter' => ['UF_USER_ID' => intval($userID)]
 		]);
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][] = $s;
