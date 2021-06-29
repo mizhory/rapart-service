@@ -24,7 +24,7 @@ class OffersManager
             $db_res = \CPrice::GetList(
                 [],
                 array(
-                    "PRODUCT_ID" => $r['ID'],
+                    "PRODUCT_ID" => $f['ID'],
                     "CATALOG_GROUP_ID" => static::CATALOG_GROUP_ID
                 )
             );
