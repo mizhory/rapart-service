@@ -7,28 +7,28 @@ var_dump($arResult);
 <table>
 	<thead>
 		<tr>
-			<th class="products__name">№</th>
-			<th class="products__name">Дата</th>
-			<th class="products__name">№ клиента</th>
-			<th class="products__name">Дата клиента</th>
-			<th class="products__name">Сумма</th>
-			<th class="products__name">Состояние</th>
-			<th class="products__name">% оплаты</th>
-			<th class="products__name">% отгрузки</th>
-			<th class="products__name">Действия</th>
+			<th class="products__name">в„–</th>
+			<th class="products__name">Р”Р°С‚Р°</th>
+			<th class="products__name">в„– РєР»РёРµРЅС‚Р°</th>
+			<th class="products__name">Р”Р°С‚Р° РєР»РёРµРЅС‚Р°</th>
+			<th class="products__name">РЎСѓРјРјР°</th>
+			<th class="products__name">РЎРѕСЃС‚РѕСЏРЅРёРµ</th>
+			<th class="products__name">% РѕРїР»Р°С‚С‹</th>
+			<th class="products__name">% РѕС‚РіСЂСѓР·РєРё</th>
+			<th class="products__name">Р”РµР№СЃС‚РІРёСЏ</th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<td class="products__name">№</td>
-			<td class="products__name">Дата</td>
-			<td class="products__name">№ клиента</td>
-			<td class="products__name">Дата клиента</td>
-			<td class="products__name">Сумма</td>
-			<td class="products__name">Состояние</td>
-			<td class="products__name">% оплаты</td>
-			<td class="products__name">% отгрузки</td>
-			<td class="products__name">Действия</td>
+			<td class="products__name">в„–</td>
+			<td class="products__name">Р”Р°С‚Р°</td>
+			<td class="products__name">в„– РєР»РёРµРЅС‚Р°</td>
+			<td class="products__name">Р”Р°С‚Р° РєР»РёРµРЅС‚Р°</td>
+			<td class="products__name">РЎСѓРјРјР°</td>
+			<td class="products__name">РЎРѕСЃС‚РѕСЏРЅРёРµ</td>
+			<td class="products__name">% РѕРїР»Р°С‚С‹</td>
+			<td class="products__name">% РѕС‚РіСЂСѓР·РєРё</td>
+			<td class="products__name">Р”РµР№СЃС‚РІРёСЏ</td>
 		</tr>
 	</tbody>
 </table>
