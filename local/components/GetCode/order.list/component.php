@@ -73,7 +73,7 @@ if($this->startResultCache()) {
     }
 	if(is_array($offers)) {
 	    foreach($offers as $k=>$r) {
-	        $arResult['ITEMS'][$k] = OffersManager::getElementsByIblock($r);
+	        $arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($r);
         }
     }
 } else {
