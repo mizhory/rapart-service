@@ -9,6 +9,7 @@ class OffersManager
     const CATALOG_GROUP_ID = 3;
     private static function init() {
         Loader::includeModule('iblock');
+        Loader::includeModule('catalog');
     }
     public static function getElementsByIblock($inner = false) {
         if(is_bool($inner)) return null;
@@ -20,8 +21,8 @@ class OffersManager
         while($r=$res->GetNextElement()){
             $f = $r->GetFields();
             $f['PROPERTIES'] = $r->GetProperties();
-            $db_res = CPrice::GetList(
-                array(),
+            $db_res = \CPrice::GetList(
+                [],
                 array(
                     "PRODUCT_ID" => $r['ID'],
                     "CATALOG_GROUP_ID" => static::CATALOG_GROUP_ID
