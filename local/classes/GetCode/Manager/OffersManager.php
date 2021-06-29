@@ -14,7 +14,7 @@ class OffersManager
         static::init();
         $arSelect = ['*'];
         $arFilter = ['IBLOCK_ID' => static::IBLOCK_ID, 'ID' => $inner];
-        $res = CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>50), $arSelect);
+        $res = \CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>50), $arSelect);
         $ret = null;
         while($r=$res->GetNextElement()){
             $f = $r->GetFields();
