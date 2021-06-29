@@ -2,7 +2,8 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 ?>
 <?
-var_dump($arResult);
+//var_dump($arResult);
+if(empty($arResult)) return;
 ?>
 <table>
 	<thead>
@@ -19,7 +20,20 @@ var_dump($arResult);
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
+    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
+        <tr>
+            <td class="products__name"><?=$k?></td>
+            <td class="products__name"><?=date('d-m-Y H:i:s', $arItems['UF_TIMESTAMP'])?></td>
+            <td class="products__name"><?=$arItems['UF_USER_ID']?></td>
+            <td class="products__name"><?=date('d-m-Y H:i:s', $arItems['UF_TIMESTAMP'])?></td>
+            <td class="products__name">Сумма</td>
+            <td class="products__name">Состояние</td>
+            <td class="products__name">% оплаты</td>
+            <td class="products__name">% отгрузки</td>
+            <td class="products__name">Действия</td>
+        </tr>
+    <?endforeach;?>
+	<!--	<tr>
 			<td class="products__name">№</td>
 			<td class="products__name">Дата</td>
 			<td class="products__name">№ клиента</td>
@@ -29,6 +43,6 @@ var_dump($arResult);
 			<td class="products__name">% оплаты</td>
 			<td class="products__name">% отгрузки</td>
 			<td class="products__name">Действия</td>
-		</tr>
+		</tr>-->
 	</tbody>
 </table>
