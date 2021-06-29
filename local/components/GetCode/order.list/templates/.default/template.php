@@ -20,12 +20,14 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</tr>
 	</thead>
 	<tbody>
-    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
+    <?foreach($arResult['ITEMS'] as $k=>$arItems):
+        var_dump($arItems);
+        ?>
         <tr>
             <td class="products__name"><?=$k?></td>
-            <td class="products__name"><?=date('d-m-Y H:i:s', $arItems['UF_TIMESTAMP'])?></td>
+            <td class="products__name"><?=date('d-m-Y H:i:s', intval($arItems['UF_TIMESTAMP']))?></td>
             <td class="products__name"><?=$arItems['UF_USER_ID']?></td>
-            <td class="products__name"><?=date('d-m-Y H:i:s', $arItems['UF_TIMESTAMP'])?></td>
+            <td class="products__name"><?=date('d-m-Y H:i:s', intval($arItems['UF_TIMESTAMP']))?></td>
             <td class="products__name">Сумма</td>
             <td class="products__name">Состояние</td>
             <td class="products__name">% оплаты</td>
