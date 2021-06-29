@@ -76,6 +76,14 @@ if($this->startResultCache()) {
 	        $arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($r);
         }
     }
+	foreach($arResult['ITEMS'] as $k=>$arItems) {
+	    $p = 0.0;
+	    foreach($arItems['ELEMENTS'] as $e=>$arElements) {
+	        $p = $p+$arElements['PRICE']['PRICE'];
+	        $currency = $arElements['PRICE']['CURRENCY'];
+        }
+        $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
+    }
 } else {
 	$this->AbortResultCache();
 }
