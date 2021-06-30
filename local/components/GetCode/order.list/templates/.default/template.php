@@ -21,7 +21,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	</thead>
 	<tbody>
     <?foreach($arResult['ITEMS'] as $k=>$arItems):
-        var_dump($arItems);
+        //var_dump($arItems);
         ?>
         <tr>
             <td class="products__name"><?=$k?></td>

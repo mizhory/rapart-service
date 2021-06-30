@@ -89,5 +89,9 @@ if($this->startResultCache()) {
 }
 
 $this->IncludeComponentTemplate();
-
-$APPLICATION->SetTitle(getMessage('TITLE')); 
+if($arParams['TITLE']) {
+    $title = $arParams['TITLE'];
+} else {
+    $title = getMessage('TITLE');
+}
+$APPLICATION->SetTitle($title);

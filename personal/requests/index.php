@@ -1,7 +1,23 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Заявки");
-?><BR><BR><BR><?
+?>
+    <div style="display:block;width: 95%;margin: 3rem auto;min-height: 15rem;height: auto;">
+        <?$APPLICATION->IncludeComponent(
+            "GetCode:order.list",
+            "",
+            Array(
+                "CACHE_TIME" => "36000000",
+                "CACHE_TYPE" => "A",
+                "PRIZNAK" => "offer",
+                'TITLE' => 'Заявки клиента'
+            )
+        );?>
+    </div>
+
+<?
+/*
+<?
 // require('../cfg.php');
 
 // $client = new nusoap_client($nUrl, true,false,false,false,false,0,30);

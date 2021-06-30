@@ -9,7 +9,8 @@ $APPLICATION->SetTitle("Заказы");
         Array(
             "CACHE_TIME" => "36000000",
             "CACHE_TYPE" => "A",
-            "PRIZNAK" => "order"
+            "PRIZNAK" => "order",
+            'TITLE' => 'Заказы клиента'
         )
     );?>
 </div>
