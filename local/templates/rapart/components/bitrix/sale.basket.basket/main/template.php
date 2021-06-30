@@ -398,15 +398,15 @@ while($arStoreParam = $storeRes->Fetch()){
  	function call() {
  	  var msg   = $('#formx').serialize();
         $.ajax({
-          type: 'POST',
-			url: '/ajax/zakaz.php',
-          data: msg,
-          success: function(data) {
-            $('#results').html(data);
-          },
-          error:  function(xhr, str){
-	    alert('Возникла ошибка1: ' + xhr.responseCode);
-          }
+            type: 'POST',
+            url: '/ajax/zakaz.php',
+            data: msg,
+            success: function(data) {
+                $('#results').html(data);
+            },
+            error:  function(xhr, str){
+	            console.error('Возникла ошибка1: ' + xhr.responseCode);
+            }
         });
  
     }
