@@ -85,12 +85,12 @@ class SoapConnector
 	public static function test() {
 		if(!static::$soap_client)
 			static::initConnect();
-		
+		var_dump(static::$soap_client->getError());
 		$arRequest = [[
 			"method" => "4",
 			"PART" => "000-029",
-			"IDKP" => "",
-			"IDZayavka" => "",
+			"IDKP" => "00ÊÀ-002398",
+			"IDZayavka" => "000003225",
 			"StatusZayavka" => "",
 			"Kontragent" => "",
 			"Partner" => "",

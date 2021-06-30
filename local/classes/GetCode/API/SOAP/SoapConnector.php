@@ -85,49 +85,24 @@ class SoapConnector
 	public static function test() {
 		if(!static::$soap_client)
 			static::initConnect();
-		var_dump(static::$soap_client->getError());
-		$arRequest = [[
-			"method" => "4",
-			"PART" => "000-029",
-			"IDKP" => "00ÊÀ-002398",
-			"IDZayavka" => "000003225",
-			"StatusZayavka" => "",
-			"Kontragent" => "",
-			"Partner" => "",
-			"Organiz" => "",
-			"Sdelka" => "",
-			"BooleanActiv" => "", //false,
-			"Tovary" => [
-				[ 
-					"IDNomenklature" => "",
-					"Nomenklature" => ""
-				]
-			],
-			"GUIDKP" => ""
-		]];
-		//var_dump(json_encode($arRequest));
-		$json_request = json_encode($arRequest);
-		var_dump($json_request);
-		$res = static::$soap_client->call(
-			'IntegrationZayInput',  
-			['NameKontr' => $json_request], 
-			'', 
-			'', 
-			false, 
-			null, 
-		'	rpc', 
-			'literal'
-			);
-			var_dump($res);
-		/*
-		$jsonInput = '
-		[{"method": "5", "PART": "' . $curPage . '", "IDKP": "","IDZayavka": "","StatusZayavka": "",
-"Kontragent": "'.$nameKontr.'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
-"Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
-	// var_dump( $jsonInput );
-	$result = $client->call('IntegrationZayInput',  array('NameKontr' => $jsonInput ) , '', '', false, null, 'rpc', 'literal');
-	// var_dump( $client->debug_str );
-	// var_dump( $result );
-	$json = json_decode($result['return']);*/
+		$client = static::$soap_client;//new nusoap_client(SOAP_CONFIG_API_URI, true,false,false,false,false,0,30);
+		$nameKontr = '';
+		$client->setCredentials(SOAP_CONFIG_API_LOGIN, SOAP_CONFIG_API_PASS);
+			$client->setEndpoint(substr(SOAP_CONFIG_API_URI,0,strlen(SOAP_CONFIG_API_URI)-5)); 
+			$client->soap_defencoding = 'UTF-8';
+			$client->decode_utf8 = false;
+			$client->response_timeout = 30;
+
+			$curPage = '000-029';
+			$curPage .= ( $onPage - 1 );
+			$nameKontr = 'cbbe79e9-eff7-11e9-80e2-005056b633c';
+
+			$jsonInput = '[{"method": "4", "PART": "' . $curPage . '", "GUIDKP":"", "IDKP": "","IDZayavka": "","StatusZayavka": "",
+		"Kontragent": "'.$nameKontr.'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
+		"Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
+			// var_dump( $jsonInput );
+			// echo "<BR><BR>";
+			$result = $client->call('IntegrationZayInput',  array('NameKontr' => $jsonInput ) , '', '', false, null, 'rpc', 'literal');
+		var_dump($result);
 	}
 }
