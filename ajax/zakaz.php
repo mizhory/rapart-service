@@ -44,7 +44,7 @@ while($ret = $res->fetch()){
 $e = CustomerOrderTable::add([
     'UF_USER_ID' => $USER->getID(),
     'UF_TIMESTAMP'  => time(),
-    'UF_OFFERS' => $items,
+    'UF_OFFERS' => serialize($items),
     'UF_OFFER' => 1,
 ]);
 
