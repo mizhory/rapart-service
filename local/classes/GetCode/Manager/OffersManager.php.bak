@@ -53,6 +53,5 @@ class OffersManager
 				'PICTURE' => 'UF_STATUS_IMG'
 			];
 		}
-		return null;
 	}
 }

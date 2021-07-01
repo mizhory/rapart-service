@@ -82,7 +82,7 @@ if($this->startResultCache()) {
 	        $p = $p+$arElements['PRICE']['PRICE'];
 	        $currency = $arElements['PRICE']['CURRENCY'];
         }
-		$arResult['ITEMS'][$k]['UF_STATUS'] = OffersManager::getStatus($arResult['ITEMS'][$k]['UF_STATUS']['VALUE']);
+		$arResult['ITEMS'][$k]['UF_STATUS'] = OffersManager::getStatus($arResult['ITEMS'][$k]['UF_STATUS']);
         $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
     }
 } else {
