@@ -48,8 +48,8 @@ if(!$USER->isAuthorized()) {
 
 $userID = intval($USER->getID());
 
-if(!$arParams['CACHE_TIME'] || !isset($arParams['CACHE_TIME']))
-	$arParams['CACHE_TIME'] = 36000000;
+if(!$arParams['CACHE_TIME'] || $arParams['CACHE_TIME']>3600 || !isset($arParams['CACHE_TIME']))
+	$arParams['CACHE_TIME'] = 3600;
 
 if($this->startResultCache()) {
     if(isset($arParams['PRIZNAK'])){
@@ -85,11 +85,12 @@ if($this->startResultCache()) {
 		$arResult['ITEMS'][$k]['UF_STATUS'] = OffersManager::getStatus($arResult['ITEMS'][$k]['UF_STATUS']['VALUE']);
         $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
     }
+	
+	$this->IncludeComponentTemplate();
 } else {
 	$this->AbortResultCache();
 }
 
-$this->IncludeComponentTemplate();
 if($arParams['TITLE']) {
     $title = $arParams['TITLE'];
 } else {
