@@ -26,19 +26,17 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
             <td class="products__name"><?$arItems['UF_STATUS']['NAME']?></td>
             <td class="products__name"><?$arItems['UF_PERC_PAYMENT']?></td>
             <td class="products__name"><?$arItems['UF_PERC_SHIPMENT']?></td>
-            <td class="products__name"><a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a></td>
+            <td class="products__name">
+			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
+			<ul>
+				<li><a href="javascript:void(0)" class="detail">Просмотреть</a></li>
+				<?if($arParams['PRIZNAK'] == 'order'):?>
+				<li><a href="javascript:void(0)" class="check-kp">Проверить КП</a></li>
+				<li><a href="javascript:void(0)" class="check-order">Проверить Счет</a></li>
+				<?endif;?>
+			</ul>
+			</td>
         </tr>
     <?endforeach;?>
-	<!--	<tr>
-			<td class="products__name">№</td>
-			<td class="products__name">Дата</td>
-			<td class="products__name">№ клиента</td>
-			<td class="products__name">Дата клиента</td>
-			<td class="products__name">Сумма</td>
-			<td class="products__name">Состояние</td>
-			<td class="products__name">% оплаты</td>
-			<td class="products__name">% отгрузки</td>
-			<td class="products__name">Действия</td>
-		</tr>-->
 	</tbody>
 </table>
