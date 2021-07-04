@@ -23,9 +23,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
             <td class="products__name"><?=$arItems['UF_USER_ID']?></td>
             <td class="products__name"><?=date('d-m-Y|T+3|H:i:s')?></td>
             <td class="products__name"><?=$arItems['PRICE']?></td>
-            <td class="products__name"><?$arItems['UF_STATUS']['NAME']?></td>
-            <td class="products__name"><?$arItems['UF_PERC_PAYMENT']?></td>
-            <td class="products__name"><?$arItems['UF_PERC_SHIPMENT']?></td>
+			<td class="products__name" style="text-align: center;"><img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" /><br /><?=$arItems['UF_STATUS']['NAME']?></td>
+            <td class="products__name"><?=$arItems['UF_PERC_PAYMENT']?></td>
+            <td class="products__name"><?=$arItems['UF_PERC_SHIPMENT']?></td>
             <td class="products__name">
 			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
 			<ul>

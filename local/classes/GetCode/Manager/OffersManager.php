@@ -41,7 +41,7 @@ class OffersManager
 	public static function getStatus($status_id = false) {
 		if(is_bool($status_id)) return null;
 		$status_id = intVal($status_id);
-
+		
 		$r = StatusesTable::getList([
 			'select' => ['*'],
 			'order' => ['ID' => 'ASC'],
@@ -49,8 +49,8 @@ class OffersManager
 			]);
 		if($e=$r->fetch()) {
 			return [
-				'NAME' => 'UF_NAME',
-				'PICTURE' => 'UF_STATUS_IMG'
+				'NAME' => $e['UF_NAME'],
+				'PICTURE' => \CFile::GetPath($e['UF_STATUS_IMG'])
 			];
 		}
 		return null;
