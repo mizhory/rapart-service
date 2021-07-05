@@ -1,6 +1,44 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 ?>
+<form action="?" method="POST">
+<?=bitrix_sessid_post()?>
+<table>
+	<tbody>
+		<tr>
+			<td>Поиск по названию</td>
+			<td><input type="text" name="QUERY" value=""/></td>
+		</tr>
+		<tr>
+			<td>Поиск по статусу</td>
+			<td>
+				<select name="STATUSES">
+					<option value="null">---</option>
+				<?foreach($arResult['FILTER']['STATUSES'] as $k=>$r):?>
+					<option value="<?=$r['CODE']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
+				<?endforeach;?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Поиск по типу</td>
+			<td>
+				<select name="TYPES">
+					<option value="null">---</option>
+				<?foreach($arResult['FILTER']['TYPES'] as $k=>$r):?>
+					<option value="<?=$r['CODE']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
+				<?endforeach;?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="submit" value="Поиск">
+			</td>
+		</tr>
+	</tbody>
+</table>
+</form>					
 <table>
 	<thead>
 		<tr>
@@ -54,42 +92,91 @@ $(document).ready(function(){
 			},
 			success: function(d_response){
 					var addAnswer = new BX.PopupWindow("my_answer", null, {
-      content: d_response,
-      closeIcon: {right: "20px", top: "10px"},
-      titleBar: {content: BX.create("span", {html: '<b>Обратная связь</b>', 'props': {'className': 'access-title-bar'}})},
-      zIndex: 0,
-      offsetLeft: 0,
-      offsetTop: 0,
-      draggable: {restrict: false},
-      buttons: [
-         new BX.PopupWindowButton({
-            text: "Отправить",
-            className: "popup-window-button-accept",
-            events: {click: function(){
-               BX.ajax.submit(BX("myForm"), function(data){ // отправка данных из формы с id="myForm" в файл из action="..."
-                  BX( 'ajax-add-answer').innerHTML = data;
-                });
-            }}
-         }),
-         new BX.PopupWindowButton({
-            text: "Закрыть",
-            className: "webform-button-link-cancel",
-            events: {click: function(){
-               this.popupWindow.close(); // закрытие окна
-            }}
-         })
-         ]
-   });
-		 addAnswer.setContent(d_response);
-		 addAnswer.show();
+						  content: d_response,
+						  closeIcon: {right: "20px", top: "10px"},
+						  titleBar: {content: BX.create("span", {html: '<b>Заказ детально</b>', 'props': {'className': 'access-title-bar'}})},
+						  zIndex: 0,
+						  offsetLeft: 0,
+						  offsetTop: 0,
+						  draggable: {restrict: false},
+						  buttons: [
+							 new BX.PopupWindowButton({
+								text: "Закрыть",
+								className: "webform-button-link-cancel",
+								events: {click: function(){
+								   this.popupWindow.close(); // закрытие окна
+								}}
+							 })
+							 ]
+					   });
+					 addAnswer.setContent(d_response);
+					 addAnswer.show();
 			}
 		});
 	});
 	$('body').on('click', '.check-kp', function(){
 		var order_id = $(this).attr('data-orderId');
+		$.ajax({
+			url: '/local/ajax/getcode/components/order.list.php?exec=true',
+			method: 'POST',
+			data: {
+				act: 'checkKP',
+				oid: order_id
+			},
+			success: function(k_response){
+					var addAnswer = new BX.PopupWindow("my_answer", null, {
+						  content: k_response,
+						  closeIcon: {right: "20px", top: "10px"},
+						  titleBar: {content: BX.create("span", {html: '<b>Заказ детально</b>', 'props': {'className': 'access-title-bar'}})},
+						  zIndex: 0,
+						  offsetLeft: 0,
+						  offsetTop: 0,
+						  draggable: {restrict: false},
+						  buttons: [
+							 new BX.PopupWindowButton({
+								text: "Закрыть",
+								className: "webform-button-link-cancel",
+								events: {click: function(){
+								   this.popupWindow.close(); // закрытие окна
+								}}
+							 })
+							 ]
+					   });
+					 addAnswer.setContent(k_response);
+					 addAnswer.show();
+			}
 	});
 	$('body').on('click', '.check-order', function(){
 		var order_id = $(this).attr('data-orderId');
+		$.ajax({
+			url: '/local/ajax/getcode/components/order.list.php?exec=true',
+			method: 'POST',
+			data: {
+				act: 'checkOrder',
+				oid: order_id
+			},
+			success: function(o_response){
+					var addAnswer = new BX.PopupWindow("my_answer", null, {
+						  content: o_response,
+						  closeIcon: {right: "20px", top: "10px"},
+						  titleBar: {content: BX.create("span", {html: '<b>Заказ детально</b>', 'props': {'className': 'access-title-bar'}})},
+						  zIndex: 0,
+						  offsetLeft: 0,
+						  offsetTop: 0,
+						  draggable: {restrict: false},
+						  buttons: [
+							 new BX.PopupWindowButton({
+								text: "Закрыть",
+								className: "webform-button-link-cancel",
+								events: {click: function(){
+								   this.popupWindow.close(); // закрытие окна
+								}}
+							 })
+							 ]
+					   });
+					 addAnswer.setContent(o_response);
+					 addAnswer.show();
+			}
 	});
 });
 </script>
