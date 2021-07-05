@@ -79,8 +79,7 @@ $(document).ready(function(){
             }}
          })
          ]
-   });
-		 addAnswer.setContent(d_response);
+   }); 
 		 addAnswer.show();
 			}
 		});
