@@ -8,7 +8,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	<tbody>
 		<tr>
 			<td>Поиск по названию</td>
-			<td><input type="text" name="QUERY" value=""/></td>
+			<td><input type="text" name="QUERY" value="<?=$arResult['F_QUERY']?>"/></td>
 		</tr>
 		<tr>
 			<td>Поиск по статусу</td>

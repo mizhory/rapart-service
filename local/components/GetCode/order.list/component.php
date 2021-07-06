@@ -28,11 +28,6 @@ global $USER, $APPLICATION;
 if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
   die();
 
-//ID компонента
-//$cpId = $this->getEditAreaId($this->__currentCounter);
-//Объект родительского компонента
-//$parent = $this->getParent();
-//$parentPath = $parent->getPath();
 
 Loc::loadMessages(__FILE__);
 
@@ -55,34 +50,32 @@ $userID = intval($USER->getID());
 if(!$arParams['CACHE_TIME'] || $arParams['CACHE_TIME']>3600 || !isset($arParams['CACHE_TIME']))
 	$arParams['CACHE_TIME'] = 3600;
 
-if($this->startResultCache()) {
-    if(isset($arParams['PRIZNAK'])){
-        $priznak = 1;
-        if($arParams['PRIZNAK'] == 'order')
-            $priznak = 0;
-    }
-	$arFilter = ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak];
-	if($request->isPost()){
-		$this->AbortResultCache();
+if(isset($arParams['PRIZNAK'])){
+	$priznak = 1;
+	if($arParams['PRIZNAK'] == 'order')
+		$priznak = 0;
+}
+$arFilter = ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak];
+if($request->isPost()){
+	$p_query = $request->getPost('QUERY');
+	$p_status = $request->getPost('STATUSES');
+	$p_type = $request->getPost('TYPES');
 
-		$p_query = $request->getPost('QUERY');
-		$p_status = $request->getPost('STATUSES');
-		$p_type = $request->getPost('TYPES');
-		
-		$arrFilter = [];
-		if($p_query && strlen($p_query)>0){
-			$arrFilter['UF_NAME'] = "%" . $p_query . "%";
-		}
-        if($p_status && intval($p_status)){
-			$arrFilter['UF_STATUS'] = $p_status;
-		}
-        if($p_type && intval($p_type)){
-			$arrFilter['UF_ORDER_TYPES'] = $p_type;
-		}
-        
-		$arFilter = array_merge($arFilter, $arrFilter);
-		var_dump($arFilter);
+	$arResult['F_QUERY'] = $p_query;
+	$arrFilter = [];
+
+	if($p_query && strlen($p_query)>0){
+		$arrFilter['UF_NAME'] = "%" . $p_query . "%";
 	}
+	if($p_status && intval($p_status)){
+		$arrFilter['UF_STATUS'] = $p_status;
+	}
+	if($p_type && intval($p_type)){
+		$arrFilter['UF_ORDER_TYPES'] = $p_type;
+	}
+        
+	$arFilter = array_merge($arFilter, $arrFilter);
+}
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => ['ID' => 'ASC'],
@@ -118,6 +111,8 @@ if($this->startResultCache()) {
 				'ID' => $k['ID'],
 				'NAME' => $k['UF_NAME']
 				];
+			if($p_status == $k['ID'])
+				$arResult['FILTER']['STATUSES'][$k['ID']]['selected'] = 'true';
 		}
 		$z = OrderTypesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
 		while($k=$z->fetch()){
@@ -125,13 +120,13 @@ if($this->startResultCache()) {
 				'ID' => $k['ID'],
 				'NAME' => $k['UF_NAME']
 				];
+			if($p_type == $k['ID'])
+				$arResult['FILTER']['TYPES'][$k['ID']]['selected'] = 'true';
 		}
 	}
 	
 	$this->IncludeComponentTemplate();
-} else {
-	$this->AbortResultCache();
-}
+
 
 if($arParams['TITLE']) {
     $title = $arParams['TITLE'];
