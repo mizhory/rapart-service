@@ -62,7 +62,7 @@ if($this->startResultCache()) {
             $priznak = 0;
     }
 	$arFilter = ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak];
-	if($request->isPost()){
+	//if($request->isPost()){
 		$p_query = $request->getPost('QUERY');
 		$p_status = $request->getPost('STATUSES');
 		$p_type = $request->getPost('TYPES');
@@ -80,7 +80,7 @@ if($this->startResultCache()) {
         
 		$arFilter = array_merge($arFilter, $arrFilter);
 		var_dump($arFilter);
-	}
+	//}
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => ['ID' => 'ASC'],
