@@ -75,10 +75,11 @@ if($this->startResultCache()) {
 			$arrFilter['UF_STATUS'] = $p_status;
 		}
         if($p_type && intval($p_type)){
-			$arrFilter['UF_ORDER_TYPES'] = "%" . $p_type . "%";
+			$arrFilter['UF_ORDER_TYPES'] = $p_type;
 		}
         
 		$arFilter = array_merge($arFilter, $arrFilter);
+		var_dump($arFilter);
 	}
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
