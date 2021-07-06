@@ -1,6 +1,7 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 ?>
+<?if($arParams['PRIZNAK'] == 'order'):?>
 <form action="?" method="POST">
 <?=bitrix_sessid_post()?>
 <table>
@@ -15,7 +16,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 				<select name="STATUSES">
 					<option value="null">---</option>
 				<?foreach($arResult['FILTER']['STATUSES'] as $k=>$r):?>
-					<option value="<?=$r['CODE']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
+					<option value="<?=$r['ID']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
 				<?endforeach;?>
 				</select>
 			</td>
@@ -26,7 +27,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 				<select name="TYPES">
 					<option value="null">---</option>
 				<?foreach($arResult['FILTER']['TYPES'] as $k=>$r):?>
-					<option value="<?=$r['CODE']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
+					<option value="<?=$r['ID']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
 				<?endforeach;?>
 				</select>
 			</td>
@@ -38,7 +39,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</tr>
 	</tbody>
 </table>
-</form>					
+</form>
+<?endif;?>
 <table>
 	<thead>
 		<tr>
