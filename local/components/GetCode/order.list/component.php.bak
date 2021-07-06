@@ -63,6 +63,7 @@ if($this->startResultCache()) {
     }
 	$arFilter = ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak];
 	if($request->isPost()){
+		$this->AbortResultCache();
 		$p_query = $request->getPost('QUERY');
 		$p_status = $request->getPost('STATUSES');
 		$p_type = $request->getPost('TYPES');
