@@ -36,6 +36,10 @@ if(!defined('B_PROLOG_INCLUDED') || B_PROLOG_INCLUDED !== true)
 
 Loc::loadMessages(__FILE__);
 
+$httpApp = \Bitrix\Main\Application::getInstance();
+$context = $httpApp->getContext();
+$request = $context->getRequest();
+
 if(!Loader::includeModule('iblock')) {
   ShowError(getMessage('TITLE'));
   return;
@@ -57,10 +61,29 @@ if($this->startResultCache()) {
         if($arParams['PRIZNAK'] == 'order')
             $priznak = 0;
     }
+	$arFilter = ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak];
+	if($request->isPost()){
+		$p_query = $request->getPost('QUERY');
+		$p_status = $request->getPost('STATUSES');
+		$p_type = $request->getPost('TYPES');
+		
+		$arrFilter = [];
+		if($p_query && strlen($p_query)>0){
+			$arrFilter['UF_NAME'] = "%" . $p_query . "%";
+		}
+        if($p_status && intval($p_status)){
+			$arrFilter['UF_STATUS'] = $p_status;
+		}
+        if($p_type && intval($p_type)){
+			$arrFilter['UF_ORDER_TYPES'] = "%" . $p_type . "%";
+		}
+        
+		$arFilter = array_merge($arFilter, $arrFilter);
+	}
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => ['ID' => 'ASC'],
-			'filter' => ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak]
+			'filter' => $arFilter
 		]);
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][$s['ID']] = $s;
@@ -85,6 +108,22 @@ if($this->startResultCache()) {
 		$arResult['ITEMS'][$k]['UF_STATUS'] = OffersManager::getStatus($arResult['ITEMS'][$k]['UF_STATUS']['VALUE']);
         $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
     }
+	if($arParams['PRIZNAK'] == 'order'){
+		$z = StatusesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
+		while($k=$z->fetch()){
+			$arResult['FILTER']['STATUSES'][$k['ID']] = [
+				'ID' => $k['ID'],
+				'NAME' => $k['UF_NAME']
+				];
+		}
+		$z = OrderTypesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
+		while($k=$z->fetch()){
+			$arResult['FILTER']['TYPES'][$k['ID']] = [
+				'ID' => $k['ID'],
+				'NAME' => $k['UF_NAME']
+				];
+		}
+	}
 	
 	$this->IncludeComponentTemplate();
 } else {

@@ -1,6 +1,7 @@
 <?
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 ?>
+<?if($arParams['PRIZNAK'] == 'order'):?>
 <form action="?" method="POST">
 <?=bitrix_sessid_post()?>
 <table>
@@ -33,12 +34,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</tr>
 		<tr>
 			<td>
-				<input type="submit" name="filtered" value="Поиск">
+				<input type="submit" value="Поиск">
 			</td>
 		</tr>
 	</tbody>
 </table>
-</form>					
+</form>
+<?endif;?>
 <table>
 	<thead>
 		<tr>

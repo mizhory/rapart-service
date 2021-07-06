@@ -33,9 +33,9 @@ if($action == 'getDetailOrder'){
 
 		echo '
 			<div class="">
-				<h3>Заказ: '.$a['UF_NAME'].'</h3>
-				<div>Кол-во товаров:'.count($a['UF_OFFERS']).'</div>
-				<div>Сумма заказа: '.$p.' '.$currency.'</div></div>
+				<h3>Р—Р°РєР°Р·: '.$a['UF_NAME'].'</h3>
+				<div>РљРѕР»-РІРѕ С‚РѕРІР°СЂРѕРІ:'.count($a['UF_OFFERS']).'</div>
+				<div>РЎСѓРјРјР° Р·Р°РєР°Р·Р°: '.$p.' '.$currency.'</div></div>
 			</div>';
 		die;
 	}
@@ -52,13 +52,13 @@ if($action == 'getDetailOrder'){
 
 		echo '
 			<div class="">
-				<h3>КП сформированно: <a download href="'.CFile::getPath($a['UF_CO_FILE']).'">скачать</a></h3>
+				<h3>РљРџ СЃС„РѕСЂРјРёСЂРѕРІР°РЅРЅРѕ: <a download href="'.CFile::getPath($a['UF_CO_FILE']).'">СЃРєР°С‡Р°С‚СЊ</a></h3>
 			</div>';
 		die;
 	} else {
 		echo '
 			<div class="">
-				<h3>КП для заказа не сформированно.</h3>
+				<h3>РљРџ РґР»СЏ Р·Р°РєР°Р·Р° РЅРµ СЃС„РѕСЂРјРёСЂРѕРІР°РЅРЅРѕ.</h3>
 			</div>';
 		die;
 	}
@@ -79,9 +79,9 @@ if($action == 'getDetailOrder'){
 
 		echo '
 			<div class="">
-				<h3>Заказ: '.$a['UF_NAME'].'</h3>
-				<div>Кол-во товаров:'.count($a['UF_OFFERS']).'</div>
-				<div>Сумма заказа: '.$p.' '.$currency.'</div></div>
+				<h3>Р—Р°РєР°Р·: '.$a['UF_NAME'].'</h3>
+				<div>РљРѕР»-РІРѕ С‚РѕРІР°СЂРѕРІ:'.count($a['UF_OFFERS']).'</div>
+				<div>РЎСѓРјРјР° Р·Р°РєР°Р·Р°: '.$p.' '.$currency.'</div></div>
 			</div>';
 		die;
 	}
