@@ -109,8 +109,20 @@ if($this->startResultCache()) {
         $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
     }
 	if($arParams['PRIZNAK'] == 'order'){
-		//$arResult['FILTER']['STATUSES'];
-		//$arResult['FILTER']['TYPES'];
+		$z = StatusesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
+		while($k=$z->fetch()){
+			$arResult['FILTER']['STATUSES'][$k['ID']] = [
+				'ID' => $k['ID'],
+				'NAME' => $k['UF_NAME']
+				];
+		}
+		$z = OrderTypesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
+		while($k=$z->fetch()){
+			$arResult['FILTER']['TYPES'][$k['ID']] = [
+				'ID' => $k['ID'],
+				'NAME' => $k['UF_NAME']
+				];
+		}
 	}
 	
 	$this->IncludeComponentTemplate();
