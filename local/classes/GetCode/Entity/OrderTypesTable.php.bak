@@ -1,5 +1,5 @@
 <?php
-namespace GetCode\Entity;
+namespace Bitrix\Entity;
 
 use Bitrix\Main\Localization\Loc,
 	Bitrix\Main\ORM\Data\DataManager,
