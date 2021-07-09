@@ -63,10 +63,11 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
             <td class="products__name">
 			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
 			<ul class="nav-menu">
-				<li style="margin-bottom: 10px;"><a href="javascript:void(0)" data-orderId='<?=$arItems['ID']?>' class="detail">Просмотреть</a></li>
-				<?if($arParams['PRIZNAK'] == 'order'):?>
-				<li style="margin-bottom: 10px;"><a href="javascript:void(0)" data-orderId='<?=$arItems['ID']?>' class="check-kp">КП</a></li>
-				<li><a href="javascript:void(0)" data-orderId='<?=$arItems['ID']?>' class="check-order">Счет заказа</a></li>
+				<li style="margin-bottom: 10px;"><a href="?ORDER_ID=<?=$arItems['ID']?>&detail=Y" class="detail">Просмотреть</a></li>
+				<?if($arParams['PRIZNAK'] == 'order')
+				:?>
+				<li style="margin-bottom: 10px;"><a href="?ORDER_ID=<?=$arItems['ID']?>&view_kp=Y" class="check-kp">КП</a></li>
+				<li><a href="?ORDER_ID=<?=$arItems['ID']?>&view_order=Y" class="check-order">Счет заказа</a></li>
 				<?endif;?>
 			</ul>
 			</td>
