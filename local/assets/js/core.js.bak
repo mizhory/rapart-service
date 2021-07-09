@@ -20,5 +20,5 @@ $(document).ready(function(){
         loadLifeCart();
         $.magnificPopup.close();
     });
-	$('body').append('<a href="http://get-code.ru/" title="ГетКод" alt="ГетКод" style="display:none;">ГетКод</a>');
+
 });
