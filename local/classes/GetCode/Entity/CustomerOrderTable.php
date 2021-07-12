@@ -60,12 +60,6 @@ class CustomerOrderTable extends DataManager
 				]
 			),
 			new TextField(
-				'UF_OFFERS',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_OFFERS_FIELD')
-				]
-			),
-			new TextField(
 				'UF_TIMESTAMP',
 				[
 					'title' => Loc::getMessage('ORDER_ENTITY_UF_TIMESTAMP_FIELD')
@@ -111,6 +105,12 @@ class CustomerOrderTable extends DataManager
 				'UF_PERC_SHIPMENT',
 				[
 					'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_SHIPMENT_FIELD')
+				]
+			),
+			new TextField(
+				'UF_OFFERS',
+				[
+					'title' => Loc::getMessage('ORDER_ENTITY_UF_OFFERS_FIELD')
 				]
 			),
 		];

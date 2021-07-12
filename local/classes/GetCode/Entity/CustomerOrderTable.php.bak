@@ -95,6 +95,24 @@ class CustomerOrderTable extends DataManager
 					'title' => Loc::getMessage('ORDER_ENTITY_UF_XML_ID_FIELD')
 				]
 			),
+			new IntegerField(
+				'UF_STATUS',
+				[
+					'title' => Loc::getMessage('ORDER_ENTITY_UF_STATUS_FIELD')
+				]
+			),
+			new TextField(
+				'UF_PERC_PAYMENT',
+				[
+					'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_PAYMENT_FIELD')
+				]
+			),
+			new TextField(
+				'UF_PERC_SHIPMENT',
+				[
+					'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_SHIPMENT_FIELD')
+				]
+			),
 		];
 	}
 }
