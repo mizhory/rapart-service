@@ -108,6 +108,13 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
     <?endforeach;?>
 	</tbody>
 </table>
+<script>
+$('body').on('click', '.detail', function (){
+	var did = $(this).attr('data-kid');
+	var marker = '.detail-'+did;
+	$('body').find(marker).toggle();
+		});
+</script>
 <style>
 .nav-menu li a {
 	background: #306AA8;

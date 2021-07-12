@@ -64,7 +64,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
 			<ul class="nav-menu">
 				<!--#?ORDER_ID=<?=$arItems['ID']?>&DETAIL=Y-->
-				<li style="margin-bottom: 10px;"><a href="javascript:void();" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
+				<li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
 				<?if($arParams['PRIZNAK'] == 'order')
 				:?>
 				<li style="margin-bottom: 10px;"><a href="?ORDER_ID=<?=$arItems['ID']?>&VIEW_KP=Y" class="check-kp">КП</a></li>
