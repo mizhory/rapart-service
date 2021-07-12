@@ -74,17 +74,17 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 			</td>
         </tr>
 		<tr style="diplay:none;" class="not-show detail-<?=$k?>">
-			<td>№</td>
-			<td>P/N</td>
-			<td>Кол-во ЕИ</td>
-			<td>Цена</td>
-			<td>Сумма</td>
-			<td>Ставка НДС</td>
-			<td>Сумма с НДС</td>
-			<td>Срок поставки</td>
-			<td>Заявка</td>
-			<td>Состояние</td>
-			<td>В заказ</td>
+			<td class="products__name">№</td>
+			<td class="products__name">P/N</td>
+			<td class="products__name">Кол-во ЕИ</td>
+			<td class="products__name">Цена</td>
+			<td class="products__name">Сумма</td>
+			<td class="products__name">Ставка НДС</td>
+			<td class="products__name">Сумма с НДС</td>
+			<td class="products__name">Срок поставки</td>
+			<td class="products__name">Заявка</td>
+			<td class="products__name">Состояние</td>
+			<td class="products__name">В заказ</td>
 		</tr>
 		<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
 		<?
@@ -131,6 +131,6 @@ $('body').on('click', '.detail', function (){
 background:linear-gradient(#DDD, #BBB);
 }
 .not-show {
-	display: none !important;
+	display: none;
 }
 </style>
