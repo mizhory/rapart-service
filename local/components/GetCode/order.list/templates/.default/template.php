@@ -87,19 +87,22 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 			<td>В заказ</td>
 		</tr>
 		<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
-		<?var_dump($arElements);?>
+		<?
+		$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
+		$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
+		?>
 			<tr style="diplay:none;" class="detail-<?=$k?>">
-				<td>№</td>
-				<td>P/N</td>
-				<td>Кол-во ЕИ</td>
-				<td>Цена</td>
-				<td>Сумма</td>
-				<td>Ставка НДС</td>
-				<td>Сумма с НДС</td>
-				<td>Срок поставки</td>
-				<td>Заявка</td>
+				<td><?=$e?></td>
+				<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
+				<td><?=$arElements['COUNT']?></td>
+				<td><?=$arElements["PROPERTIES"]['PRICE']['CURRENCY_VALUE']?></td>
+				<td><?=$arElements["PROPERTIES"]['PRICE']['CURRENCY_VALUE']?></td>
+				<td>20%</td>
+				<td><?=$currency_with_nds?></td>
+				<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
+				<td><?=$arElements["ID"]?></td>
 				<td>Состояние</td>
-				<td>В заказ</td>
+				<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
 			</tr>
 		<?endforeach;?>
     <?endforeach;?>

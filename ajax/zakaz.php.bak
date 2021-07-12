@@ -38,7 +38,7 @@ $res = \CSaleBasket::GetList(
 );
 $items = false;
 while($ret = $res->fetch()){
-    $items[] = [$ret["PRODUCT_ID"], $ret['QUANTITY']];
+    $items[] = $ret["PRODUCT_ID"];
 }
 
 $e = CustomerOrderTable::add([

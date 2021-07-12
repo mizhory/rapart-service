@@ -101,7 +101,8 @@ if(intVal($ORDER_ID)){
     }
 	if(is_array($offers)) {
 	    foreach($offers as $k=>$r) {
-	        $arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($r);
+
+	        $arResult['ITEMS'][$k]['ELEMENTS'][] = array_merge(OffersManager::getElementsByIblock($r[0]), ['COUNT' => $r[1]]);
         }
     }
 	foreach($arResult['ITEMS'] as $k=>$arItems) {
