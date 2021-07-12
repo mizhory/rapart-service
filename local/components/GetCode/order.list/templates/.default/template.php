@@ -63,7 +63,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
             <td class="products__name">
 			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
 			<ul class="nav-menu">
-				<li style="margin-bottom: 10px;"><a href="?ORDER_ID=<?=$arItems['ID']?>&DETAIL=Y" class="detail">Просмотреть</a></li>
+				<!--#?ORDER_ID=<?=$arItems['ID']?>&DETAIL=Y-->
+				<li style="margin-bottom: 10px;"><a href="javascript:void();" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
 				<?if($arParams['PRIZNAK'] == 'order')
 				:?>
 				<li style="margin-bottom: 10px;"><a href="?ORDER_ID=<?=$arItems['ID']?>&VIEW_KP=Y" class="check-kp">КП</a></li>
@@ -72,6 +73,35 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 			</ul>
 			</td>
         </tr>
+		<tr style="diplay:none;" class="detail-<?=$k?>">
+			<td>№</td>
+			<td>P/N</td>
+			<td>Кол-во ЕИ</td>
+			<td>Цена</td>
+			<td>Сумма</td>
+			<td>Ставка НДС</td>
+			<td>Сумма с НДС</td>
+			<td>Срок поставки</td>
+			<td>Заявка</td>
+			<td>Состояние</td>
+			<td>В заказ</td>
+		</tr>
+		<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
+		<?var_dump($arElements);?>
+			<tr style="diplay:none;" class="detail-<?=$k?>">
+				<td>№</td>
+				<td>P/N</td>
+				<td>Кол-во ЕИ</td>
+				<td>Цена</td>
+				<td>Сумма</td>
+				<td>Ставка НДС</td>
+				<td>Сумма с НДС</td>
+				<td>Срок поставки</td>
+				<td>Заявка</td>
+				<td>Состояние</td>
+				<td>В заказ</td>
+			</tr>
+		<?endforeach;?>
     <?endforeach;?>
 	</tbody>
 </table>
@@ -86,5 +116,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	padding-left: 32px;
 	color: white;
 	font-size: 11pt;
+}
+.products__name {
+background:linear-gradient(#DDD, #BBB);
 }
 </style>

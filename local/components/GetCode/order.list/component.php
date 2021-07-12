@@ -133,11 +133,6 @@ if(intVal($ORDER_ID)){
 				$arResult['FILTER']['TYPES'][$k['ID']]['selected'] = 'true';
 		}
 	}
-	/*
-	$DETAIL		= $request->getQuery('DETAIL');
-$arResult['VIEW_KP']	= $VIEW_KP		= $request->getQuery('VIEW_KP');
-$arResult['VIEW_ORDER'] = $VIEW_ORDER
-*/
 if(strlen($DETAIL)>0 && $DETAIL == 'Y'){
 	$tpl_name = 'detail';
 } elseif(strlen($VIEW_KP)>0 && $VIEW_KP=='Y'){

@@ -133,8 +133,21 @@ if(intVal($ORDER_ID)){
 				$arResult['FILTER']['TYPES'][$k['ID']]['selected'] = 'true';
 		}
 	}
-	
-	$this->IncludeComponentTemplate();
+	/*
+	$DETAIL		= $request->getQuery('DETAIL');
+$arResult['VIEW_KP']	= $VIEW_KP		= $request->getQuery('VIEW_KP');
+$arResult['VIEW_ORDER'] = $VIEW_ORDER
+*/
+if(strlen($DETAIL)>0 && $DETAIL == 'Y'){
+	$tpl_name = 'detail';
+} elseif(strlen($VIEW_KP)>0 && $VIEW_KP=='Y'){
+	$tpl_name = 'view_kp';
+} elseif(strlen($VIEW_ORDER)>0 && $VIEW_ORDER == 'Y'){
+	$tpl_name = 'view_order';
+} else {
+	$tpl_name = 'template';
+}
+	$this->IncludeComponentTemplate($tpl_name);
 
 
 if($arParams['TITLE']) {
