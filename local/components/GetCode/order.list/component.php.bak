@@ -143,6 +143,7 @@ if(strlen($DETAIL)>0 && $DETAIL == 'Y'){
 } else {
 	$tpl_name = 'template';
 }
+	var_dump($arResult['ITEMS']);
 	$this->IncludeComponentTemplate($tpl_name);
 
 

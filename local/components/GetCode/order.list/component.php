@@ -99,6 +99,7 @@ if(intVal($ORDER_ID)){
 	        $offers[$r['ID']] = unserialize($r['UF_OFFERS']);
         }
     }
+	var_dump($offers);
 	if(is_array($offers)) {
 	    foreach($offers as $k=>$r) {
 
