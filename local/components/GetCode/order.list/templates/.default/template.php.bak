@@ -102,7 +102,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 				<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
 				<td><?=$arElements["ID"]?></td>
 				<td>Состояние</td>
-				<td>В заказ</td>
+				<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
 			</tr>
 		<?endforeach;?>
     <?endforeach;?>
