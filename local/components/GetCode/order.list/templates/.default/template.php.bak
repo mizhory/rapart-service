@@ -55,12 +55,12 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	<tbody>
     <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
         <tr>
-            <td class="products__name"><?=$k?></td>
-            <td class="products__name"><?=date('d-m-Y')?></td>
-			<td class="products__name">Приоритет</td>
-            <td class="products__name"><?=$arItems['UF_USER_ID']?></td>
-			<td class="products__name" style="text-align: center;"><img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" /><br /><?=$arItems['UF_STATUS']['NAME']?></td>
-            <td class="products__name">
+            <td class=""><?=$k?></td>
+            <td class=""><?=date('d-m-Y')?></td>
+			<td class="">Приоритет</td>
+            <td class=""><?=$arItems['UF_USER_ID']?></td>
+			<td class="" style="text-align: center;"><img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" /><br /><?=$arItems['UF_STATUS']['NAME']?></td>
+            <td class="">
 			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
 			<ul class="nav-menu">
 				<!--#?ORDER_ID=<?=$arItems['ID']?>&DETAIL=Y-->
@@ -73,7 +73,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 			</ul>
 			</td>
         </tr>
-		<tr style="diplay:none;" class="detail-<?=$k?>">
+		<tr style="diplay:none;" class="not-show detail-<?=$k?>">
 			<td>№</td>
 			<td>P/N</td>
 			<td>Кол-во ЕИ</td>
@@ -91,7 +91,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
 		$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
 		?>
-			<tr style="diplay:none;" class="detail-<?=$k?>">
+			<tr style="diplay:none;" class="not-show detail-<?=$k?>">
 				<td><?=$e?></td>
 				<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
 				<td><?=$arElements['COUNT']?></td>
@@ -122,5 +122,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 }
 .products__name {
 background:linear-gradient(#DDD, #BBB);
+}
+.not-show {
+	display: none !important;
 }
 </style>
