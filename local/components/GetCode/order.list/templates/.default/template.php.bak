@@ -41,8 +41,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 </table>
 </form>
 <?endif;?>
-    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-        <table>
+ <table width="100%" style="text-align:center;">
 	<thead>
 		<tr>
 			<th class="products__name">№</th>
@@ -54,30 +53,34 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</tr>
 	</thead>
 	<tbody>
+    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
 		<tr>
             <td class=""><?=$k?></td>
             <td class=""><?=date('d-m-Y')?></td>
 			<td class="">Приоритет</td>
             <td class=""><?=$arItems['UF_USER_ID']?></td>
-			<td class="" style="text-align: center;"><img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" /><br /><?=$arItems['UF_STATUS']['NAME']?></td>
+			<td class="" style="text-align: center;font-size: 11px;">
+				<img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />
+				<br />
+				<span><?=$arItems['UF_STATUS']['NAME']?></span>
+			</td>
             <td class="">
-			<!--<a href="#order/?id=' . $line->ID . '&part=' . $curPage . '" class="product__btn">Посмотреть</a>-->
 			<ul class="nav-menu">
-				<!--#?ORDER_ID=<?=$arItems['ID']?>&DETAIL=Y-->
 				<li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
-				<?if($arParams['PRIZNAK'] == 'order')
-				:?>
-				<!--#?ORDER_ID=<?=$arItems['ID']?>&VIEW_KP=Y-->
+				<?if($arParams['PRIZNAK'] == 'order'):?>
 				<li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp">КП</a></li>
-				<!--#?ORDER_ID=<?=$arItems['ID']?>&VIEW_ORDER=Y-->
 				<li><a href="javascript:void(0);" class="check-order" data-kid="<?=$k?>">Счет заказа</a></li>
 				<?endif;?>
 			</ul>
 			</td>
         </tr>
+<?endforeach;?>
+
 		</tbody>
 		</table>
-		<table class="not-show detail-<?=$k?>">
+
+    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
+		<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;">
 		<thead>
 		<tr>
 			<th class="products__name">№</td>
@@ -212,8 +215,6 @@ $(document).ready(function(){
 		$('body').find(marker).slideToggle('slow');
 	});
 });
-//check-kp
-//check-order
 </script>
 <style>
 .nav-menu li a {
