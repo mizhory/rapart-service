@@ -83,6 +83,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;">
 		<thead>
 		<tr>
+			<th cols="11">Заказ №-<?=$arItems['UF_NAME']?></th>
+		</tr>
+		<tr>
 			<th class="products__name">№</td>
 			<th class="products__name">P/N</td>
 			<th class="products__name">Кол-во ЕИ</td>
@@ -120,6 +123,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</table>
 		<table class="not-show kp-<?=$k?>" width="100%" style="text-align:center;">
 		<thead>
+		<tr>
+			<th cols="11">Заказ №-<?=$arItems['UF_NAME']?></th>
+		</tr>
 			<tr>
 				<th class="products__name">№</td>
 				<th class="products__name">P/N</td>
@@ -159,6 +165,9 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</table>
 		<table class="not-show order-<?=$k?>" width="100%" style="text-align:center;">
 		<thead>
+		<tr>
+			<th cols="11">Заказ №-<?=$arItems['UF_NAME']?></th>
+		</tr>
 			<tr>
 				<th class="products__name">№</td>
 				<th class="products__name">P/N</td>
