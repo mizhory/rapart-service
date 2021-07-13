@@ -142,8 +142,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		<?endforeach;?>
 		<tr>
 			<td><?=$arKP['UF_CO_ID']?></td>
-			<td><?$item['NAME']?></td>
-			<td><a href="<?=$arKP['UF_']?>" download>Скачать</a></td>
+			<td><?=$item['NAME']?></td>
+			<td><a href="<?=$arKP['UF_CO_FILE']["SRC"]?>" download>Скачать</a></td>
 			<td class="" style="text-align: center;font-size: 11px;">
 				<img src="<?=$arKP['STATUS']['PICTURE']?>" alt="<?=$arItems['STATUS']['NAME']?>" title="<?=$arKP['STATUS']['NAME']?>" />
 				<br />

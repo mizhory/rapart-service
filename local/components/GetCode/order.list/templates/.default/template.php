@@ -135,11 +135,11 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</thead>
 		<tbody>
 		<?foreach($arItems['KP'] as $e=>$arKP):?>
-		<?foreach($arItems['ELEMENTS'] as $z=>$m):?>
-		<?if($m['ID'] == $arKP['UF_ITEM_ID']):?>
-		<?$item = $m;break;?>
-		<?endif;?>
-		<?endforeach;?>
+			<?foreach($arItems['ELEMENTS'] as $z=>$m):?>
+				<?if($m['ID'] == $arKP['UF_ITEM_ID']):?>
+				<?$item = $m;break;?>
+				<?endif;?>
+			<?endforeach;?>
 		<tr>
 			<td><?=$arKP['UF_CO_ID']?></td>
 			<td><?=$item['NAME']?></td>
