@@ -96,15 +96,22 @@ if(intVal($ORDER_ID)){
 	$offers = false;
 	foreach($arResult['ITEMS'] as $k=>$r) {
 	    if(is_array(unserialize($r['UF_OFFERS']))&&count(unserialize($r['UF_OFFERS']))>0){
-	        $offers[$r['ID']] = unserialize($r['UF_OFFERS']);
+	        $offers[$k] = unserialize($r['UF_OFFERS']);
         }
     }
-	var_dump($offers);
+	//var_dump($offers);
 	if(is_array($offers)) {
-	    foreach($offers as $k=>$r) {
-
-	        $arResult['ITEMS'][$k]['ELEMENTS'][] = array_merge(OffersManager::getElementsByIblock($r[0]), ['COUNT' => $r[1]]);
+	    foreach($offers as $k=>$re) {
+			foreach($re as $r){
+				$ids[] = $r[0];
+				$counts[$r[0]] = $r[1];
+			}
         }
+		$arResult['ITEMS'][$k]['_ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
+		foreach($arResult['ITEMS'][$k]['_ELEMENTS'] as $k=>$r){
+			$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
+			$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
+		}
     }
 	foreach($arResult['ITEMS'] as $k=>$arItems) {
 	    $p = 0.0;
