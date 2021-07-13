@@ -108,9 +108,9 @@ if(intVal($ORDER_ID)){
 			}
         }
 		
-		foreach($arResult['ITEMS'] as $k=>$r){
-			$arResult['ITEMS'][$k]['_ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
-			foreach($arResult['ITEMS'][$k]['_ELEMENTS'] as $r){
+		foreach($arResult['ITEMS'] as $k=>$e){
+			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
+			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
 			}
