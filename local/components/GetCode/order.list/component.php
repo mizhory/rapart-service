@@ -99,7 +99,6 @@ if(intVal($ORDER_ID)){
 	        $offers[$k] = unserialize($r['UF_OFFERS']);
         }
     }
-	//var_dump($offers);
 	if(is_array($offers)) {
 	    foreach($offers as $k=>$re) {
 			foreach($re as $r){
@@ -154,7 +153,6 @@ if(strlen($DETAIL)>0 && $DETAIL == 'Y'){
 } else {
 	$tpl_name = 'template';
 }
-	var_dump($arResult['ITEMS']);
 	$this->IncludeComponentTemplate($tpl_name);
 
 

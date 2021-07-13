@@ -41,7 +41,8 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 </table>
 </form>
 <?endif;?>
-<table>
+    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
+        <table>
 	<thead>
 		<tr>
 			<th class="products__name">№</th>
@@ -53,8 +54,7 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 		</tr>
 	</thead>
 	<tbody>
-    <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-        <tr>
+		<tr>
             <td class=""><?=$k?></td>
             <td class=""><?=date('d-m-Y')?></td>
 			<td class="">Приоритет</td>
@@ -67,36 +67,122 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 				<li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
 				<?if($arParams['PRIZNAK'] == 'order')
 				:?>
-				<li style="margin-bottom: 10px;"><a href="?ORDER_ID=<?=$arItems['ID']?>&VIEW_KP=Y" class="check-kp">КП</a></li>
-				<li><a href="?ORDER_ID=<?=$arItems['ID']?>&VIEW_ORDER=Y" class="check-order">Счет заказа</a></li>
+				<!--#?ORDER_ID=<?=$arItems['ID']?>&VIEW_KP=Y-->
+				<li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp">КП</a></li>
+				<!--#?ORDER_ID=<?=$arItems['ID']?>&VIEW_ORDER=Y-->
+				<li><a href="javascript:void(0);" class="check-order" data-kid="<?=$k?>">Счет заказа</a></li>
 				<?endif;?>
 			</ul>
 			</td>
         </tr>
-		<tr style="diplay:none;" class="not-show detail-<?=$k?>">
-			<td class="products__name">№</td>
-			<td class="products__name">P/N</td>
-			<td class="products__name">Кол-во ЕИ</td>
-			<td class="products__name">Цена</td>
-			<td class="products__name">Сумма</td>
-			<td class="products__name">Ставка НДС</td>
-			<td class="products__name">Сумма с НДС</td>
-			<td class="products__name">Срок поставки</td>
-			<td class="products__name">Заявка</td>
-			<td class="products__name">Состояние</td>
-			<td class="products__name">В заказ</td>
+		</tbody>
+		</table>
+		<table class="not-show detail-<?=$k?>">
+		<thead>
+		<tr>
+			<th class="products__name">№</td>
+			<th class="products__name">P/N</td>
+			<th class="products__name">Кол-во ЕИ</td>
+			<th class="products__name">Цена</td>
+			<th class="products__name">Сумма</td>
+			<th class="products__name">Ставка НДС</td>
+			<th class="products__name">Сумма с НДС</td>
+			<th class="products__name">Срок поставки</td>
+			<th class="products__name">Заявка</td>
+			<th class="products__name">Состояние</td>
+			<th class="products__name">В заказ</td>
 		</tr>
+		</thead><tbody>
 		<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
 		<?
 		$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
 		$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
+		$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
 		?>
-			<tr style="diplay:none;" class="not-show detail-<?=$k?>">
-				<td><?=$e?></td>
+			<tr>
+				<td><?=$arElements['ID']?></td>
 				<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
 				<td><?=$arElements['COUNT']?></td>
-				<td><?=$arElements["PROPERTIES"]['PRICE']['CURRENCY_VALUE']?></td>
-				<td><?=$arElements["PROPERTIES"]['PRICE']['CURRENCY_VALUE']?></td>
+				<td><?=$arElements["PROPERTIES"]['PRICE']['PRICE']?></td>
+				<td><?=$summ?></td>
+				<td>20%</td>
+				<td><?=$currency_with_nds?></td>
+				<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
+				<td><?=$arElements["ID"]?></td>
+				<td>Состояние</td>
+				<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
+			</tr>
+		<?endforeach;?>
+		</tbody>
+		</table>
+		<table class="not-show kp-<?=$k?>">
+		<thead>
+			<tr>
+				<th class="products__name">№</td>
+				<th class="products__name">P/N</td>
+				<th class="products__name">Кол-во ЕИ</td>
+				<th class="products__name">Цена</td>
+				<th class="products__name">Сумма</td>
+				<th class="products__name">Ставка НДС</td>
+				<th class="products__name">Сумма с НДС</td>
+				<th class="products__name">Срок поставки</td>
+				<th class="products__name">Заявка</td>
+				<th class="products__name">Состояние</td>
+				<th class="products__name">В заказ</td>
+			</tr>
+		</thead>
+		<tbody>
+		<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
+		<?
+		$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
+		$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
+		$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
+		?>
+			<tr>
+				<td><?=$arElements['ID']?></td>
+				<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
+				<td><?=$arElements['COUNT']?></td>
+				<td><?=$arElements["PROPERTIES"]['PRICE']['PRICE']?></td>
+				<td><?=$summ?></td>
+				<td>20%</td>
+				<td><?=$currency_with_nds?></td>
+				<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
+				<td><?=$arElements["ID"]?></td>
+				<td>Состояние</td>
+				<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
+			</tr>
+		<?endforeach;?>
+		</tbody>
+		</table>
+		<table class="not-show order-<?=$k?>">
+		<thead>
+			<tr>
+				<th class="products__name">№</td>
+				<th class="products__name">P/N</td>
+				<th class="products__name">Кол-во ЕИ</td>
+				<th class="products__name">Цена</td>
+				<th class="products__name">Сумма</td>
+				<th class="products__name">Ставка НДС</td>
+				<th class="products__name">Сумма с НДС</td>
+				<th class="products__name">Срок поставки</td>
+				<th class="products__name">Заявка</td>
+				<th class="products__name">Состояние</td>
+				<th class="products__name">В заказ</td>
+			</tr>
+		</thead>
+		<tbody>
+		<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
+		<?
+		$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
+		$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
+		$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
+		?>
+			<tr>
+				<td><?=$arElements['ID']?></td>
+				<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
+				<td><?=$arElements['COUNT']?></td>
+				<td><?=$arElements["PROPERTIES"]['PRICE']['PRICE']?></td>
+				<td><?=$summ?></td>
 				<td>20%</td>
 				<td><?=$currency_with_nds?></td>
 				<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
@@ -109,11 +195,23 @@ if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die();
 	</tbody>
 </table>
 <script>
-$('body').on('click', '.detail', function (){
-	var did = $(this).attr('data-kid');
-	var marker = '.detail-'+did;
-	$('body').find(marker).toggle();
-		});
+$(document).ready(function(){
+	$('body').on('click', '.detail', function (){
+		var did = $(this).attr('data-kid');
+		var marker = '.detail-'+did;
+		$('body').find(marker).slideToggle('slow');
+	});
+	$('body').on('click', '.check-kp', function (){
+		var did = $(this).attr('data-kid');
+		var marker = '.kp-'+did;
+		$('body').find(marker).slideToggle('slow');
+	});
+	$('body').on('click', '.check-order', function (){
+		var did = $(this).attr('data-kid');
+		var marker = '.order-'+did;
+		$('body').find(marker).slideToggle('slow');
+	});
+});
 </script>
 <style>
 .nav-menu li a {

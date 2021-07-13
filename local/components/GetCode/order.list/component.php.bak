@@ -108,11 +108,11 @@ if(intVal($ORDER_ID)){
 			}
         }
 		
-		foreach($arResult['ITEMS'] as $z=>$e){
-			$arResult['ITEMS'][$z]['_ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
-			foreach($arResult['ITEMS'][$z]['_ELEMENTS'] as $r){
-				$arResult['ITEMS'][$z]['ELEMENTS'][$r['ID']] = $r;
-				$arResult['ITEMS'][$z]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
+		foreach($arResult['ITEMS'] as $k=>$e){
+			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
+			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
+				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
+				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
 			}
 		}
     }
