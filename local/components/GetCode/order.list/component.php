@@ -126,6 +126,7 @@ if(intVal($ORDER_ID)){
     }
 	$e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => [], 'order' => ['ID'=>'ASC']]);
 	while($s = $e->fetch()){
+		$s['STATUS'] = OffersManager::getStatus($s['UF_STATUS']);
 		$_[$s['ORDER_ID']][] = $s;
 	}
 	foreach($arResult['ITEMS'] as $k=>$r){
