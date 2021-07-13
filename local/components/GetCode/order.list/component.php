@@ -124,7 +124,7 @@ if(intVal($ORDER_ID)){
 		$arResult['ITEMS'][$k]['UF_STATUS'] = OffersManager::getStatus($arResult['ITEMS'][$k]['UF_STATUS']['VALUE']);
         $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
     }
-	$e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => false, 'order' => ['ID'=>'ASC']]);
+	$e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => [], 'order' => ['ID'=>'ASC']]);
 	while($s = $e->fetch()){
 		$_[$s['ORDER_ID']][] = $s;
 	}

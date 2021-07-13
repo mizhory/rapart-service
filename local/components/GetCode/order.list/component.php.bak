@@ -129,7 +129,7 @@ if(intVal($ORDER_ID)){
 		$_[$s['ORDER_ID']][] = $s;
 	}
 	foreach($arResult['ITEMS'] as $k=>$r){
-		$arResult['ITEMS']['KP'] = $_[$r['ID']];
+		$arResult['ITEMS'][$k]['KP'] = $_[$r['ID']];
 	}
 	if($arParams['PRIZNAK'] == 'order'){
 		$z = StatusesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
