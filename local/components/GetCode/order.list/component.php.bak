@@ -101,9 +101,17 @@ if(intVal($ORDER_ID)){
     }
 	//var_dump($offers);
 	if(is_array($offers)) {
-	    foreach($offers as $k=>$r) {
-	        $arResult['ITEMS'][$k]['ELEMENTS'] = array_merge(OffersManager::getElementsByIblock($r[0]), ['COUNT' => $r[1]]);
+	    foreach($offers as $k=>$re) {
+			foreach($re as $r){
+				$ids[] = $r[0];
+				$counts[$r[0]] = $r[1];
+			}
         }
+		$arResult['ITEMS'][$k]['_ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
+		foreach($arResult['ITEMS'][$k]['_ELEMENTS'] as $k=>$r){
+			$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
+			$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
+		}
     }
 	foreach($arResult['ITEMS'] as $k=>$arItems) {
 	    $p = 0.0;
