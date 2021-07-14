@@ -1,10 +1,10 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/modules/main/include/prolog_before.php");
 
-\Bitrix\Main\Loader::IncludeModule("iblock");
-\Bitrix\Main\Loader::IncludeModule("sale");
-\Bitrix\Main\Loader::includeModule('sale');
-\Bitrix\Main\Loader::includeModule('catalog');
+if(!\Bitrix\Main\Loader::IncludeModule("iblock"))   exit;
+if(!\Bitrix\Main\Loader::IncludeModule("sale"))     exit;
+if(!\Bitrix\Main\Loader::includeModule('sale'))     exit;
+if(!\Bitrix\Main\Loader::includeModule('catalog'))  exit;
 
 use \GetCode\Entity\CustomerOrderTable,
 	\GetCode\Entity\CustomerOfferTable,
@@ -46,8 +46,9 @@ $e = CustomerOrderTable::add([
     'UF_TIMESTAMP'  => time(),
     'UF_OFFERS' => serialize($items),
     'UF_OFFER' => 1,
-    'UF_NAME' => time().'-'.date('m').'/'.date('y')
+    'UF_NAME' => 'К'.time().'-'.date('m').'/'.date('y')
 ]);
 
+\CSaleBasket::DeleteAll(\CSaleBasket::GetBasketUserID());
 ?>
 <script>window.location.href="/personal/";$(location).attr('href',"/personal/");</script>

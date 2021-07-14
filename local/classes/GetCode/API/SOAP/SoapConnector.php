@@ -47,11 +47,13 @@ class SoapConnector
         static::$soap_client->decode_utf8 = static::SOAP_DECODE;
         static::$soap_client->response_timeout = static::RESPONSE_TIMEOUT;
 
-
     }
 
     public static function getResponse() {
-        $result = static::$soap_client->call('IntegrationZayInput',  array('NameKontr' => static::$request) , '', '', false, null, 'rpc', 'literal');
+        $query = static::$request;
+        static::$requst = null;
+
+        $result = static::$soap_client->call('IntegrationZayInput',  array('NameKontr' => $query) , '', '', false, null, 'rpc', 'literal');
         return json_decode($result['return']);
     }
     public static function initRequest(array $params) {
@@ -63,12 +65,12 @@ class SoapConnector
 "Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
         */
         $arParams = [
-            'method'=> $params['method'],
-            'PART' => '000-00',
+            'method'=> $params['STEP_METHOD'],
+            'PART' => '000-029',
             'IDKP' => '',
             'IDZayavka' => '',
             'StatusZayavka' => '',
-            'Kontragent' => $params['kontragent'],
+            'Kontragent' => $params['XML_ID'],
             'Partner' => '',
             'Organiz' => '',
             'Sdelka' => '',
@@ -80,9 +82,12 @@ class SoapConnector
         ];
         $arParams['TOVARY'] = '[' . json_encode($arTovary) . ']';
         $jj = json_encode($arParams);
-        static::$request = $jj;
+        static::$request = '[' . $jj . ']';
+        return static::getResponse();
     }
-	public static function test() {
+
+	/**
+    public static function test() {
 		if(!static::$soap_client)
 			static::initConnect();
 		$client = static::$soap_client;//new nusoap_client(SOAP_CONFIG_API_URI, true,false,false,false,false,0,30);
@@ -103,6 +108,6 @@ class SoapConnector
 			// var_dump( $jsonInput );
 			// echo "<BR><BR>";
 			$result = $client->call('IntegrationZayInput',  array('NameKontr' => $jsonInput ) , '', '', false, null, 'rpc', 'literal');
-		var_dump($result);
 	}
+     */
 }
