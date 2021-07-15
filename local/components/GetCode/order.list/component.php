@@ -61,6 +61,7 @@ if(isset($arParams['PRIZNAK'])){
 	if($arParams['PRIZNAK'] == 'order')
 		$priznak = 0;
 }
+
 $arFilter = ['UF_USER_ID' => $userID, 'UF_OFFER' => $priznak];
 if($request->isPost()){
 	$p_query = $request->getPost('QUERY');
@@ -152,18 +153,7 @@ if(intVal($ORDER_ID)){
 				$arResult['FILTER']['TYPES'][$k['ID']]['selected'] = 'true';
 		}
 	}
-if(strlen($DETAIL)>0 && $DETAIL == 'Y'){
-	$tpl_name = 'detail';
-} elseif(strlen($VIEW_KP)>0 && $VIEW_KP=='Y'){
-	$tpl_name = 'view_kp';
-} elseif(strlen($VIEW_ORDER)>0 && $VIEW_ORDER == 'Y'){
-	$tpl_name = 'view_order';
-} else {
-	$tpl_name = 'template';
-}
-	$this->IncludeComponentTemplate($tpl_name);
-
-
+	$this->IncludeComponentTemplate();
 if($arParams['TITLE']) {
     $title = $arParams['TITLE'];
 } else {
