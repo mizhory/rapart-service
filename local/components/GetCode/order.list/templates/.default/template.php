@@ -63,33 +63,33 @@
     <table width="100%" style="text-align:center;">
         <thead>
         <tr>
-            <th class="products__name">№</th>
-            <th class="products__name">Дата</th>
-            <th class="products__name">Приоритет</th>
-            <th class="products__name">№ Заказчика</th>
-            <th class="products__name">Состояние</th>
-            <th class="products__name">Действия</th>
+			<th width="5%" class="products__name">№</th>
+			<th width="17%" class="products__name">Дата</th>
+            <th width="17%" class="products__name">Приоритет</th>
+            <th width="17%" class="products__name">№ Заказчика</th>
+            <th width="17%" class="products__name">Состояние</th>
+            <th width="26%" class="products__name">Действия</th>
         </tr>
         </thead>
     </table>
     <?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-        <table>
+        <table width="100%" style="text-align:center;">
             <tbody>
                 <tr>
-                    <td class=""><?=$k?></td>
-                    <td class=""><?=date('d-m-Y')?></td>
-                    <td class="">Приоритет</td>
-                    <td class=""><?=$arItems['UF_USER_ID']?></td>
-                    <td class="" style="text-align: center;font-size: 11px;">
+					<td width="5%" style="padding-top:5px" class=""><?=$k?></td>
+                    <td width="17%" style="padding-top:5px" class=""><?=date('d-m-Y', intval($arItems["UF_TIMESTAMP"]))?></td>
+                    <td width="17%" style="padding-top:5px" class="">Приоритет</td>
+                    <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_USER_ID']?></td>
+                    <td width="17%" style="padding-top:5px" class="" style="text-align: center;font-size: 11px;">
                         <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />
                         <br />
                         <span><?=$arItems['UF_STATUS']['NAME']?></span>
                     </td>
-                    <td class="">
+					<td width="26%" style="padding-top:5px;padding-left:10px;" class="">
                     <ul class="nav-menu">
                         <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
                         <li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp">КП</a></li>
-                        <li><a href="javascript:void(0);" class="check-order" data-kid="<?=$k?>">Счет заказа</a></li>
+                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order" data-kid="<?=$k?>">Счет заказа</a></li>
                         <li><a href="javascript:void(0);" class="check-rtiu" data-kid="<?=$k?>">РТУ файлы</a></li>
                     </ul>
                     </td>
@@ -232,7 +232,7 @@
         <tbody>
         <tr>
             <td><?=$arItems['UF_NAME']?></td>
-            <td><?=date('Y-m-d', intval($arItems['UF_TIMESTAMP'])?></td>
+            <td><?=date('Y-m-d', intval($arItems['UF_TIMESTAMP']))?></td>
             <td>Приоритет</td>
             <td><?=$arItems['UF_USER_ID']?></td>
             <td>
