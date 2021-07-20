@@ -2,7 +2,7 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 $APPLICATION->SetTitle("Заявки");
 ?>
-    <div style="display:block;width: 95%;margin: 3rem auto;min-height: 15rem;height: auto;">
+    <div class="container"><!-- style="display:block;width: 95%;margin: 3rem auto;min-height: 15rem;height: auto;">-->
         <?$APPLICATION->IncludeComponent(
             "GetCode:order.list",
             "",

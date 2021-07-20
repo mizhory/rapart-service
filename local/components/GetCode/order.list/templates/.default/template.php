@@ -1,5 +1,4 @@
-<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
-<style>
+<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?><style>
     .nav-menu li a {
         background: #306AA8;
         height: 35px;
@@ -41,48 +40,36 @@ th.sorted[data-order="1"]::after {
 	content: "▲"
 }
 </style>
-<?#if($arParams['PRIZNAK'] == 'order'):?>
-    <form action="?" method="POST">
-    <?=bitrix_sessid_post()?>
-    <table>
-        <tbody>
-            <tr>
-                <td>Поиск по названию</td>
-                <td><input type="text" name="QUERY" value="<?=$arResult['F_QUERY']?>"/></td>
-            </tr>
-            <tr>
-                <td>Поиск по статусу</td>
-                <td>
-                    <select name="STATUSES">
-                        <option value="null">---</option>
-                    <?foreach($arResult['FILTER']['STATUSES'] as $k=>$r):?>
-                        <option value="<?=$r['ID']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
-                    <?endforeach;?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Поиск по типу</td>
-                <td>
-                    <select name="TYPES">
-                        <option value="null">---</option>
-                    <?foreach($arResult['FILTER']['TYPES'] as $k=>$r):?>
-                        <option value="<?=$r['ID']?>"<?if($r['selected']=='true'):?> selected="selected"<?endif;?>><?=$r['NAME']?></option>
-                    <?endforeach;?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <input type="submit" value="Поиск">
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    </form>
-<?#endif;?>
-
 <?if($arParams['PRIZNAK'] == 'order'):?>
+<nav class="shop-nav">
+	<div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
+	<select name="sort" class="product__btn popup">
+		<option value="1">Номер</option>
+		<option value="2">Дата</option>
+		<option value="3">Приоритет</option>
+		<option value="4">Номер Заказчика</option>
+		<option value="5">Состояние</option>
+		</select>
+		<button data-asc="<?=isset($arResult['SORT_METHOD'])?$arResult['SORT_METHOD']:'asc'?>" class="sort-btn<?if($arResult['SORT_ACT'] == 'Y'):?> activee<?endif;?>">
+			<?=!isset($arResult['SORT_NAME'])?"Возрастанию":$arResult['SORT_NAME']?>
+		</button>
+	</div>
+
+
+
+      <div class="search shop-nav__item">
+		  <form action="/catalog/" method="GET">
+          <input type="text" class="search__input" name="q" placeholder="Поиск" value="" required="">
+          <input type="submit" class="search__button">
+        </form>
+      </div>
+      <div class="shop-nav__quantity shop-nav__item">
+		Количество:
+		<a href="?" class="actives">30</a>
+		<a href="?с=50" class="">50</a>
+		<a href="?с=100" class="">100</a>
+      </div>
+    </nav>
     <table class="table_sort" width="100%" style="text-align:center;">
         <thead>
         <tr>
@@ -260,6 +247,33 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 		</table>
 
 <?else:?>
+<nav class="shop-nav">
+	<div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
+	<select name="sort" class="product__btn popup">
+		<option value="">Номер</option>
+		<option value="">Дата</option>
+		<option value="">Приоритет</option>
+		<option value="">Номер Заказчика</option>
+		<option value="">Состояние</option>
+		</select>
+		<button class="sort-btn activee">Возрастанию</button>
+	</div>
+
+
+
+      <div class="search shop-nav__item">
+		  <form action="/catalog/" method="GET">
+          <input type="text" class="search__input" name="q" placeholder="Поиск" value="" required="">
+          <input type="submit" class="search__button">
+        </form>
+      </div>
+      <div class="shop-nav__quantity shop-nav__item">
+		Количество:
+		<a href="?" class="actives">30</a>
+		<a href="?с=50" class="">50</a>
+		<a href="?с=100" class="">100</a>
+      </div>
+    </nav>
     <table class="table_sort" width="100%" style="text-align:center;">
         <thead>
         <tr>
@@ -372,6 +386,11 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 <?endif;?>
 <script>
     $(document).ready(function(){
+		$('body').on('click', '.sort-btn', function(){
+			var col = $('body').find('select::selected').val();
+			var asc = $(this).data('asc');
+			location.href = '?SORT='+asc+'&col='+col;
+		});
 		$('body').on('click', ".detail", function (){
             var did = $(this).data('kid');
             var marker = '.detail-'+did;
@@ -388,25 +407,4 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
             $('body').find(marker).slideToggle('slow');
         });
     });
-document.addEventListener('DOMContentLoaded', () => {
-
-    const getSort = ({ target }) => {
-        const order = (target.dataset.order = -(target.dataset.order || -1));
-        const index = [...target.parentNode.cells].indexOf(target);
-        const collator = new Intl.Collator(['en', 'ru'], { numeric: true });
-        const comparator = (index, order) => (a, b) => order * collator.compare(
-            a.children[index].innerHTML,
-            b.children[index].innerHTML
-        );
-        
-        for(const tBody of target.closest('table').tBodies)
-            tBody.append(...[...tBody.rows].sort(comparator(index, order)));
-
-        for(const cell of target.parentNode.cells)
-            cell.classList.toggle('sorted', cell === target);
-    };
-    
-    document.querySelectorAll('.table_sort thead').forEach(tableTH => tableTH.addEventListener('click', () => getSort(event)));
-    
-});
 </script>

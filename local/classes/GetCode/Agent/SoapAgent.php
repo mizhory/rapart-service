@@ -151,23 +151,25 @@ class SoapAgent {
 					}
 				}
             } elseif($method_step == StepingHelper::STEP_GET_KP) {
-
+				foreach($data_step as $user_xml_id=>$_user_data){
+					//var_dump($_user_data);
+				}
 			} elseif($method_step == StepingHelper::STEP_GET_ORDER) {
 				foreach($data_step as $user_xml_id=>$_user_data){
+					var_dump($_user_data);
 					foreach($_user_data as $k=>$user_data){
 						$_data = Array(
-							"UF_XML_ID" => $user_data["GUIDZayavka"],
+							"UF_XML_ID" => $user_data["GUIDZakaz"],
 							"UF_USER_ID" => static::getUserIDbyXMLID($user_xml_id),
-							"UF_NAME" => $user_data["IDZayavka"],
+							"UF_NAME" => $user_data["ID"],
 							"UF_PRIORITY" => $user_data["Priority"],
 							"UF_STATUS" => static::getStatusIDbyName($user_data["StatusZayavka"]
-, StepingHelper::STEP_GET_REQUEST),
+, StepingHelper::STEP_GET_ORDER),
 							"UF_OFFER" => '0',
 							"UF_OFFERS" => static::getOffers($user_data["Tovary"]),
 						);
-					//var_dump($_data);
-						if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"])){
-							$zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"], 1);
+						if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"])){
+							$zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
 							static::updElement(StepingHelper::STEP_GET_REQUEST, $_data, $zid);
 						} else {
 							static::newElement(StepingHelper::STEP_GET_REQUEST, $_data);
