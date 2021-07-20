@@ -14,7 +14,7 @@ class SoapAgent {
     private static $steping_data = [];
 
     private static function preStep() {
-        $e = CUser::GetList(
+        $e = \CUser::GetList(
             array('SORT' => 'asc'),
             "sort",
             $arFilter = array('!XML_ID' => false),
