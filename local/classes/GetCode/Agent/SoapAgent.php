@@ -192,7 +192,7 @@ class SoapAgent {
                             $_data = array(
                                 "UF_CO_ID"      => $user_data["IDKP"],
                                 "UF_XML_ID"     => $user_data["GUIDKP"],
-                                "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusKP"]),
+                                "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusKP"], StepingHelper::STEP_GET_KP),
                                 "UF_ORDER_ID"   => $z_id,
                                 "UF_ITEM_ID"    => static::getOfferbyName($arItems["Nomenklature"]),
                                 "UF_USER_ID"    => $user_xml_id,
