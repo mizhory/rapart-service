@@ -171,8 +171,7 @@ class SoapAgent {
                             "UF_USER_ID" => static::getUserIDbyXMLID($user_xml_id),
                             "UF_NAME" => $user_data["IDZayavka"],
                             "UF_PRIORITY" => $user_data["Priority"],
-                            "UF_STATUS" => static::getStatusIDbyName($user_data["StatusZayavka"]
-                                , StepingHelper::STEP_GET_REQUEST),
+                            "UF_STATUS" => static::getStatusIDbyName($user_data["State"], StepingHelper::STEP_GET_REQUEST),
                             "UF_OFFER" => '1',
                             "UF_OFFERS" => static::getOffers($user_data["Tovary"]),
                         );
