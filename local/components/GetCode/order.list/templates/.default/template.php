@@ -391,7 +391,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
     $(document).ready(function(){
 		$('body').on('click', '.sort-btn', function(){
 			var col = $('body').find('select[name="sort"] option:selected').val();
-			var asc = $(this).data('asc');
+			var asc = $(this).atr('data-asc');
 			location.href = '?SORT='+asc+'&COL='+col;
 		});
 		$('body').on('click', ".detail", function (){
