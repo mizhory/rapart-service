@@ -44,11 +44,11 @@ th.sorted[data-order="1"]::after {
 <nav class="shop-nav" style="margin-top:20px; margin-bottom: 20px;">
 	<div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
 	<select name="sort" class="product__btn popup">
-		<option selected value="1">Номер</option>
-		<option value="2">Дата</option>
-		<option value="3">Приоритет</option>
-		<option value="4">Номер Заказчика</option>
-		<option value="5">Состояние</option>
+		<option<?if($arResult['COL_SORT']==1):?> selected<?endif;?> value="1">Номер</option>
+		<option<?if($arResult['COL_SORT']==2):?> selected<?endif;?> value="2">Дата</option>
+		<option<?if($arResult['COL_SORT']==3):?> selected<?endif;?> value="3">Приоритет</option>
+		<option<?if($arResult['COL_SORT']==4):?> selected<?endif;?> value="4">Номер Заказчика</option>
+		<option<?if($arResult['COL_SORT']==5):?> selected<?endif;?> value="5">Состояние</option>
 		</select>
 		<button data-asc="<?=isset($arResult['SORT_METHOD'])?$arResult['SORT_METHOD']:'asc'?>" class="sort-btn<?if($arResult['SORT_ACT'] == 'Y'):?> activee<?endif;?>">
 			<?=!isset($arResult['SORT_NAME'])?"Возрастанию":$arResult['SORT_NAME']?>
@@ -251,11 +251,11 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
     <nav class="shop-nav" style="margin-top:20px; margin-bottom: 20px;">
         <div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
             <select name="sort" class="product__btn popup">
-                <option selected value="1">Номер</option>
-                <option value="2">Дата </option>
-                <option value="3">Приоритет</option>
-                <option value="4">Номер Заказчика</option>
-                <option value="5">Состояние</option>
+                <option<?if($arResult['COL_SORT']==1):?> selected<?endif;?> value="1">Номер</option>
+                <option<?if($arResult['COL_SORT']==2):?> selected<?endif;?> value="2">Дата </option>
+                <option<?if($arResult['COL_SORT']==3):?> selected<?endif;?> value="3">Приоритет</option>
+                <option<?if($arResult['COL_SORT']==4):?> selected<?endif;?> value="4">Номер Заказчика</option>
+                <option<?if($arResult['COL_SORT']==5):?> selected<?endif;?> value="5">Состояние</option>
             </select>
             <button data-asc="<?=isset($arResult['SORT_METHOD'])?$arResult['SORT_METHOD']:'asc'?>" class="sort-btn<?if($arResult['SORT_ACT'] == 'Y'):?> activee<?endif;?>">
                 <?=!isset($arResult['SORT_NAME'])?"Возрастанию":$arResult['SORT_NAME']?>

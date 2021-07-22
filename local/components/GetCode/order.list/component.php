@@ -135,6 +135,7 @@ if($sort == 'asc') {
     $arResult['SORT_NAME'] = 'Возрастанию';
     $arResult['SORT_METHOD'] = 'asc';
 }
+$arResult['COL_SORT'] = $col;
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => $arOrder,
