@@ -179,12 +179,6 @@ $deliveryId = 1;
 
             $accountNumber = $order->getField('ACCOUNT_NUMBER'); // генерируемый номер заказа
 
-            // можно выполнить обработчики из sale.order.ajax для обеспечения совместимости
-
-            // foreach (\GetModuleEvents('sale', 'OnSaleComponentOrderOneStepComplete', true) as $arEvent)
-
-            // \ExecuteModuleEventEx($arEvent, array($order->getId(), $order->getFieldValues(), array()));
-
         }
 
         else

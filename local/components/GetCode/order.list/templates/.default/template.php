@@ -90,7 +90,7 @@ th.sorted[data-order="1"]::after {
 			<tr>
 					<td width="5%" style="padding-top:5px" class=""><?=$k?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=date('d-m-Y', intval($arItems["UF_TIMESTAMP"]))?></td>
-                    <td width="17%" style="padding-top:5px" class="">Приоритет</td>
+                    <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_PRIORITY']?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_USER_ID']?></td>
                     <td width="17%" style="padding-top:5px" class="" style="text-align: center;font-size: 11px;">
                         <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />
@@ -297,7 +297,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
         <tr>
             <td width="15%"><?=$arItems['UF_NAME']?></td>
             <td width="17%"><?=date('Y-m-d', intval($arItems['UF_TIMESTAMP']))?></td>
-            <td width="17%">Приоритет</td>
+            <td width="17%"><?=$arItems['UF_PRIORITY']?></td>
             <td width="17%"><?=$arItems['UF_USER_ID']?></td>
             <td width="17%">
                 <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />

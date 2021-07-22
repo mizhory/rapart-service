@@ -64,8 +64,26 @@ class SoapAgent {
             return $a['ID'];
     }
     private static function checkXMLID($method, $xml_id, $flag=false){
-        if($method == StepingHelper::STEP_GET_REQUEST){
+        if($method == StepingHelper::STEP_GET_REQUEST || $method == StepingHelper::STEP_GET_ORDER){
             $a = CustomerOrderTable::getList(
+                [
+                    'select' => [
+                        'ID'
+                    ],
+                    'order' => [
+                        'ID' => 'ASC'
+                    ],
+                    'filter' => [
+                        'UF_XML_ID' => $xml_id
+                    ]
+                ]);
+            if($e=$a->fetch())
+                if(isset($e['ID']) && !$flag)
+                    return true;
+                elseif(isset($e['ID']) && $flag!=false)
+                    return $e['ID'];
+        } elseif ($method == StepingHelper::STEP_GET_KP){
+            $a = CustomerOfferTable::getList(
                 [
                     'select' => [
                         'ID'
@@ -116,16 +134,34 @@ class SoapAgent {
         return serialize($ret);
     }
     private static function updElement($method, $data, $id){
-        if($method == StepingHelper::STEP_GET_REQUEST) {
+        if($method == StepingHelper::STEP_GET_REQUEST || $method == StepingHelper::STEP_GET_ORDER) {
             CustomerOrderTable::update($id, $data);
+        } elseif ($method == StepingHelper::STEP_GET_KP) {
+            CustomerOfferTable::update($id, $data);
+        } elseif ($method == StepingHelper::STEP_GET_INVOICE) {
+            CustomerInvoiceTable::update($id, $data);
         }
     }
     private static function newElement($method, $data){
-        if($method == StepingHelper::STEP_GET_REQUEST) {
+        if($method == StepingHelper::STEP_GET_REQUEST || $method == StepingHelper::STEP_GET_ORDER) {
             CustomerOrderTable::add($data);
+        } elseif($method == StepingHelper::STEP_GET_KP) {
+            CustomerOfferTable::add($data);
+        } elseif($method == StepingHelper::STEP_GET_INVOICE) {
+            CustomerInvoiceTable::add($data);
         }
     }
+    private static function getKPIDbyName($name){
+        $arFilter = [
+            '=UF_CO_ID' => $name
+        ];
+        $e = CustomerOfferTable::getList(['select' => ['ID'], 'filter' => $arFilter, 'order' => ['ID' => 'ASC']]);
+        if($a=$e->fetch())
+            return $a['ID'];
+    }
     private static function syncStep() {
+        global $USER, $APPLICATION;
+
         foreach(static::$steping_data as $method_step=>$data_step){
             if($method_step == StepingHelper::STEP_GET_REQUEST) {
                 foreach($data_step as $user_xml_id=>$_user_data){
@@ -150,43 +186,6 @@ class SoapAgent {
                 }
             } elseif($method_step == StepingHelper::STEP_GET_KP) {
                 foreach($data_step as $user_xml_id=>$_user_data){
-                    /*
-                     * {
-" IDKP": "КА-000145"-- Номер документа 1с,
-" GUIDKP": "88a94845-6632-11eb-8111-005056b68048" –ГУИД ЗаказКлиента,
-"GUIDDelivery": "88232a38-67a2-11eb-8115-005056b68048" –ГУИД Реализации ,
-" AvailableDocumentsKol": "10"—Количество документов в запросе,
-" DataKP": "05.02.2021"—Дата документа,
-" StatusKP": "выставлен"—Статус документа тип строка,
-"Currency": "руб."—Валюта документа тип строка,
-" SummKP": "123 289,58 руб." сумма документа тип строка,
-" BooleanActiv": "истина." Признак может выкупаться частично тип строка,
-" Validity": "05.02.2021." дата действия тип строка,
-" SdelkaKP": "сделка 35 от 11.11.2021." сделка коммерческого предложения тип строка,
-" IDZayavka ": "кА-000544" номер документа заявки клиента тип строка
-" NumberCustomer": "кА-00054а4" номер закявки по данным клиента тип строка
-" File": "/оль/рроп" папка файлов на сервере тип строка
-"Tovary": [
-{
-"IDNomenklature": "1"—тип строка Номер строки,
-"Nomenklature": "4-21-6107" –Наименование Номенклатуры тип строка,
-"NomenklatureArticule": "4-21-6107" –Артикул Номенклатуры тип строка,
-"PartyNumber": "КА-00018899" –Код Номенклатуры 1с тип строка,
-"KolVo": "1шт" –Количество тип строка с упаковкой
-"DateRO": "12,12,2021" –дата рапарт тип строка с упаковкой
-"DeliveryTime": "12,12,2021" –дата доставки тип строка
-"Request": "104 от 21.11.2021" –дата заявки клиента
-,
-"Unit": "шт" –Упаковка тип строка,
-"Cena": "123 289,58 руб." –Цена тип строка,
-"StavkaNDS": "0%" –Ставка ндс тип строка,
-
-"SummNDS": "0 руб." –Сумма НДС тип строка,
-"SummSNDS": "123 289,58 руб. –сумма с НДС тип строка",
-"Summ": "123 289,58 руб."—сумма тип строка
-}
-]
-                     */
                     foreach($_user_data as $k=>$user_data) {
                         foreach($user_data["Tovary"] as $r=>$arItems) {
                             $z_id = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
@@ -196,8 +195,15 @@ class SoapAgent {
                                 "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusKP"]),
                                 "UF_ORDER_ID"   => $z_id,
                                 "UF_ITEM_ID"    => static::getOfferbyName($arItems["Nomenklature"]),
-
+                                "UF_USER_ID"    => $user_xml_id,
+                                "UF_CO_FILE_REMOTE" => $user_data['File']
                             );
+                            if(static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"])){
+                                $zid = static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"], 1);
+                                static::updElement(StepingHelper::STEP_GET_KP, $_data, $zid);
+                            } else {
+                                static::newElement(StepingHelper::STEP_GET_KP, $_data);
+                            }
                         }
                     }
                 }
@@ -222,15 +228,46 @@ class SoapAgent {
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_INVOICE) {
-
+                foreach($data_step as $user_xml_id=>$_user_data) {
+                    $_data = array(
+                        "UF_KP_ID" => static::getKPIDbyName($_user_data["ID"]),
+                        "UF_CURRENCY" => $_user_data["Currency"],
+                        "UF_SUMM" => $_user_data["Summ"],
+                        "UF_NULLED_INVOICE" => ($_user_data["Annulirovan"]=='истина')?1:0,
+                        "UF_FILE_INVOICE_REMOTE_SERVER" => $_user_data["File"],
+                        "UF_FORMAT_INVOICE" => $_user_data["FormaOplati"],
+                        "UF_REQUEST" => $_user_data["Request"],
+                        "UF_STATUS" => static::getStatusIDbyName($_user_data["State"], StepingHelper::STEP_GET_INVOICE),
+                        "UF_DATE" => $_user_data["Data"],
+                        "UF_XML_ID" => $_user_data["GUIDschet"],
+                        "UF_NAME" => $_user_data["ID"]
+                    );
+                    if(static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"])){
+                        $zid = static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"], 1);
+                        static::updElement(StepingHelper::STEP_GET_INVOICE, $_data, $zid);
+                    } else {
+                        static::newElement(StepingHelper::STEP_GET_INVOICE, $_data);
+                    }
+                }
             } elseif($method_step == StepingHelper::STEP_GET_RTIU) {
 
             }
         }
     }
-    private static function getOfferbyName($name){
 
+    private static function getOfferbyName($name){
+        $arFilter = ['=NAME' => $name];
+        $arOrder = ['ID' => 'ASC'];
+        $arSelect = ['ID'];
+
+        Bitrix\Main\Loader::includeModule('iblock');
+
+        $res = \CIBlockElement::GetList($arOrder, $arFilter, false, false, $arSelect);
+        if($e=$res->fetch())
+            if($e['ID'])
+                return $e['ID'];
     }
+
     public static function sync() {
         global $APPLICATION, $USER;
         // ----------------------------
