@@ -260,7 +260,7 @@ class SoapAgent {
         $arOrder = ['ID' => 'ASC'];
         $arSelect = ['ID'];
 
-        Bitrix\Main\Loader::includeModule('iblock');
+        \Bitrix\Main\Loader::includeModule('iblock');
 
         $res = \CIBlockElement::GetList($arOrder, $arFilter, false, false, $arSelect);
         if($e=$res->fetch())
