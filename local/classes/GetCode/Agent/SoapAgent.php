@@ -186,6 +186,7 @@ class SoapAgent {
                 }
             } elseif($method_step == StepingHelper::STEP_GET_KP) {
                 foreach($data_step as $user_xml_id=>$_user_data){
+                    var_dump($_user_data);
                     foreach($_user_data as $k=>$user_data) {
                         foreach($user_data["Tovary"] as $r=>$arItems) {
                             $z_id = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
