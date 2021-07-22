@@ -86,9 +86,49 @@ if($request->isPost()){
 if(intVal($ORDER_ID)){
 	$arFilter['ID'] = $ORDER_ID;
 }
+$sort = $request->getQuery('SORT');
+$col = $request->getQuery('COL');
+if((isset($sort) && strlen($sort)>0) && (isset($col) && strlen($col)>0)) {
+    /*
+     *  <option value="1">Номер</option>
+                <option value="2">Дата</option>
+                <option value="3">Приоритет</option>
+                <option value="4">Номер Заказчика</option>
+                <option value="5">Состояние</option>
+     */
+    if($col == '1') {
+        if($arParams['PRIZNAK'] == 'order')
+            $s_col = 'UF_NAME';
+        else
+            $s_col = 'UF_NAME';
+    } elseif($col == '2') {
+        if($arParams['PRIZNAK'] == 'order')
+            $s_col = 'UF_TIMESTAMP';
+        else
+            $s_col = 'UF_TIMESTAMP';
+    } elseif($col == '3') {
+        if($arParams['PRIZNAK'] == 'order')
+            $s_col = 'UF_PRIORITY';
+        else
+            $s_col = 'UF_PRIORITY';
+    } elseif($col == '4') {
+        if($arParams['PRIZNAK'] == 'order')
+            $s_col = 'UF_USER_ID';
+        else
+            $s_col = 'UF_USER_ID';
+    } elseif($col == '5') {
+        if($arParams['PRIZNAK'] == 'order')
+            $s_col = 'UF_STATUS';
+        else
+            $s_col = 'UF_STATUS';
+    }
+    $arOrder = [$s_col => ($sort=='asc')?'ASC':'DESC'];
+} else {
+    $arOrder = ['ID' => 'ASC'];
+}
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
-			'order'  => ['ID' => 'ASC'],
+			'order'  => $arOrder,
 			'filter' => $arFilter
 		]);
 	while($s = $r->fetch()){

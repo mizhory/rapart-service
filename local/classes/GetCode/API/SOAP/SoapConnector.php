@@ -51,63 +51,18 @@ class SoapConnector
 
     public static function getResponse() {
         $query = static::$request;
-        static::$requst = null;
+        static::$request = null;
 
         $result = static::$soap_client->call('IntegrationZayInput',  array('NameKontr' => $query) , '', '', false, null, 'rpc', 'literal');
-        return json_decode($result['return']);
+		//var_dump();
+		return json_decode($result['return'], 1);
     }
     public static function initRequest(array $params) {
-        /*
-         * sample
-
-        $jsonInput = '[{"method": "6", "PART": "000-00", "IDKP": "","IDZayavka": "","StatusZayavka": "",
-"Kontragent": "'.$nameKontr.'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
+		var_dump($params['METHOD_STEP']);
+		$jsonInput = '[{"method": "'.intval($params['METHOD_STEP']).'", "PART": "000-029", "IDKP": "","IDZayavka": "","StatusZayavka": "",
+"Kontragent": "'.$params['XML_ID'].'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
 "Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
-        */
-        $arParams = [
-            'method'=> $params['STEP_METHOD'],
-            'PART' => '000-029',
-            'IDKP' => '',
-            'IDZayavka' => '',
-            'StatusZayavka' => '',
-            'Kontragent' => $params['XML_ID'],
-            'Partner' => '',
-            'Organiz' => '',
-            'Sdelka' => '',
-            'BooleanActiv' => '',
-        ];
-        $arTovary = [
-            'IDNomenklature' => '',
-            'Nomenklature' => ''
-        ];
-        $arParams['TOVARY'] = '[' . json_encode($arTovary) . ']';
-        $jj = json_encode($arParams);
-        static::$request = '[' . $jj . ']';
-        return static::getResponse();
+		static::$request = $jsonInput;
+		return static::getResponse();
     }
-
-	/**
-    public static function test() {
-		if(!static::$soap_client)
-			static::initConnect();
-		$client = static::$soap_client;//new nusoap_client(SOAP_CONFIG_API_URI, true,false,false,false,false,0,30);
-		$nameKontr = '';
-		$client->setCredentials(SOAP_CONFIG_API_LOGIN, SOAP_CONFIG_API_PASS);
-			$client->setEndpoint(substr(SOAP_CONFIG_API_URI,0,strlen(SOAP_CONFIG_API_URI)-5)); 
-			$client->soap_defencoding = 'UTF-8';
-			$client->decode_utf8 = false;
-			$client->response_timeout = 30;
-
-			$curPage = '000-029';
-			$curPage .= ( $onPage - 1 );
-			$nameKontr = 'cbbe79e9-eff7-11e9-80e2-005056b633c';
-
-			$jsonInput = '[{"method": "4", "PART": "' . $curPage . '", "GUIDKP":"", "IDKP": "","IDZayavka": "","StatusZayavka": "",
-		"Kontragent": "'.$nameKontr.'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
-		"Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
-			// var_dump( $jsonInput );
-			// echo "<BR><BR>";
-			$result = $client->call('IntegrationZayInput',  array('NameKontr' => $jsonInput ) , '', '', false, null, 'rpc', 'literal');
-	}
-     */
 }
