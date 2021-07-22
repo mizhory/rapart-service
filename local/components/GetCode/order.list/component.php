@@ -141,6 +141,8 @@ $arResult['COL_SORT'] = $col;
 			'order'  => $arOrder,
 			'filter' => $arFilter
 		]);
+$arResult["NAV_STRING"] = $r->GetPageNavStringEx($this, "", $arParams["PAGER_TEMPLATE"]);
+var_dump($arResult['NAV_STRING']);
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][$s['ID']] = $s;
 	}
@@ -203,6 +205,7 @@ $arResult['COL_SORT'] = $col;
 				$arResult['FILTER']['TYPES'][$k['ID']]['selected'] = 'true';
 		}
 	}
+
 	$this->IncludeComponentTemplate();
 if($arParams['TITLE']) {
     $title = $arParams['TITLE'];
