@@ -136,13 +136,18 @@ if($sort == 'asc') {
     $arResult['SORT_METHOD'] = 'asc';
 }
 $arResult['COL_SORT'] = $col;
-	$r = CustomerOrderTable::getList([
+$nav = new \Bitrix\Main\UI\PageNavigation("nav-order-list-component");
+$nav->allowAllRecords(true)
+    ->setPageSize(30)
+    ->initFromUri();
+$arResult['NAV_OBJECT'] = $nav;
+$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => $arOrder,
-			'filter' => $arFilter
+			'filter' => $arFilter,
+    "offset" => $nav->getOffset(),
+    "limit" => $nav->getLimit(),
 		]);
-$arResult["NAV_STRING"] = $r->GetPageNavStringEx($this, "", $arParams["PAGER_TEMPLATE"]);
-var_dump($arResult['NAV_STRING']);
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][$s['ID']] = $s;
 	}

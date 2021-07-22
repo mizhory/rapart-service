@@ -387,6 +387,16 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 		</tbody>
     </table>
 <?endif;?>
+<?
+$APPLICATION->IncludeComponent(
+    "bitrix:main.pagenavigation",
+    "",
+    array(
+        "NAV_OBJECT" => $arResult['NAV_OBJECT'],
+    ),
+    false
+);
+?>
 <script>
     $(document).ready(function(){
 		$('body').on('click', '.sort-btn', function(){
