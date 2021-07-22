@@ -1,4 +1,8 @@
-<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?><style>
+<?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
+<?
+global $APPLICATION, $USER;
+?>
+<style>
     .nav-menu li a {
         background: #306AA8;
         height: 35px;
