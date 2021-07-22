@@ -121,6 +121,8 @@ if((isset($sort) && strlen($sort)>0) && (isset($col) && strlen($col)>0)) {
             $s_col = 'UF_STATUS';
         else
             $s_col = 'UF_STATUS';
+    } else {
+        $s_col = 'ID';
     }
     $arOrder = [$s_col => ($sort=='asc')?'ASC':'DESC'];
 } else {
