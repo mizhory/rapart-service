@@ -88,14 +88,9 @@ if(intVal($ORDER_ID)){
 }
 $sort = $request->getQuery('SORT');
 $col = $request->getQuery('COL');
+$search_string = $request->getQuery('q');
+
 if((isset($sort) && strlen($sort)>0) && (isset($col) && strlen($col)>0)) {
-    /*
-     *  <option value="1">Номер</option>
-                <option value="2">Дата</option>
-                <option value="3">Приоритет</option>
-                <option value="4">Номер Заказчика</option>
-                <option value="5">Состояние</option>
-     */
     if($col == '1') {
         if($arParams['PRIZNAK'] == 'order')
             $s_col = 'UF_NAME';
@@ -141,6 +136,9 @@ $nav->allowAllRecords(true)
     ->setPageSize(30)
     ->initFromUri();
 $arResult['NAV_OBJECT'] = $nav;
+if(strlen($search_string)>=1) {
+    $arFilter = array_merge($arFilter, ['UF_NAME' => '%'.$search_string.'%', ]);
+}
 $r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => $arOrder,
