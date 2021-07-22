@@ -54,11 +54,10 @@ class SoapConnector
         static::$request = null;
 
         $result = static::$soap_client->call('IntegrationZayInput',  array('NameKontr' => $query) , '', '', false, null, 'rpc', 'literal');
-		//var_dump();
+
 		return json_decode($result['return'], 1);
     }
     public static function initRequest(array $params) {
-		var_dump($params['METHOD_STEP']);
 		$jsonInput = '[{"method": "'.intval($params['METHOD_STEP']).'", "PART": "000-029", "IDKP": "","IDZayavka": "","StatusZayavka": "",
 "Kontragent": "'.$params['XML_ID'].'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
 "Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
