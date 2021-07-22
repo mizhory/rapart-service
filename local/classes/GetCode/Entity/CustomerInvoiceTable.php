@@ -30,7 +30,7 @@ Loc::loadMessages(__FILE__);
  * @package Bitrix\Customer
  **/
 
-class CustomerInvoiceTable
+class CustomerInvoiceTable extends DataManager
 {
     /**
      * Returns DB table name for entity.
