@@ -99,10 +99,10 @@ th.sorted[data-order="1"]::after {
                     </td>
 					<td width="26%" style="padding-top:5px;padding-left:10px;" class="">
                     <ul class="nav-menu">
-                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
-                        <li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp">КП</a></li>
-                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order" data-kid="<?=$k?>">Счет заказа</a></li>
-                        <li><a href="javascript:void(0);" class="check-rtiu" data-kid="<?=$k?>">РТУ файлы</a></li>
+                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
+                        <li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp product__btn">КП</a></li>
+                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order product__btn" data-kid="<?=$k?>">Счет заказа</a></li>
+                        <li><a href="javascript:void(0);" class="check-rtiu product__btn" data-kid="<?=$k?>">РТУ файлы</a></li>
                     </ul>
                     </td>
                 </tr>
@@ -306,8 +306,8 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
             </td>
             <td width="17%">
                 <ul class="nav-menu">
-                    <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail">Просмотреть</a></li>
-					<li style=""><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-kp">КП детально</a></li>
+                    <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
+					<li style=""><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-kp product__btn">КП детально</a></li>
                 </ul>
             </td>
         </tr>

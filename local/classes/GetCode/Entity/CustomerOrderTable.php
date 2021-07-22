@@ -42,77 +42,83 @@ class CustomerOrderTable extends DataManager
 	 *
 	 * @return array
 	 */
-	public static function getMap()
-	{
-		return [
-			new IntegerField(
-				'ID',
-				[
-					'primary' => true,
-					'autocomplete' => true,
-					'title' => Loc::getMessage('ORDER_ENTITY_ID_FIELD')
-				]
-			),
-			new IntegerField(
-				'UF_USER_ID',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_USER_ID_FIELD')
-				]
-			),
-			new TextField(
-				'UF_TIMESTAMP',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_TIMESTAMP_FIELD')
-				]
-			),
-			new IntegerField(
-				'UF_OFFER',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_OFFER_FIELD')
-				]
-			),
-			new IntegerField(
-				'UF_ORDER_TYPES',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_ORDER_TYPES_FIELD')
-				]
-			),
-			new TextField(
-				'UF_NAME',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_NAME_FIELD')
-				]
-			),
-			new TextField(
-				'UF_XML_ID',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_XML_ID_FIELD')
-				]
-			),
-			new IntegerField(
-				'UF_STATUS',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_STATUS_FIELD')
-				]
-			),
-			new TextField(
-				'UF_PERC_PAYMENT',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_PAYMENT_FIELD')
-				]
-			),
-			new TextField(
-				'UF_PERC_SHIPMENT',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_SHIPMENT_FIELD')
-				]
-			),
-			new TextField(
-				'UF_OFFERS',
-				[
-					'title' => Loc::getMessage('ORDER_ENTITY_UF_OFFERS_FIELD')
-				]
-			),
-		];
-	}
+    public static function getMap()
+    {
+        return [
+            new IntegerField(
+                'ID',
+                [
+                    'primary' => true,
+                    'autocomplete' => true,
+                    'title' => Loc::getMessage('ORDER_ENTITY_ID_FIELD')
+                ]
+            ),
+            new IntegerField(
+                'UF_USER_ID',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_USER_ID_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_TIMESTAMP',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_TIMESTAMP_FIELD')
+                ]
+            ),
+            new IntegerField(
+                'UF_OFFER',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_OFFER_FIELD')
+                ]
+            ),
+            new IntegerField(
+                'UF_ORDER_TYPES',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_ORDER_TYPES_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_NAME',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_NAME_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_XML_ID',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_XML_ID_FIELD')
+                ]
+            ),
+            new IntegerField(
+                'UF_STATUS',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_STATUS_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_PERC_PAYMENT',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_PAYMENT_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_PERC_SHIPMENT',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_PERC_SHIPMENT_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_OFFERS',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_OFFERS_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_PRIORITY',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_PRIORITY_FIELD')
+                ]
+            ),
+        ];
+    }
 }
