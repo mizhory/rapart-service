@@ -128,6 +128,12 @@ if((isset($sort) && strlen($sort)>0) && (isset($col) && strlen($col)>0)) {
 } else {
     $arOrder = ['ID' => 'ASC'];
 }
+$arResult['SORT_METHOD'] = $sort;
+if($sort == 'asc') {
+    $arResult['SORT_NAME'] = 'Возрастанию';
+} else {
+    $arResult['SORT_NAME'] = 'Убыванию';
+}
 	$r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => $arOrder,

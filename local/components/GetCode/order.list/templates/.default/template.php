@@ -44,7 +44,7 @@ th.sorted[data-order="1"]::after {
 <nav class="shop-nav" style="margin-top:20px; margin-bottom: 20px;">
 	<div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
 	<select name="sort" class="product__btn popup">
-		<option value="1">Номер</option>
+		<option selected value="1">Номер</option>
 		<option value="2">Дата</option>
 		<option value="3">Приоритет</option>
 		<option value="4">Номер Заказчика</option>
@@ -58,8 +58,10 @@ th.sorted[data-order="1"]::after {
 
 
       <div class="search shop-nav__item">
-          <input type="text" class="search__input" name="q" placeholder="Поиск" value="" required="">
-          <input type="submit" class="search__button">
+          <form method="get" action="?SEARCH=Y">
+              <input type="text" class="search__input" name="q" placeholder="Поиск" value="" required="">
+              <input type="submit" class="search__button">
+          </form>
       </div>
       <div class="shop-nav__quantity shop-nav__item">
 		Количество:
@@ -249,8 +251,8 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
     <nav class="shop-nav" style="margin-top:20px; margin-bottom: 20px;">
         <div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
             <select name="sort" class="product__btn popup">
-                <option value="1">Номер</option>
-                <option value="2">Дата</option>
+                <option selected value="1">Номер</option>
+                <option value="2">Дата </option>
                 <option value="3">Приоритет</option>
                 <option value="4">Номер Заказчика</option>
                 <option value="5">Состояние</option>
@@ -263,8 +265,10 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 
 
         <div class="search shop-nav__item">
-            <input type="text" class="search__input" name="q" placeholder="Поиск" value="" required="">
-            <input type="button" class="search__button">
+            <form method="get" action="?SEARCH=Y">
+                <input type="text" class="search__input" name="q" placeholder="Поиск" value="" required="">
+                <input type="submit" class="search__button">
+            </form>
         </div>
         <div class="shop-nav__quantity shop-nav__item">
             Количество:
@@ -386,7 +390,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 <script>
     $(document).ready(function(){
 		$('body').on('click', '.sort-btn', function(){
-			var col = $('body').find('select[name="sort"]:selected').val();
+			var col = $('body').find('select[name="sort"] option:selected').val();
 			var asc = $(this).data('asc');
 			location.href = '?SORT='+asc+'&COL='+col;
 		});
