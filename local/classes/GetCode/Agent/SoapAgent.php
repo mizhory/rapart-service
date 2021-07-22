@@ -195,7 +195,7 @@ class SoapAgent {
                                 "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusKP"], StepingHelper::STEP_GET_KP),
                                 "UF_ORDER_ID"   => $z_id,
                                 "UF_ITEM_ID"    => static::getOfferbyName($arItems["Nomenklature"]),
-                                "UF_USER_ID"    => $user_xml_id,
+                                "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
                                 "UF_CO_FILE_REMOTE" => $user_data['File']
                             );
                             if(static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"])){
