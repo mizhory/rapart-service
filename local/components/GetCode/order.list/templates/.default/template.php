@@ -97,7 +97,7 @@ th.sorted[data-order="1"]::after {
         </thead>
 		<tbody>
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-			<tr>
+			<tr style="border-bottom: 1px solid;">
 					<td width="5%" style="padding-top:5px" class=""><?=$k?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=date('d-m-Y', intval($arItems["UF_TIMESTAMP"]))?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_PRIORITY']?></td>
@@ -107,7 +107,7 @@ th.sorted[data-order="1"]::after {
                         <br />
                         <span><?=$arItems['UF_STATUS']['NAME']?></span>
                     </td>
-					<td width="26%" style="padding-top:5px;padding-left:10px;" class="">
+					<td width="26%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;" class="">
                     <ul class="nav-menu">
                         <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
                         <li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp product__btn">КП</a></li>
@@ -304,7 +304,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
         </thead>
 		<tbody>
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-        <tr>
+        <tr style="border-bottom:1px solid;">
             <td width="15%"><?=$arItems['UF_NAME']?></td>
             <td width="17%"><?=date('Y-m-d', intval($arItems['UF_TIMESTAMP']))?></td>
             <td width="17%"><?=$arItems['UF_PRIORITY']?></td>
@@ -314,7 +314,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
                 <br />
                 <span><?=$arItems['UF_STATUS']['NAME']?></span>
             </td>
-            <td width="17%">
+            <td width="17%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;">
                 <ul class="nav-menu">
                     <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
 					<li style=""><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-kp product__btn">КП детально</a></li>
