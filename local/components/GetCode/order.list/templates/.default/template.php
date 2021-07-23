@@ -14,7 +14,16 @@ global $APPLICATION, $USER;
         color: white;
         font-size: 11pt;
     }*/
-
+    .product__btn {
+        display: inline-block;
+        padding: 10px 30px;
+        border: none;
+        border-radius: 27px;
+        background-color: #232257;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
     .products__name {
         background:linear-gradient(#DDD, #BBB);
     }
