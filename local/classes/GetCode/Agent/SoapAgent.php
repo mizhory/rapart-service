@@ -106,7 +106,7 @@ class SoapAgent {
         //if($method == StepingHelper::STEP_GET_REQUEST){
         //    $method_status = "(заявка)";
        // }
-        var_dump($status_name);
+        //var_dump($status_name);
 
         $a = StatusesTable::getList(
             [
