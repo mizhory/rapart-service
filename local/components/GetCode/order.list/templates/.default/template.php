@@ -227,7 +227,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 					</tr>
 				</thead>
 				<tbody>
-				<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
+				<?foreach($arItems['IVOICE'] as $e=>$arElements):?>
 					<?
 					$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
 					$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
