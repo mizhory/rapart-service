@@ -3,7 +3,7 @@
 global $APPLICATION, $USER;
 ?>
 <style>
-    .nav-menu li a {
+    /*.nav-menu li a {
         background: #306AA8;
         height: 35px;
         display: block;
@@ -13,7 +13,8 @@ global $APPLICATION, $USER;
         padding-left: 32px;
         color: white;
         font-size: 11pt;
-    }
+    }*/
+
     .products__name {
         background:linear-gradient(#DDD, #BBB);
     }
