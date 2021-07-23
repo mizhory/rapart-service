@@ -86,6 +86,7 @@ if($request->isPost()){
 if(intVal($ORDER_ID)){
 	$arFilter['ID'] = $ORDER_ID;
 }
+
 $sort = $request->getQuery('SORT');
 $col = $request->getQuery('COL');
 $search_string = $request->getQuery('q');
@@ -130,31 +131,39 @@ if($sort == 'asc') {
     $arResult['SORT_NAME'] = 'Возрастанию';
     $arResult['SORT_METHOD'] = 'asc';
 }
+
 $arResult['COL_SORT'] = $col;
+
 $nav = new \Bitrix\Main\UI\PageNavigation("nav-order-list-component");
 $nav->allowAllRecords(true)
     ->setPageSize(30)
     ->initFromUri();
 $arResult['NAV_OBJECT'] = $nav;
+
 if(strlen($search_string)>=1) {
     $arFilter = array_merge($arFilter, ['UF_NAME' => '%'.$search_string.'%', ]);
 }
+
 $r = CustomerOrderTable::getList([
 			'select' => ['*'],
 			'order'  => $arOrder,
 			'filter' => $arFilter,
-    "offset" => $nav->getOffset(),
-    "limit" => $nav->getLimit(),
-		]);
+            "offset" => $nav->getOffset(),
+            "limit" => $nav->getLimit(),
+]);
+
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][$s['ID']] = $s;
 	}
+
 	$offers = false;
+
 	foreach($arResult['ITEMS'] as $k=>$r) {
 	    if(is_array(unserialize($r['UF_OFFERS']))&&count(unserialize($r['UF_OFFERS']))>0){
 	        $offers[$k] = unserialize($r['UF_OFFERS']);
         }
     }
+
 	if(is_array($offers)) {
 	    foreach($offers as $k=>$re) {
 			foreach($re as $r){
@@ -164,7 +173,7 @@ $r = CustomerOrderTable::getList([
         }
 		
 		foreach($arResult['ITEMS'] as $k=>$e){
-			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids);//, ['COUNT' => $r[1]]);
+			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids);
 			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
@@ -180,14 +189,25 @@ $r = CustomerOrderTable::getList([
 		$arResult['ITEMS'][$k]['UF_STATUS'] = OffersManager::getStatus($arResult['ITEMS'][$k]['UF_STATUS']['VALUE']);
         $arResult['ITEMS'][$k]['PRICE'] = $p . ' ' . $currency;
     }
-	$e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => [], 'order' => ['ID'=>'ASC']]);
+	$arFilter = [];
+#UF_CO_ID
+	$e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => $arFilter, 'order' => ['ID'=>'ASC']]);
 	while($s = $e->fetch()){
 		$s['STATUS'] = OffersManager::getStatus($s['UF_STATUS']);
-		$_[$s['UF_ORDER_ID']][] = $s;
+		$arOffers[$s['UF_ORDER_ID']][] = $s;
 	}
-	foreach($arResult['ITEMS'] as $k=>$r){
+/*	foreach($arResult['ITEMS'] as $k=>$r){
 		$arResult['ITEMS'][$k]['KP'] = $_[$r['ID']];
 	}
+*/
+    foreach($arResult['ITEMS'] as $z=>$arItems){
+        foreach($arOffers as $k=>$arOffer){
+            if($arItems['ID'] == $arOffer['UF_ORDER_ID']) {
+                $arResult['ITEMS'][$z]['KP'][] = $arOffer;
+            }
+        }
+    }
+
 	if($arParams['PRIZNAK'] == 'order'){
 		$z = StatusesTable::getList(['select' => ['ID', 'UF_NAME'], 'order' => ['ID' => 'ASC']]);
 		while($k=$z->fetch()){

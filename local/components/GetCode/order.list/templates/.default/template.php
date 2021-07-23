@@ -57,7 +57,7 @@ th.sorted[data-order="1"]::after {
 <?if($arParams['PRIZNAK'] == 'order'):?>
 <nav class="shop-nav" style="margin-top:20px; margin-bottom: 20px;">
 	<div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
-	<select name="sort" class="product__btn popup">
+	<select name="sort" class="popup">
 		<option<?if($arResult['COL_SORT']==1):?> selected<?endif;?> value="1">Номер</option>
 		<option<?if($arResult['COL_SORT']==2):?> selected<?endif;?> value="2">Дата</option>
 		<option<?if($arResult['COL_SORT']==3):?> selected<?endif;?> value="3">Приоритет</option>
