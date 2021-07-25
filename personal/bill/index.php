@@ -1,6 +1,20 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-$APPLICATION->SetTitle("Счета");
+$APPLICATION->SetTitle("Счета");?>
+<div class="container" style="margin-bottom: 10em;">
+<?$APPLICATION->IncludeComponent(
+            "GetCode:lister.list",
+            "",
+            Array(
+                "CACHE_TIME" => "36000000",
+                "CACHE_TYPE" => "A",
+                "PRIZNAK" => "INVOICE",
+                'TITLE' => 'Счета'
+            )
+        );?>
+</div>
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<?/**
 ?><BR><BR><BR><?
 require('../cfg.php');
 

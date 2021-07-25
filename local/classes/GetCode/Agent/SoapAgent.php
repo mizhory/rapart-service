@@ -234,25 +234,27 @@ class SoapAgent {
                 }
             } elseif($method_step == StepingHelper::STEP_GET_INVOICE) {
                 foreach($data_step as $user_xml_id=>$_user_data) {
-                    $_data = array(
-                        "UF_KP_ID"          => static::getKPIDbyName($_user_data["ID"]),
-                        "UF_CURRENCY"       => $_user_data["Currency"],
-                        "UF_SUMM"           => $_user_data["Summ"],
-                        "UF_NULLED_INVOICE" => ($_user_data["Annulirovan"]=='истина')?1:0,
-                        "UF_FILE_INVOICE_REMOTE_SERVER" => $_user_data["File"],
-                        "UF_FORMAT_INVOICE" => $_user_data["FormaOplati"],
-                        "UF_REQUEST"        => $_user_data["Request"],
-                        "UF_STATUS"         => static::getStatusIDbyName($_user_data["State"], StepingHelper::STEP_GET_INVOICE),
-                        "UF_DATE"           => $_user_data["Data"],
-                        "UF_XML_ID"         => $_user_data["GUIDschet"],
-                        "UF_NAME"           => $_user_data["ID"],
-                        "UF_USER_ID"        => $user_xml_id
-                    );
-                    if(static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"])){
-                        $zid = static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"], 1);
-                        static::updElement(StepingHelper::STEP_GET_INVOICE, $_data, $zid);
-                    } else {
-                        static::newElement(StepingHelper::STEP_GET_INVOICE, $_data);
+                    foreach($_user_data as $d=>$user_data){
+                        $_data = array(
+                            "UF_KP_ID"          => static::getKPIDbyName($user_data["ID"]),
+                            "UF_CURRENCY"       => $user_data["Currency"],
+                            "UF_SUMM"           => $user_data["Summ"],
+                            "UF_NULLED_INVOICE" => ($user_data["Annulirovan"]=='истина')?1:0,
+                            "UF_FILE_INVOICE_REMOTE_SERVER" => $user_data["File"],
+                            "UF_FORMAT_INVOICE" => $user_data["FormaOplati"],
+                            "UF_REQUEST"        => $user_data["Request"],
+                            "UF_STATUS"         => static::getStatusIDbyName($user_data["State"], StepingHelper::STEP_GET_INVOICE),
+                            "UF_DATE"           => $user_data["Data"],
+                            "UF_XML_ID"         => $user_data["GUIDschet"],
+                            "UF_NAME"           => $user_data["ID"],
+                            "UF_USER_ID"        => static::getUserIDbyXMLID($user_xml_id)
+                        );
+                        if(static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"])){
+                            $zid = static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"], 1);
+                            static::updElement(StepingHelper::STEP_GET_INVOICE, $_data, $zid);
+                        } else {
+                            static::newElement(StepingHelper::STEP_GET_INVOICE, $_data);
+                        }
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_RTIU) {

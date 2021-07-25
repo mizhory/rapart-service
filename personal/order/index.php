@@ -14,7 +14,7 @@ $APPLICATION->SetTitle("Заказы");
         )
     );?>
 </div>
-
+<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
 <?
 /*require('../cfg.php');
 

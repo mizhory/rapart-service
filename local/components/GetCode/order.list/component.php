@@ -18,6 +18,7 @@ use \Bitrix\Main,
 	\Bitrix\Main\Localization\Loc,
 	\GetCode\Entity\CustomerOrderTable,
 	\GetCode\Entity\CustomerOfferTable,
+	\GetCode\Entity\CustomerInvoiceTable,
 	\GetCode\Entity\OrderTypesTable,
 	\GetCode\Entity\StatusesTable,
     \GetCode\Manager\OffersManager;
