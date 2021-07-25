@@ -97,9 +97,9 @@ th.sorted[data-order="1"]::after {
         </thead>
 		<tbody>
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-			<tr style="border-bottom: 1px solid;">
+			<tr style="border-bottom: 1px solid #000;">
 					<td width="5%" style="padding-top:5px" class=""><?=$k?></td>
-                    <td width="17%" style="padding-top:5px" class=""><?=date('d-m-Y', intval($arItems["UF_TIMESTAMP"]))?></td>
+                    <td width="17%" style="padding-top:5px" class=""><?=$arItems["UF_DATE"]?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_PRIORITY']?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_USER_ID']?></td>
                     <td width="17%" style="padding-top:5px" class="" style="text-align: center;font-size: 11px;">
@@ -306,7 +306,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
         <tr style="border-bottom:1px solid;">
             <td width="15%"><?=$arItems['UF_NAME']?></td>
-            <td width="17%"><?=date('Y-m-d', intval($arItems['UF_TIMESTAMP']))?></td>
+            <td width="17%"><?=$arItems['UF_DATE']?></td>
             <td width="17%"><?=$arItems['UF_PRIORITY']?></td>
             <td width="17%"><?=$arItems['UF_USER_ID']?></td>
             <td width="17%">
