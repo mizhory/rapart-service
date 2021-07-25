@@ -85,7 +85,7 @@ th.sorted[data-order="1"]::after {
         </thead>
 		<tbody>
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-			<tr style="border-bottom: 1px solid #000;">
+			<tr style="border-bottom: 1px solid #EEE;">
 					<td width="5%" style="padding-top:5px" class=""><?=$k?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems["UF_DATE"]?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_PRIORITY']?></td>
@@ -106,7 +106,7 @@ th.sorted[data-order="1"]::after {
                 </tr>
 				<tr>
 				<td colspan="6">
-					<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;">
+					<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
 					<thead>
 					 <tr>
 						<td colspan="11"><b>Детально Заказ <?=$arItems['UF_NAME']?></b></td>
@@ -148,7 +148,7 @@ th.sorted[data-order="1"]::after {
 				<?endforeach;?>
 				</tbody>
 				</table>
-				<table class="not-show kp-<?=$k?>" width="100%" style="text-align:center;">
+				<table class="not-show kp-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
 				<thead>
 					<tr>
 						<th colspan="4"><b>КП Заказ <?=$arItems['UF_NAME']?></b></th>
@@ -185,7 +185,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 				<?endforeach;?>
 				</tbody>
 				</table>
-				<table class="not-show order-<?=$k?>" width="100%" style="text-align:center;">
+				<table class="not-show order-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
 				<thead>
 					<tr>
 						<th colspan="11"><b>Cчета Заказ <?=$arItems['UF_NAME']?></b></th>
@@ -279,7 +279,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
             <a href="?с=100" class="">100</a>
         </div>
     </nav>
-    <table class="table_sort" width="100%" style="text-align:center;">
+    <table class="table_sort" width="100%" style="text-align:center;border-bottom:1px solid #000;">
         <thead>
         <tr>
             <th width="15%" class="products__name">№</th>
@@ -311,7 +311,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
         </tr>
 		<tr>
 			<td colspan="6">
-				<table class="not-show kp-<?=$k?>" width="100%" style="text-align:center;">
+				<table class="not-show kp-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
 				<thead>
 					<tr>
 						<th colspan="4"><b>КП Детально <?=$arItems['UF_NAME']?></b></th>
@@ -348,7 +348,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 				<?endforeach;?>
 				</tbody>
 				</table>
-				<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;">
+				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;">
 					<thead>
 					<tr>
 						<th colspan="5"><b>Детализация заявки <?=$arItems['UF_NAME']?></b></th>
