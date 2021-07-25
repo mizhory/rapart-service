@@ -124,6 +124,12 @@ class CustomerInvoiceTable extends DataManager
                     'title' => Loc::getMessage('INVOICE_ENTITY_UF_KP_ID_FIELD')
                 ]
             ),
+            new TextField(
+                'UF_USER_ID',
+                [
+                    'title' => Loc::getMessage('INVOICE_ENTITY_UF_USER_ID_FIELD')
+                ]
+            )
         ];
     }
 }

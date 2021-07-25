@@ -190,7 +190,6 @@ class SoapAgent {
                     foreach($_user_data as $k=>$user_data) {
                         foreach($user_data["Tovary"] as $r=>$arItems) {
                             $z_id = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
-                            var_dump($user_data);
                             $_data = array(
                                 "UF_CO_ID"      => $user_data["IDKP"],
                                 "UF_XML_ID"     => $user_data["GUIDKP"],
