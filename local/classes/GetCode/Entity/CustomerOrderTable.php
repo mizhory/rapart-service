@@ -119,6 +119,12 @@ class CustomerOrderTable extends DataManager
                     'title' => Loc::getMessage('ORDER_ENTITY_UF_PRIORITY_FIELD')
                 ]
             ),
+            new TextField(
+                'UF_DATE',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_DATE_FIELD')
+                ]
+            ),
         ];
     }
 }

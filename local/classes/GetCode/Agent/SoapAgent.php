@@ -163,20 +163,21 @@ class SoapAgent {
     }
     private static function syncStep() {
         global $USER, $APPLICATION;
-
+        \Bitrix\Main\Diag\Debug::writeToFile(static::$steping_data);
         foreach(static::$steping_data as $method_step=>$data_step){
             if($method_step == StepingHelper::STEP_GET_REQUEST) {
                 foreach($data_step as $user_xml_id=>$_user_data){
                     foreach($_user_data as $k=>$user_data){
                         $_data = Array(
-                            "UF_XML_ID" => $user_data["GUIDZayavka"],
-                            "UF_USER_ID" => static::getUserIDbyXMLID($user_xml_id),
-                            "UF_NAME" => $user_data["IDZayavka"],
-                            "UF_PRIORITY" => $user_data["Priority"],
-                            "UF_STATUS" => static::getStatusIDbyName($user_data["StatusZayavka"]
+                            "UF_XML_ID"     => $user_data["GUIDZayavka"],
+                            "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
+                            "UF_NAME"       => $user_data["IDZayavka"],
+                            "UF_PRIORITY"   => $user_data["Priority"],
+                            "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusZayavka"]
                                 , StepingHelper::STEP_GET_REQUEST),
-                            "UF_OFFER" => '1',
-                            "UF_OFFERS" => static::getOffers($user_data["Tovary"]),
+                            "UF_OFFER"      => '1',
+                            "UF_OFFERS"     => static::getOffers($user_data["Tovary"]),
+                            "UF_DATE"       => $user_data['Date']
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"])){
                             $zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"], 1);
@@ -213,13 +214,14 @@ class SoapAgent {
                 foreach($data_step as $user_xml_id=>$_user_data){
                     foreach($_user_data as $k=>$user_data){
                         $_data = Array(
-                            "UF_XML_ID" => $user_data["GUIDZakaz"],
-                            "UF_USER_ID" => static::getUserIDbyXMLID($user_xml_id),
-                            "UF_NAME" => $user_data["ID"],
-                            "UF_PRIORITY" => $user_data["Priority"],
-                            "UF_STATUS" => static::getStatusIDbyName($user_data["StatusZayavka"], StepingHelper::STEP_GET_ORDER),
-                            "UF_OFFER" => '0',
-                            "UF_OFFERS" => static::getOffers($user_data["Tovary"]),
+                            "UF_XML_ID"     => $user_data["GUIDZakaz"],
+                            "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
+                            "UF_NAME"       => $user_data["ID"],
+                            "UF_PRIORITY"   => $user_data["Priority"],
+                            "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusZayavka"], StepingHelper::STEP_GET_ORDER),
+                            "UF_OFFER"      => '0',
+                            "UF_OFFERS"     => static::getOffers($user_data["Tovary"]),
+                            "UF_DATE"       => $user_data['Date']
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"])){
                             $zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
@@ -232,17 +234,18 @@ class SoapAgent {
             } elseif($method_step == StepingHelper::STEP_GET_INVOICE) {
                 foreach($data_step as $user_xml_id=>$_user_data) {
                     $_data = array(
-                        "UF_KP_ID" => static::getKPIDbyName($_user_data["ID"]),
-                        "UF_CURRENCY" => $_user_data["Currency"],
-                        "UF_SUMM" => $_user_data["Summ"],
+                        "UF_KP_ID"          => static::getKPIDbyName($_user_data["ID"]),
+                        "UF_CURRENCY"       => $_user_data["Currency"],
+                        "UF_SUMM"           => $_user_data["Summ"],
                         "UF_NULLED_INVOICE" => ($_user_data["Annulirovan"]=='истина')?1:0,
                         "UF_FILE_INVOICE_REMOTE_SERVER" => $_user_data["File"],
                         "UF_FORMAT_INVOICE" => $_user_data["FormaOplati"],
-                        "UF_REQUEST" => $_user_data["Request"],
-                        "UF_STATUS" => static::getStatusIDbyName($_user_data["State"], StepingHelper::STEP_GET_INVOICE),
-                        "UF_DATE" => $_user_data["Data"],
-                        "UF_XML_ID" => $_user_data["GUIDschet"],
-                        "UF_NAME" => $_user_data["ID"]
+                        "UF_REQUEST"        => $_user_data["Request"],
+                        "UF_STATUS"         => static::getStatusIDbyName($_user_data["State"], StepingHelper::STEP_GET_INVOICE),
+                        "UF_DATE"           => $_user_data["Data"],
+                        "UF_XML_ID"         => $_user_data["GUIDschet"],
+                        "UF_NAME"           => $_user_data["ID"],
+                        "UF_USER_ID"        => $user_xml_id
                     );
                     if(static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"])){
                         $zid = static::checkXMLID(StepingHelper::STEP_GET_INVOICE, $_user_data["GUIDschet"], 1);
