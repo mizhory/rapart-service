@@ -154,7 +154,7 @@ $r = CustomerOrderTable::getList([
 
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][$s['ID']] = $s;
-		$arResult['ITEMS'][$s['ID']]['UF_OFFERS'] = unserialize($r['UF_OFFERS']);
+		$arResult['ITEMS'][$s['ID']]['UF_OFFERS'] = unserialize($s['UF_OFFERS']);
 	}
 
 
