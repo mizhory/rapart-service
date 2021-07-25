@@ -177,7 +177,7 @@ class SoapAgent {
                                 , StepingHelper::STEP_GET_REQUEST),
                             "UF_OFFER"      => '1',
                             "UF_OFFERS"     => static::getOffers($user_data["Tovary"]),
-                            "UF_DATE"       => $user_data['Date']
+                            "UF_DATE"       => $user_data['Data']
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"])){
                             $zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"], 1);
@@ -192,6 +192,7 @@ class SoapAgent {
                     foreach($_user_data as $k=>$user_data) {
                         foreach($user_data["Tovary"] as $r=>$arItems) {
                             $z_id = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
+
                             $_data = array(
                                 "UF_CO_ID"      => $user_data["IDKP"],
                                 "UF_XML_ID"     => $user_data["GUIDKP"],
@@ -199,7 +200,7 @@ class SoapAgent {
                                 "UF_ORDER_ID"   => $z_id,
                                 "UF_ITEM_ID"    => static::getOfferbyName($arItems["Nomenklature"]),
                                 "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
-                                "UF_CO_FILE_REMOTE" => $user_data['File']
+                                //"UF_CO_FILE_REMOTE" =>
                             );
                             if(static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"])){
                                 $zid = static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"], 1);
@@ -221,7 +222,9 @@ class SoapAgent {
                             "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusZayavka"], StepingHelper::STEP_GET_ORDER),
                             "UF_OFFER"      => '0',
                             "UF_OFFERS"     => static::getOffers($user_data["Tovary"]),
-                            "UF_DATE"       => $user_data['Date']
+                            "UF_DATE"       => $user_data['Data'],
+                            "UF_PERC_PAYMENT"   => $user_data['PercPayment'],
+                            "UF_PERC_SHIPMENT"   => $user_data['PercShipment'],
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"])){
                             $zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
