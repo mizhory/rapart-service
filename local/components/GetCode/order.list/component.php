@@ -154,32 +154,24 @@ $r = CustomerOrderTable::getList([
 
 	while($s = $r->fetch()){
 		$arResult['ITEMS'][$s['ID']] = $s;
+		$arResult['ITEMS'][$s['ID']]['UF_OFFERS'] = unserialize($r['UF_OFFERS']);
 	}
 
-	$offers = false;
 
 	foreach($arResult['ITEMS'] as $k=>$r) {
 	    if(is_array(unserialize($r['UF_OFFERS']))&&count(unserialize($r['UF_OFFERS']))>0){
-	        $offers[$k] = unserialize($r['UF_OFFERS']);
+	        $arResult['ITEMS'][$k] = unserialize($r['UF_OFFERS']);
         }
     }
-
-	if(is_array($offers)) {
-	    foreach($offers as $k=>$re) {
-			foreach($re as $r){
-				$ids[$k][] = $r[0];
-				$counts[$k][$r[0]] = $r[1];
-			}
-        }
 		
 		foreach($arResult['ITEMS'] as $k=>$e){
-			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids[$k]);
+			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($e['UF_OFFERS']);
 			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r[$k]['ID']];
 			}
 		}
-    }
+
 	foreach($arResult['ITEMS'] as $k=>$arItems) {
 	    $p = 0.0;
 	    foreach($arItems['ELEMENTS'] as $e=>$arElements) {
