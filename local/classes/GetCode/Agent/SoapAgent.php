@@ -106,7 +106,7 @@ class SoapAgent {
         //if($method == StepingHelper::STEP_GET_REQUEST){
         //    $method_status = "(заявка)";
        // }
-        //var_dump($status_name);
+        var_dump($status_name);
 
         $a = StatusesTable::getList(
             [
@@ -177,7 +177,9 @@ class SoapAgent {
                                 , StepingHelper::STEP_GET_REQUEST),
                             "UF_OFFER"      => '1',
                             "UF_OFFERS"     => static::getOffers($user_data["Tovary"]),
-                            "UF_DATE"       => $user_data['Data']
+                            "UF_DATE"       => $user_data['Data'],
+                            "UF_PERC_PAYMENT"   => $user_data['PercPayment'],
+                            "UF_PERC_SHIPMENT"   => $user_data['PercShipment'],
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"])){
                             $zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"], 1);
@@ -219,7 +221,7 @@ class SoapAgent {
                             "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
                             "UF_NAME"       => $user_data["ID"],
                             "UF_PRIORITY"   => $user_data["Priority"],
-                            "UF_STATUS"     => static::getStatusIDbyName($user_data["StatusZayavka"], StepingHelper::STEP_GET_ORDER),
+                            "UF_STATUS"     => static::getStatusIDbyName($user_data["Status"], StepingHelper::STEP_GET_ORDER),
                             "UF_OFFER"      => '0',
                             "UF_OFFERS"     => static::getOffers($user_data["Tovary"]),
                             "UF_DATE"       => $user_data['Data'],
