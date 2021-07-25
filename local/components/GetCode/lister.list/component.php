@@ -44,7 +44,7 @@ if($arParams['PRIZNAK'] == 'KP'){
         
         $arResult['ITEMS'][$a['UF_CO_ID']]['CO_SUMM'] = $a['UF_CO_SUMM'];
         $arResult['ITEMS'][$a['UF_CO_ID']]['CO_DATE'] = $a['UF_CO_DATE'];
-        $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  = OffersManager::getStatus($a['UF_STATUS']); 
+        $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  OffersManager::getStatus($a['UF_STATUS']);
         $arResult['ITEMS'][$a['UF_CO_ID']]['VALIDATY'] = $a['UF_VALIDATY'];
         $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][] = $res->GetNext();
         //UF_ITEM_ID
