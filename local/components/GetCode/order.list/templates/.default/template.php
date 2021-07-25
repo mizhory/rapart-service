@@ -91,9 +91,7 @@ th.sorted[data-order="1"]::after {
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_PRIORITY']?></td>
                     <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_USER_ID']?></td>
                     <td width="17%" style="padding-top:5px" class="" style="text-align: center;font-size: 11px;">
-                        <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />
-                        <br />
-                        <span><?=$arItems['UF_STATUS']['NAME']?></span>
+                        <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" style="position: relative;top: 15px;" />
                     </td>
 					<td width="26%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;" class="">
                     <ul class="nav-menu">
@@ -121,7 +119,6 @@ th.sorted[data-order="1"]::after {
 						<th class="products__name">Сумма с НДС</th>
 						<th class="products__name">Срок поставки</th>
 						<th class="products__name">Заявка</th>
-						<th class="products__name">Состояние</th>
 						<th class="products__name">В заказ</th>
 					</tr>
 					</thead>
@@ -142,7 +139,6 @@ th.sorted[data-order="1"]::after {
 						<td><?=$currency_with_nds?></td>
 						<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
 						<td><?=$arElements["ID"]?></td>
-						<td>Состояние</td>
 						<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
 					</tr>
 				<?endforeach;?>
@@ -358,7 +354,6 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 						<th class="products__name">Обозначение заказчика</th>
 						<th class="products__name">P/N</th>
 						<th class="products__name">Количество</th>
-						<th class="products__name">Состояние</th>
 					</tr>
 					</thead>
 					<tbody>
@@ -373,7 +368,6 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 							<td><?=$arElements['NAME']?></td>
 							<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
 							<td><?=$arElements['COUNT']?></td>
-							<td>Состояние</td>
 						</tr>
 					<?endforeach;?>
 					</tbody>
