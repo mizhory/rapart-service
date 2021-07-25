@@ -1,19 +1,7 @@
 <?if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true) die(); ?>
-<?
-global $APPLICATION, $USER;
-?>
+<?global $APPLICATION, $USER;?>
 <style>
-    /*.nav-menu li a {
-        background: #306AA8;
-        height: 35px;
-        display: block;
-        padding-top: 8px;
-        width: 157px;
-        border-radius: 25px;
-        padding-left: 32px;
-        color: white;
-        font-size: 11pt;
-    }*/
+
     .product__btn {
         display: inline-block;
         padding: 10px 30px;
@@ -82,8 +70,8 @@ th.sorted[data-order="1"]::after {
 		<a href="?" class="actives">30</a>
 		<a href="?с=50" class="">50</a>
 		<a href="?с=100" class="">100</a>
-      </div>
-    </nav>
+      </div><!--
+    </nav>-->
     <table class="table_sort" width="100%" style="text-align:center;">
         <thead>
         <tr>
@@ -374,7 +362,6 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 					</tr>
 					</thead>
 					<tbody>
-                    <?var_dump($arItems);?>
 					<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
 						<?
 						$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
