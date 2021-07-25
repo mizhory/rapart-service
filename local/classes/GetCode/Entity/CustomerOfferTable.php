@@ -96,6 +96,24 @@ class CustomerOfferTable extends DataManager
 					'title' => Loc::getMessage('OFFER_ENTITY_UF_STATUS_FIELD')
 				]
 			),
+			new TextField(
+				'UF_CO_SUMM',
+				[
+					'title' => Loc::getMessage('OFFER_ENTITY_UF_CO_SUMM_FIELD')
+				]
+			),
+			new TextField(
+				'UF_VALIDATY',
+				[
+					'title' => Loc::getMessage('OFFER_ENTITY_UF_VALIDATY_FIELD')
+				]
+			),
+			new TextField(
+				'UF_CO_DATE',
+				[
+					'title' => Loc::getMessage('OFFER_ENTITY_UF_CO_SUMM_FIELD')
+				]
+			),
 		];
 	}
 }

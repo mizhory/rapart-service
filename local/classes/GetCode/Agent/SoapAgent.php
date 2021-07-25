@@ -189,7 +189,7 @@ class SoapAgent {
                 foreach($data_step as $user_xml_id=>$_user_data){
                     foreach($_user_data as $k=>$user_data) {
                         foreach($user_data["Tovary"] as $r=>$arItems) {
-                            $z_id = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZakaz"], 1);
+                            $z_id = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"], 1);
                             $_data = array(
                                 "UF_CO_ID"      => $user_data["IDKP"],
                                 "UF_XML_ID"     => $user_data["GUIDKP"],
@@ -197,6 +197,9 @@ class SoapAgent {
                                 "UF_ORDER_ID"   => $z_id,
                                 "UF_ITEM_ID"    => static::getOfferbyName($arItems["Nomenklature"]),
                                 "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
+                                "UF_CO_SUMM"    => $user_data['SummKP'],
+                                "UF_CO_DATE"    => $user_data['DataKP'],
+                                "UF_VALIDATY"   => $user_data['Validity']
                                 //"UF_CO_FILE_REMOTE" =>
                             );
                             if(static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"])){
