@@ -167,16 +167,16 @@ $r = CustomerOrderTable::getList([
 	if(is_array($offers)) {
 	    foreach($offers as $k=>$re) {
 			foreach($re as $r){
-				$ids[] = $r[0];
-				$counts[$r[0]] = $r[1];
+				$ids[$k][] = $r[0];
+				$counts[$k][$r[0]] = $r[1];
 			}
         }
 		
 		foreach($arResult['ITEMS'] as $k=>$e){
-			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids);
+			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($ids[$k]);
 			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
-				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r['ID']];
+				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r[$k]['ID']];
 			}
 		}
     }
