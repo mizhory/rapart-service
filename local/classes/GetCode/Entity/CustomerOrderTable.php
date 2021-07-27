@@ -27,21 +27,21 @@ Loc::loadMessages(__FILE__);
 
 class CustomerOrderTable extends DataManager
 {
-	/**
-	 * Returns DB table name for entity.
-	 *
-	 * @return string
-	 */
-	public static function getTableName()
-	{
-		return 'gk_customer_order';
-	}
+    /**
+     * Returns DB table name for entity.
+     *
+     * @return string
+     */
+    public static function getTableName()
+    {
+        return 'gk_customer_order';
+    }
 
-	/**
-	 * Returns entity map definition.
-	 *
-	 * @return array
-	 */
+    /**
+     * Returns entity map definition.
+     *
+     * @return array
+     */
     public static function getMap()
     {
         return [
@@ -57,12 +57,6 @@ class CustomerOrderTable extends DataManager
                 'UF_USER_ID',
                 [
                     'title' => Loc::getMessage('ORDER_ENTITY_UF_USER_ID_FIELD')
-                ]
-            ),
-            new TextField(
-                'UF_TIMESTAMP',
-                [
-                    'title' => Loc::getMessage('ORDER_ENTITY_UF_TIMESTAMP_FIELD')
                 ]
             ),
             new IntegerField(
@@ -123,6 +117,12 @@ class CustomerOrderTable extends DataManager
                 'UF_DATE',
                 [
                     'title' => Loc::getMessage('ORDER_ENTITY_UF_DATE_FIELD')
+                ]
+            ),
+            new TextField(
+                'UF_NUMBER_CUSTOMER',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_NUMBER_CUSTOMER_FIELD')
                 ]
             ),
         ];
