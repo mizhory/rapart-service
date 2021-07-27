@@ -70,8 +70,8 @@ th.sorted[data-order="1"]::after {
 		<a href="?" class="actives">30</a>
 		<a href="?с=50" class="">50</a>
 		<a href="?с=100" class="">100</a>
-      </div><!--
-    </nav>-->
+      </div><!---->
+    </nav>
     <table class="table_sort" width="100%" style="text-align:center;">
         <thead>
         <tr>
@@ -96,7 +96,6 @@ th.sorted[data-order="1"]::after {
 					<td width="26%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;" class="">
                     <ul class="nav-menu">
                         <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
-                        <li style="margin-bottom: 10px;"><a href="javacript:void(0);" data-kid="<?=$k?>" class="check-kp product__btn">КП</a></li>
                         <li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order product__btn" data-kid="<?=$k?>">Счет заказа</a></li>
                         <li><a href="javascript:void(0);" class="check-rtiu product__btn" data-kid="<?=$k?>">РТУ файлы</a></li>
                     </ul>
@@ -124,21 +123,16 @@ th.sorted[data-order="1"]::after {
 					</thead>
 					<tbody>
 				<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
-				<?
-					$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
-					$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
-					$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
-				?>
 					<tr>
-						<td><?=$arElements['ID']?></td>
+						<td><?=$arElements['IDNomenklature']?></td>
 						<td><?=$arElements["NAME"]?></td>
 						<td><?=$arElements['COUNT']?></td>
-						<td><?=$arElements["PROPERTIES"]['PRICE']['PRICE']?></td>
-						<td><?=$summ?></td>
-						<td>20%</td>
-						<td><?=$currency_with_nds?></td>
-						<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
-						<td><?=$arElements["ID"]?></td>
+						<td><?=$arElements["PRICE"]?></td>
+						<td><?=$arElements["SUMM"]?></td>
+						<td><?=$arElements["STAVKA_NDS"]?></td>
+						<td><?=$arElements["SUMM_S_NDS"]?></td>
+						<td><?=$arElements["DateShipment"]?></td>
+						<td><?=$arItems["UF_NAME"]?></td>
 						<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
 					</tr>
 				<?endforeach;?>
@@ -347,7 +341,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;">
 					<thead>
 					<tr>
-						<th colspan="5"><b>Детализация заявки <?=$arItems['UF_NAME']?></b></th>
+						<th colspan="5"><b>Детализация заявки <?=$arItems['"UF_NUMBER_CUSTOMER"']?></b></th>
 					</tr>
 					<tr>
 						<th class="products__name">№</th>
@@ -358,15 +352,10 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 					</thead>
 					<tbody>
 					<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
-						<?
-						$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
-						$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
-						$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
-						?>
 						<tr>
-							<td><?=$arElements['ID']?></td>
+							<td><?=$arElements['IDNomenklature']?></td>
 							<td><?=$arElements['NAME']?></td>
-							<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
+							<td><?=$arElements["PN"]?></td>
 							<td><?=$arElements['COUNT']?></td>
 						</tr>
 					<?endforeach;?>

@@ -161,7 +161,7 @@ $r = CustomerOrderTable::getList([
 
 	foreach($arResult['ITEMS'] as $k=>$r) {
 	    if(is_array(unserialize($r['UF_OFFERS']))&&count(unserialize($r['UF_OFFERS']))>0){
-	        $arResult['ITEMS'][$k] = unserialize($r['UF_OFFERS']);
+	        $arResult['ITEMS'][$k]['UF_OFFERS'] = unserialize($r['UF_OFFERS']);
         }
     }
 		
@@ -169,7 +169,6 @@ $r = CustomerOrderTable::getList([
 			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($e['UF_OFFERS']);
 			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
-				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']]['COUNT'] = $counts[$r[$k]['ID']];
 			}
 		}
 

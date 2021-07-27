@@ -15,8 +15,11 @@ class OffersManager
     public static function getElementsByIblock($inner = false) {
         if(is_bool($inner)) return null;
         static::init();
+        foreach($inner as $k=>$r){
+            $_inner[] = $r['ID'];
+        }
         $arSelect = ['*'];
-        $arFilter = ['IBLOCK_ID' => static::IBLOCK_ID, 'ID' => $inner];
+        $arFilter = ['IBLOCK_ID' => static::IBLOCK_ID, 'ID' => $_inner];
         $res = \CIBlockElement::GetList(Array(), $arFilter, false, Array("nPageSize"=>50), $arSelect);
         $ret = null;
         while($r=$res->GetNextElement()){
@@ -35,6 +38,13 @@ class OffersManager
                 $f['PRICE']['CURRENCY_VALUE'] = CurrencyFormat($ar_res["PRICE"], $ar_res["CURRENCY"]);
             }
             $ret[$f['ID']] = $f;
+        }
+        foreach($ret as $k=>$r) {
+            foreach($inner as $d=>$a) {
+                if($r['ID'] == $a['ID']){
+                    $ret[$k] = array_merge($ret[$k], $a);
+                }
+            }
         }
         return $ret;
     }

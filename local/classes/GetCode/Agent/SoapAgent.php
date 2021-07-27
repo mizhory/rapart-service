@@ -122,12 +122,34 @@ class SoapAgent {
             $res = \CIBlockElement::GetList(
                 Array("SORT"=>"ASC"),
                 [
-                    "=NAME" => $r["Nomenklature"]
+                    ['LOGIC' => 'OR',
+                        ["NAME"                     => $r["Nomenklature"]],
+                        ["NAME"                     => $r["DesignationNomenklature"]],
+                        ["PROPERTY_CML2_ARTICLE"    => $r["Nomenklature"]],
+                        ["PROPERTY_CML2_ARTICLE"    => $r["DesignationNomenklature"]]
+                    ]
                 ],
                 Array("ID")
             );
-            $r = $res->fetch();
-            $ret[] = $r['ID'];
+            $e = false;
+            if($r = $res->fetch()) {
+                $e['ID'] = $r['ID'];
+                $e['IDNomenklature'] = $r['IDNomenklature'];
+
+                if(isset($r['DateShipment']))
+                    $e['DateShipment'] = $r['DateShipment'];
+
+                $e['PN'] = $r['PartyNumber'];
+                $e['COUNT'] = $r['KolVo'];
+                $e['PRICE'] = $r['Cena'];
+                $e['STAVKA_NDS'] = $r['StavkaNDS'];
+                $e['SUMM']  = $r['Summ'];
+                $e['SUMM_NDS'] = $r['SummNDS'];
+                $e['SUMM_S_NDS'] = $r['SummSNDS'];
+                $e['STATUS'] = $r['Status'];
+            }
+            if(!is_bool($e))
+                $ret[] = $e;
         }
         return serialize($ret);
     }
@@ -176,6 +198,7 @@ class SoapAgent {
                             "UF_DATE"       => $user_data['Date'],
                             "UF_PERC_PAYMENT"   => $user_data['PercPayment'],
                             "UF_PERC_SHIPMENT"   => $user_data['PercShipment'],
+                            "UF_NUMBER_CUSTOMER"    => $user_data['NumberCustomer']
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"])){
                             $zid = static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"], 1);
