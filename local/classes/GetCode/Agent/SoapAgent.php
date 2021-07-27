@@ -132,8 +132,8 @@ class SoapAgent {
                 Array("ID")
             );
             $e = false;
-            if($r = $res->fetch()) {
-                $e['ID'] = $r['ID'];
+            if($z = $res->fetch()) {
+                $e['ID'] = $z['ID'];
                 $e['IDNomenklature'] = $r['IDNomenklature'];
 
                 if(isset($r['DateShipment']))
