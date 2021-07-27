@@ -151,7 +151,7 @@ class SoapAgent {
             if(!is_bool($e))
                 $ret[] = $e;
         }
-        var_dump($ret, $array);
+        //var dump($ret, $array);
         return serialize($ret);
     }
     private static function updElement($method, $data, $id){
