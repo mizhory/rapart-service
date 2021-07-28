@@ -40,13 +40,15 @@ $request = $context->getRequest();
 if($arParams['PRIZNAK'] == 'KP'){
     $e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => ['UF_USER_ID' => $USER->getID()], 'order' => ['ID' => 'DESC']]);
     while($a = $e->fetch()){
-        $res = CIBlockElement::GetByID($a["UF_ITEM_ID"]);
-        
-        $arResult['ITEMS'][$a['UF_CO_ID']]['CO_SUMM'] = $a['UF_CO_SUMM'];
-        $arResult['ITEMS'][$a['UF_CO_ID']]['CO_DATE'] = $a['UF_CO_DATE'];
-        $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  OffersManager::getStatus($a['UF_STATUS']);
-        $arResult['ITEMS'][$a['UF_CO_ID']]['VALIDATY'] = $a['UF_VALIDATY'];
-        $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][] = $res->GetNext();
+        if(intval($a["UF_ITEM_ID"])){
+            //$res = CIBlockElement::GetByID($a["UF_ITEM_ID"]);
+
+            $arResult['ITEMS'][$a['UF_CO_ID']]['CO_SUMM'] = $a['UF_CO_SUMM'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['CO_DATE'] = $a['UF_CO_DATE'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  OffersManager::getStatus($a['UF_STATUS']);
+            $arResult['ITEMS'][$a['UF_CO_ID']]['VALIDATY'] = $a['UF_VALIDATY'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][] = CIBlockElement::GetByID($a["UF_ITEM_ID"])->fetch();
+        }
         //UF_ITEM_ID
         //if($ar_res = $res->GetNext())
 
