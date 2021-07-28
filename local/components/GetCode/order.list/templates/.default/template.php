@@ -75,30 +75,34 @@ th.sorted[data-order="1"]::after {
     <table class="table_sort" width="100%" style="text-align:center;">
         <thead>
         <tr>
-			<th width="5%" class="products__name">№</th>
-			<th width="17%" class="products__name">Дата</th>
-            <th width="17%" class="products__name">Приоритет</th>
-            <th width="17%" class="products__name">№ Заказчика</th>
-            <th width="17%" class="products__name">Состояние</th>
-            <th width="26%" class="products__name">Действия</th>
+			<th class="products__name">№</th>
+			<th class="products__name">Дата</th>
+            <th class="products__name">Приоритет</th>
+            <th class="products__name">№ Клиента</th>
+            <th class="products__name">Дата клиента</th>
+            <th class="products__name">Сумма</th>
+            <th class="products__name">Состояние</th>
+            <th class="products__name">% оплаты</th>
+            <th class="products__name">% отгрузки</th>
+            <th class="products__name">Действия</th>
         </tr>
         </thead>
 		<tbody>
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
-			<tr style="border-bottom: 1px solid #EEE;">
-					<td width="5%" style="padding-top:5px" class=""><?=$k?></td>
-                    <td width="17%" style="padding-top:5px" class=""><?=$arItems["UF_DATE"]?></td>
-                    <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_PRIORITY']?></td>
-                    <td width="17%" style="padding-top:5px" class=""><?=$arItems['UF_USER_ID']?></td>
-                    <td width="17%" style="padding-top:5px" class="" style="text-align: center;font-size: 11px;">
+			<tr style="border-bottom: 1px solid #EEE;" class="product__item">
+                <td class="product__info"><?=$arItems['UF_NAME']?></td>
+                <td class="product__info"><?=$arItems["UF_DATE"]?></td>
+                <td class="product__info"><?=$arItems['UF_PRIORITY']?></td>
+                <td class="product__info"><?=$arItems['UF_USER_ID']?></td>
+                <td class="product__info" style="text-align: center;font-size: 11px;">
                         <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" style="position: relative;top: 15px;" />
                     </td>
-					<td width="26%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;" class="">
-                    <ul class="nav-menu">
-                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
-                        <li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order product__btn" data-kid="<?=$k?>">Счет заказа</a></li>
-                        <li><a href="javascript:void(0);" class="check-rtiu product__btn" data-kid="<?=$k?>">РТУ файлы</a></li>
-                    </ul>
+                <td class="product__info">
+                        <ul class="nav-menu">
+                            <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Посмотреть</a></li>
+                            <!--<li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order product__btn" data-kid="<?=$k?>">Счет заказа</a></li>
+                            <li><a href="javascript:void(0);" class="check-rtiu product__btn" data-kid="<?=$k?>">РТУ файлы</a></li>-->
+                        </ul>
                     </td>
                 </tr>
 				<tr>
@@ -142,9 +146,6 @@ th.sorted[data-order="1"]::after {
 				<thead>
 					<tr>
 						<th colspan="4"><b>КП Заказ <?=$arItems['UF_NAME']?></b></th>
-						<th colspan="0"></th>
-						<th colspan="0"></th>
-						<th colspan="0"></th>
 					</tr>
 					<tr>
 						<th class="products__name">№</th>
@@ -154,14 +155,14 @@ th.sorted[data-order="1"]::after {
 					</tr>
 				</thead>
 				<tbody>
-				<?foreach($arItems['KP'] as $e=>$arKP):?>
-					<?foreach($arItems['ELEMENTS'] as $z=>$m):?>
-						<?if($m['ID'] == $arKP['UF_ITEM_ID']):?>
-							<?$item = $m;break;
-$arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
-?>
-						<?endif;?>
-					<?endforeach;?>
+				<?foreach($arItems['KP'] as $e=>$arKP):
+                    foreach($arItems['ELEMENTS'] as $z=>$m):
+                        if($m['ID'] == $arKP['UF_ITEM_ID']):
+                            $item = $m;
+                            break;
+                        endif;
+                    endforeach;?>
+                <?$arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);?>
 					<tr>
 						<td><?=$arKP['UF_CO_ID']?></td>
 						<td><?=$item['NAME']?></td>
@@ -281,7 +282,8 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
         </tr>
         </thead>
 		<tbody>
-		<?foreach($arResult['ITEMS'] as $k=>$arItems):?>
+		<?foreach($arResult['ITEMS'] as $k=>$arItems):
+        ?>
         <tr style="border-bottom:1px solid;">
             <td width="15%"><?=$arItems['UF_NAME']?></td>
             <td width="17%"><?=$arItems['UF_DATE']?></td>
@@ -295,7 +297,7 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
             <td width="17%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;">
                 <ul class="nav-menu">
                     <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
-					<li style=""><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-kp product__btn">КП детально</a></li>
+					<li style=""><a href="/personal/kp/detail/?ID=<?$arItems['ID']?>" class="product__btn">КП детально</a></li>
                 </ul>
             </td>
         </tr>

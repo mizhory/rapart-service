@@ -120,7 +120,36 @@ th.sorted[data-order="1"]::after {
 	</tbody>
 </table>
 <?elseif($arParams['PRIZNAK'] == 'INVOICE'):?>
-
+<table class="products__block shop">
+    <thead>
+    <tr class="products__head">
+        <th class="products__name">№</th>
+        <th class="products__name">Дата</th>
+        <th class="products__name">Сумма</th>
+        <th class="products__name">Состояние</th>
+        <th class="products__name">Заказ</th>
+        <th class="products__name">Отменен</th>
+        <th class="products__name">Файл</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?$i=0;?>
+    <?foreach($arResult["ITEMS"] as $invoice_id=>$arItems):
+        $file_status = \GetCode\Manager\StatusManager::getFileByStatusID($arItems['UF_STATUS']);
+        $order = \GetCode\Manager\OrderManager::getOrderIDbyKPID($arItems['UF_KP_ID']);
+        ?>
+        <tr class="product__item">
+            <td class="product__info"><?=$arItems['UF_NAME']?></td>
+            <td class="product__info"><?=$arItems['UF_DATE']?></td>
+            <td class="product__info"><?=$arItems['UF_SUMM']?></td>
+            <td class="product__info"><img src="<?=$file_status['SRC']?>"></td>
+            <td class="product__info"><?=$order['UF_NAME']?></td>
+            <td class="product__info"><?if($arItems['UF_NULLED_INVOICE']=='1'):?>Да<?else:?>Нет<?endif?></td>
+            <td class="product__info"><a href="#">Скачать</a></td>
+        </tr>
+    <?endforeach;?>
+    </tbody>
+</table>
 <?endif;?>
 <?
 $APPLICATION->IncludeComponent(
