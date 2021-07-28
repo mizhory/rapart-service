@@ -125,6 +125,12 @@ class CustomerOrderTable extends DataManager
                     'title' => Loc::getMessage('ORDER_ENTITY_UF_NUMBER_CUSTOMER_FIELD')
                 ]
             ),
+            new TextField(
+                'UF_SUMM',
+                [
+                    'title' => Loc::getMessage('ORDER_ENTITY_UF_SUMM_FIELD')
+                ]
+            ),
         ];
     }
 }
