@@ -302,18 +302,16 @@ th.sorted[data-order="1"]::after {
         </tr>
 		<tr>
 			<td colspan="6">
-				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;">
+				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;margin-bottom:0.75rem!important;">
 					<thead>
-					<tr>
-						<th colspan="5"><b>Детализация заявки <?=$arItems['"UF_NUMBER_CUSTOMER"']?></b></th>
-					</tr>
-					<tr>
-						<th class="products__name">№</th>
-						<th class="products__name">Обозначение заказчика</th>
-						<th class="products__name">P/N</th>
-						<th class="products__name">Количество</th>
-                        <th class="products__name">КП</th>
-					</tr>
+                        <tr><th colspan="5"><b>Детализация заявки <?=$arItems["UF_NUMBER_CUSTOMER"]?></b></th></tr>
+                        <tr>
+                            <th class="products__name">№</th>
+                            <th class="products__name">Обозначение заказчика</th>
+                            <th class="products__name">P/N</th>
+                            <th class="products__name">Количество</th>
+                            <th class="products__name">КП</th>
+                        </tr>
 					</thead>
 					<tbody>
 					<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
@@ -322,15 +320,7 @@ th.sorted[data-order="1"]::after {
                             <td class="product__info"><?=$arElements['NAME']?></td>
                             <td class="product__info"><?=$arElements["PN"]?></td>
                             <td class="product__info"><?=$arElements['COUNT']?></td>
-                            <td class="product__info">
-                                <?if(\GetCode\Manager\OffersManager::checkKP($arItems['ID'], $arElements['ID'])):?>
-                                <a href="/personal/kp/detail/?BY=ELEMENT&ID=<?=$arElements['ID']?>" class="product__btn">
-                                    КП детально
-                                </a>
-                                <?else:?>
-                                Нет
-                                <?endif;?>
-                            </td>
+                            <td class="product__info"><?if(\GetCode\Manager\OffersManager::checkKP($arItems['ID'], $arElements['ID'])):?><a href="/personal/kp/detail/?BY=ELEMENT&ID=<?=$arElements['ID']?>" class="product__btn">КП</a><?else:?>Нет<?endif;?></td>
 						</tr>
 					<?endforeach;?>
 					</tbody>
