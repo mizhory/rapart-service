@@ -302,7 +302,7 @@ th.sorted[data-order="1"]::after {
         </tr>
 		<tr>
 			<td colspan="6">
-				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;margin-bottom:0.75rem!important;">
+				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;margin-bottom:1rem!important;">
 					<thead>
                         <tr><th colspan="5"><b>Детализация заявки <?=$arItems["UF_NUMBER_CUSTOMER"]?></b></th></tr>
                         <tr>
