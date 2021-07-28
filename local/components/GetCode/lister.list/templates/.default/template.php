@@ -72,7 +72,7 @@ th.sorted[data-order="1"]::after {
             <table>
                 <thead>
 					 <tr class="products__head">
-						<td colspan="11"><b>Детально КП <?=$k?></b></td>
+						<td colspan="9"><b>Детально КП <?=$k?></b></td>
 					</tr>
                     <tr class="products__head">
                         <th class="products__name">№</th>
@@ -99,16 +99,16 @@ th.sorted[data-order="1"]::after {
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['DELIVERY_TIME'] = $a['UF_DELIVERY_TIME'];
 					 */
 				?>
-					<tr>
-						<td><?=$f?></td>
-						<td><?=$arElements["NAME"]?></td>
-						<td><?=$arElements['COUNT']?></td>
-						<td><?=$arElements['PRICE']?></td>
-						<td><?=$arElements['SUMM']?></td>
-						<td><?=$arElements['STAVKA_NDS']?></td>
-						<td><?=$arElements['SUMM_SNDS']?></td>
-						<td><?=$arElements["DELIVERY_TIME"]?></td>
-						<td><?=$arElements["ORDER_ID"]?></td>
+                    <tr class="product__item">
+                        <td class="product__info"><?=$f?></td>
+                        <td class="product__info"><?=$arElements["NAME"]?></td>
+                        <td class="product__info"><?=$arElements['COUNT']?></td>
+                        <td class="product__info"><?=$arElements['PRICE']?></td>
+                        <td class="product__info"><?=$arElements['SUMM']?></td>
+                        <td class="product__info"><?=$arElements['STAVKA_NDS']?></td>
+                        <td class="product__info"><?=$arElements['SUMM_SNDS']?></td>
+                        <td class="product__info"><?=$arElements["DELIVERY_TIME"]?></td>
+                        <td class="product__info"><?=$arElements["ORDER_ID"]?></td>
 					</tr>
 				<?endforeach;?>
 				</tbody>
