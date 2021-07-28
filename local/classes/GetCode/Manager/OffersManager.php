@@ -3,6 +3,7 @@ namespace GetCode\Manager;
 
 use Bitrix\Main\Loader,
 	GetCode\Entity\StatusesTable;
+use GetCode\Entity\CustomerOfferTable;
 
 class OffersManager
 {
@@ -11,6 +12,17 @@ class OffersManager
     private static function init() {
         Loader::includeModule('iblock');
         Loader::includeModule('catalog');
+    }
+    public static function checkKP($order_id=false, $element_id=false) {
+        if(is_bool($order_id) || is_bool($element_id)) return null;
+
+        $arFilter = ['UF_ORDER_ID' => $order_id, 'UF_ITEM_ID' => $element_id];
+        $e = CustomerOfferTable::getList(['select' => ['ID'], 'order'=>['ID' => 'ASC'], 'filter' => $arFilter]);
+
+        if($d = $e->fetch())
+            return isset($d['ID']);
+
+        return false;
     }
     public static function getElementsByIblock($inner = false) {
         if(is_bool($inner)) return null;

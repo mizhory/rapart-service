@@ -243,7 +243,7 @@ th.sorted[data-order="1"]::after {
 
     <nav class="shop-nav" style="margin-top:20px; margin-bottom: 20px;">
         <div class="sort shop-nav__item"><span class="sort-label">Сортировать по:</span>
-            <select name="sort" class="product__btn popup">
+            <select name="sort" class="sort-btn popup">
                 <option<?if($arResult['COL_SORT']==1):?> selected<?endif;?> value="1">Номер</option>
                 <option<?if($arResult['COL_SORT']==2):?> selected<?endif;?> value="2">Дата </option>
                 <option<?if($arResult['COL_SORT']==3):?> selected<?endif;?> value="3">Приоритет</option>
@@ -284,62 +284,24 @@ th.sorted[data-order="1"]::after {
 		<tbody>
 		<?foreach($arResult['ITEMS'] as $k=>$arItems):
         ?>
-        <tr style="border-bottom:1px solid;">
-            <td width="15%"><?=$arItems['UF_NAME']?></td>
-            <td width="17%"><?=$arItems['UF_DATE']?></td>
-            <td width="17%"><?=$arItems['UF_PRIORITY']?></td>
-            <td width="17%"><?=$arItems['UF_USER_ID']?></td>
-            <td width="17%">
+        <tr style="border-bottom:1px solid;" class="product__item">
+            <td class="product__info"><?=$arItems['UF_NAME']?></td>
+            <td class="product__info"><?=$arItems['UF_DATE']?></td>
+            <td class="product__info"><?=$arItems['UF_PRIORITY']?></td>
+            <td class="product__info"><?=$arItems['UF_USER_ID']?></td>
+            <td class="product__info">
                 <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />
                 <br />
                 <span><?=$arItems['UF_STATUS']['NAME']?></span>
             </td>
-            <td width="17%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;">
+            <td class="product__info" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;">
                 <ul class="nav-menu">
                     <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
-					<li style=""><a href="/personal/kp/detail/?ID=<?=$arItems['ID']?>" class="product__btn">КП детально</a></li>
                 </ul>
             </td>
         </tr>
 		<tr>
 			<td colspan="6">
-				<table class="not-show kp-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
-				<thead>
-					<tr>
-						<th colspan="4"><b>КП Детально <?=$arItems['UF_NAME']?></b></th>
-						<th colspan="0"></th>
-						<th colspan="0"></th>
-						<th colspan="0"></th>
-					</tr>
-					<tr>
-						<th class="products__name">№</th>
-						<th class="products__name">Товарная позиция</th>
-						<th class="products__name">Скачать</th>
-						<th class="products__name">Статус</th>
-					</tr>
-				</thead>
-				<tbody>
-				<?foreach($arItems['KP'] as $e=>$arKP):?>
-					<?foreach($arItems['ELEMENTS'] as $z=>$m):?>
-						<?if($m['ID'] == $arKP['UF_ITEM_ID']):?>
-							<?$item = $m;break;
-$arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
-							?>
-						<?endif;?>
-					<?endforeach;?>
-					<tr>
-						<td><?=$arKP['UF_CO_ID']?></td>
-						<td><?=$item['NAME']?></td>
-						<td><a href="<?=$arKP['UF_CO_FILE']["SRC"]?>" download>Скачать</a></td>
-						<td class="" style="text-align: center;font-size: 11px;">
-							<img src="<?=$arKP['STATUS']['PICTURE']?>" alt="<?=$arItems['STATUS']['NAME']?>" title="<?=$arKP['STATUS']['NAME']?>" />
-							<br />
-							<span><?=$arKP['STATUS']['NAME']?></span>
-						</td>
-					</tr>
-				<?endforeach;?>
-				</tbody>
-				</table>
 				<table class="not-show detail-<?=$k?>" width="100%" style="border-bottom:1px solid #000;text-align:center;">
 					<thead>
 					<tr>
@@ -350,26 +312,31 @@ $arKP['UF_CO_FILE'] = CFile::GetFileArray($arKP['UF_CO_FILE']);
 						<th class="products__name">Обозначение заказчика</th>
 						<th class="products__name">P/N</th>
 						<th class="products__name">Количество</th>
+                        <th class="products__name">КП</th>
 					</tr>
 					</thead>
 					<tbody>
 					<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
-						<tr>
-							<td><?=$arElements['IDNomenklature']?></td>
-							<td><?=$arElements['NAME']?></td>
-							<td><?=$arElements["PN"]?></td>
-							<td><?=$arElements['COUNT']?></td>
+                        <tr class="product__item">
+                            <td class="product__info"><?=$arElements['IDNomenklature']?></td>
+                            <td class="product__info"><?=$arElements['NAME']?></td>
+                            <td class="product__info"><?=$arElements["PN"]?></td>
+                            <td class="product__info"><?=$arElements['COUNT']?></td>
+                            <td class="product__info">
+                                <?if(\GetCode\Manager\OffersManager::checkKP($arItems['ID'], $arElements['ID'])):?>
+                                <a href="/personal/kp/detail/?BY=ELEMENT&ID=<?=$arElements['ID']?>" class="product__btn">
+                                    КП детально
+                                </a>
+                                <?else:?>
+                                Нет
+                                <?endif;?>
+                            </td>
 						</tr>
 					<?endforeach;?>
 					</tbody>
 				</table>
 			</td>
-
-				<th colspan="0"></th>
-				<th colspan="0"></th>
-				<th colspan="0"></th>
-				<th colspan="0"></th>
-				<th colspan="0"></th>
+        </tr>
 		<?endforeach;?>
 		</tbody>
     </table>

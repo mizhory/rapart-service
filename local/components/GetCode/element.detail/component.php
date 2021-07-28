@@ -38,13 +38,22 @@ $context = $httpApp->getContext();
 $request = $context->getRequest();
 
 $ID = $request->getQuery('ID');
-
+$BY = $request->getQuery('BY');
 $template = 'template';
 if($arParams['PRIZNAK'] == 'KP'){
+    if($BY == 'ELEMENT'){
+        $arFilter = [
+            'UF_ITEM_ID' => $ID
+        ];
+    } else {
+        $arFilter = [
+            'UF_ORDER_ID' => $ID
+        ];
+    }
     $res = CustomerOfferTable::getList([
         'select' => ['*'],
         'order' => ['ID' => 'ASC'],
-        'filter' => ['UF_ORDER_ID' => $ID]
+        'filter' => $arFilter
     ]);
     while($arRet = $res->fetch()){
         $arResult['ITEMS'][$arRet['UF_CO_ID']][] = $arRet;
