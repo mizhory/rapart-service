@@ -22,6 +22,7 @@ use \Bitrix\Main,
 	\GetCode\Entity\OrderTypesTable,
 	\GetCode\Entity\StatusesTable,
     \GetCode\Manager\OffersManager;
+use GetCode\Helper\StepingHelper;
 
 
 global $USER, $APPLICATION;
@@ -42,12 +43,29 @@ if($arParams['PRIZNAK'] == 'KP'){
     while($a = $e->fetch()){
         if(intval($a["UF_ITEM_ID"])){
             //$res = CIBlockElement::GetByID($a["UF_ITEM_ID"]);
-
+            /*
+             * "UF_COUNT"      => $arItems['KolVo'],
+                                "UF_SUMM"       => $arItems['Summ'],
+                                "UF_STAVKA_NDS"       => $arItems['StavkaNDS'],
+                                "UF_SUMM_NDS"       => $arItems['SummNDS'],
+                                "UF_SUMM_SNDS"       => $arItems['SummSNDS'],
+                                "UF_E_STATUS"       => static::getStatusIDbyName($arItems["Status"], StepingHelper::STEP_GET_KP),
+                                "UF_PRICE"          => $arItems['Cena'],
+                                "UF_DELIVERY_TIME"  => $arItems['DeliveryTime']
+             */
             $arResult['ITEMS'][$a['UF_CO_ID']]['CO_SUMM'] = $a['UF_CO_SUMM'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['CO_DATE'] = $a['UF_CO_DATE'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  OffersManager::getStatus($a['UF_STATUS']);
             $arResult['ITEMS'][$a['UF_CO_ID']]['VALIDATY'] = $a['UF_VALIDATY'];
-            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][] = CIBlockElement::GetByID($a["UF_ITEM_ID"])->fetch();
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]] = CIBlockElement::GetByID($a["UF_ITEM_ID"])->fetch();
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM'] = $a['UF_SUMM'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['STAVKA_NDS'] = $a['UF_STAVKA_NDS'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM_NDS'] = $a['UF_SUMM_NDS'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM_SNDS'] = $a['UF_SUMM_SNDS'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['STATUS'] = \GetCode\Manager\StatusManager::getFileByStatusID($a['UF_E_STATUS']);
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['PRICE'] = $a['UF_PRICE'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['DELIVERY_TIME'] = $a['UF_DELIVERY_TIME'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['COUNT'] = $a['UF_COUNT'];
         }
         //UF_ITEM_ID
         //if($ar_res = $res->GetNext())

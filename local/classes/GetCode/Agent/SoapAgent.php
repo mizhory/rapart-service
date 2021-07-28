@@ -224,7 +224,15 @@ class SoapAgent {
                                 "UF_USER_ID"    => static::getUserIDbyXMLID($user_xml_id),
                                 "UF_CO_SUMM"    => $user_data['SummKP'],
                                 "UF_CO_DATE"    => $user_data['DataKP'],
-                                "UF_VALIDATY"   => $user_data['Validity']
+                                "UF_VALIDATY"   => $user_data['Validity'],
+                                "UF_COUNT"      => $arItems['KolVo'],
+                                "UF_SUMM"       => $arItems['Summ'],
+                                "UF_STAVKA_NDS"       => $arItems['StavkaNDS'],
+                                "UF_SUMM_NDS"       => $arItems['SummNDS'],
+                                "UF_SUMM_SNDS"       => $arItems['SummSNDS'],
+                                "UF_E_STATUS"       => static::getStatusIDbyName($arItems["Status"], StepingHelper::STEP_GET_KP),
+                                "UF_PRICE"          => $arItems['Cena'],
+                                "UF_DELIVERY_TIME"  => $arItems['DeliveryTime']
                                 //"UF_CO_FILE_REMOTE" =>
                             );
                             if(static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"])){

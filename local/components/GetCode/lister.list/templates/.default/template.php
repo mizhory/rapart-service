@@ -87,22 +87,28 @@ th.sorted[data-order="1"]::after {
                     </tr>
                 </thead>
                 <tbody>
-				<?foreach($arItems['ELEMENTS'] as $e=>$arElements):?>
+				<?$f=0;foreach($arItems['ELEMENTS'] as $e=>$arElements):$f++;?>
 				<?
-					$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
-					$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
-					$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
+					/*
+					 * $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM'] = $a['UF_SUMM'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['STAVKA_NDS'] = $a['UF_STAVKA_NDS'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM_NDS'] = $a['UF_SUMM_NDS'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM_SNDS'] = $a['UF_SUMM_SNDS'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['STATUS'] = \GetCode\Manager\StatusManager::getFileByStatusID($a['UF_E_STATUS']);
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['PRICE'] = $a['UF_PRICE'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['DELIVERY_TIME'] = $a['UF_DELIVERY_TIME'];
+					 */
 				?>
 					<tr>
-						<td><?=$arElements['ID']?></td>
+						<td><?=$f?></td>
 						<td><?=$arElements["NAME"]?></td>
 						<td><?=$arElements['COUNT']?></td>
-						<td><?=$arElements["PROPERTIES"]['PRICE']['PRICE']?></td>
-						<td><?=$summ?></td>
-						<td>20%</td>
-						<td><?=$currency_with_nds?></td>
-						<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
-						<td><?=$arElements["ID"]?></td>
+						<td><?=$arElements['PRICE']?></td>
+						<td><?=$arElements['SUMM']?></td>
+						<td><?=$arElements['STAVKA_NDS']?></td>
+						<td><?=$arElements['SUMM_SNDS']?></td>
+						<td><?=$arElements["DELIVERY_TIME"]?></td>
+						<td><?=$arElements["ORDER_ID"]?></td>
 					</tr>
 				<?endforeach;?>
 				</tbody>
