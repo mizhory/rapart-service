@@ -126,7 +126,7 @@ class CustomerOfferTable extends DataManager
                     'title' => Loc::getMessage('OFFER_ENTITY_UF_NUMBER_CUSTOMER_FIELD')
                 ]
             ),
-            new IntegerField(
+            new TextField(
                 'UF_COUNT',
                 [
                     'title' => Loc::getMessage('OFFER_ENTITY_UF_COUNT_FIELD')
