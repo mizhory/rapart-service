@@ -164,6 +164,7 @@ $r = CustomerOrderTable::getList([
 	        $arResult['ITEMS'][$k]['UF_OFFERS'] = unserialize($r['UF_OFFERS']);
         }
     }
+
 		
 		foreach($arResult['ITEMS'] as $k=>$e){
 			$arResult['ITEMS'][$k]['ELEMENTS'] = OffersManager::getElementsByIblock($e['UF_OFFERS']);

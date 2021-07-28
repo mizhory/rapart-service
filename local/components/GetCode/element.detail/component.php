@@ -56,7 +56,12 @@ if($arParams['PRIZNAK'] == 'KP'){
         'filter' => $arFilter
     ]);
     while($arRet = $res->fetch()){
-        $arResult['ITEMS'][$arRet['UF_CO_ID']][] = $arRet;
+        if($BY == 'ELEMENT'){
+            $arResult['ELEMENT'] = $arRet;
+            break;
+        } else {
+            $arResult['ITEMS'][$arRet['UF_CO_ID']][] = $arRet;
+        }
     }
     $template = 'kp_tpl';
 } elseif($arParams['PRIZNAK'] == 'INVOICE'){

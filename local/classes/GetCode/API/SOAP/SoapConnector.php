@@ -62,6 +62,11 @@ class SoapConnector
 "Kontragent": "'.$params['XML_ID'].'", "Partner": "","Organiz": "","Sdelka": "","BooleanActiv": "",
 "Tovary": [{"IDNomenklature": "","Nomenklature": "",}]}]';
 		static::$request = $jsonInput;
+        \Bitrix\Main\Diag\Debug::writeToFile(date('d-m-Y H:i'));
+        \Bitrix\Main\Diag\Debug::writeToFile('Метод');
+        \Bitrix\Main\Diag\Debug::writeToFile($params['METHOD_STEP']);
+        \Bitrix\Main\Diag\Debug::writeToFile('Ответ');
+        \Bitrix\Main\Diag\Debug::writeToFile(static::getResponse());
 		return static::getResponse();
     }
 }
