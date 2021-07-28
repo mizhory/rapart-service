@@ -297,7 +297,7 @@ th.sorted[data-order="1"]::after {
             <td width="17%" style="padding-top:5px;padding-left:10px;padding-bottom: 15px;">
                 <ul class="nav-menu">
                     <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Просмотреть</a></li>
-					<li style=""><a href="/personal/kp/detail/?ID=<?$arItems['ID']?>" class="product__btn">КП детально</a></li>
+					<li style=""><a href="/personal/kp/detail/?ID=<?=$arItems['ID']?>" class="product__btn">КП детально</a></li>
                 </ul>
             </td>
         </tr>
