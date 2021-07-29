@@ -278,19 +278,19 @@ class SoapAgent {
                             foreach($user_data["Files"] as $y=>$arFile){
                                 var_dump($arFile);
                                 $_fififi = explode('://', $arFile["File"]);
-                                var_dump($_fififi);
+                                //var_dump($_fififi);
                                 $auth = "u0831002_ip_limo:`e]Sy=7a@";
                                 $file = $_fififi[0].'://'.$auth.$_fififi[1];
-                                var_dump($file);
+                                //var_dump($file);
                                 $arFiles = \CFile::MakeFileArray($file);
-                                var_dump($arFiles);
+                                //var_dump($arFiles);
                                 $fid = \CFile::SaveFile($arFiles, "ftp_invoice");
-                                var_dump($fid);
+                                //var_dump($fid);
                                 $files[] = intval($fid);
                             }
                         }
                         $_data = array(
-                            "UF_FILES"          => $files,
+                            "UF_FILES"          => serialize($files),
                             "UF_KP_ID"          => static::getKPIDbyName($user_data["ID"]),
                             "UF_CURRENCY"       => $user_data["Currency"],
                             "UF_SUMM"           => $user_data["Summ"],
