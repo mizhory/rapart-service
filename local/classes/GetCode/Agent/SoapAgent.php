@@ -278,8 +278,8 @@ class SoapAgent {
                             list($protocol, $path) = explode('://', $arFile['FILE']);
                             $auth = "u0831002_ip_limo:`e]Sy=7a@";
                             $file = $protocol.'://'.$auth.$path;
-                            $arFiles = CFile::MakeFileArray($file);
-                            $fid = CFile::SaveFile($arFiles, "ftp_invoice");
+                            $arFiles = \CFile::MakeFileArray($file);
+                            $fid = \CFile::SaveFile($arFiles, "ftp_invoice");
                             $files[] = intval($fid);
                         }
 
