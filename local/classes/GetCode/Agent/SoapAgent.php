@@ -276,7 +276,7 @@ class SoapAgent {
                         $files = [];
                         if(count($user_data["Files"])>=1){
                             foreach($user_data["Files"] as $y=>$arFile){
-                                var_dump($arFile['FILE']);
+                                var_dump($arFile);
                                 $_fififi = explode('://', $arFile['FILE']);
                                 var_dump($_fififi);
                                 $auth = "u0831002_ip_limo:`e]Sy=7a@";
@@ -313,7 +313,7 @@ class SoapAgent {
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_RTIU) {
-                var_dump($data_step);
+                //var_dump($data_step);
             }
         }
     }
