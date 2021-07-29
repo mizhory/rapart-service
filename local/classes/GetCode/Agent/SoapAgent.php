@@ -211,6 +211,7 @@ class SoapAgent {
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_KP) {
+                var_dump($data_step);
                 foreach($data_step as $user_xml_id=>$_user_data){
                     foreach($_user_data as $k=>$user_data) {
                         foreach($user_data["Tovary"] as $r=>$arItems) {
