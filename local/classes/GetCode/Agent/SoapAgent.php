@@ -277,7 +277,7 @@ class SoapAgent {
                         if(count($user_data["Files"])>=1){
                             foreach($user_data["Files"] as $y=>$arFile){
                                 var_dump($arFile);
-                                $_fififi = explode('://', $arFile['FILE']);
+                                $_fififi = explode('://', $arFile["File"]);
                                 var_dump($_fififi);
                                 $auth = "u0831002_ip_limo:`e]Sy=7a@";
                                 $file = $_fififi[0].'://'.$auth.$_fififi[1];
