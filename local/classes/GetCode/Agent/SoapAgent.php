@@ -275,9 +275,11 @@ class SoapAgent {
                     foreach($_user_data as $d=>$user_data){
                         $files = [];
                         foreach($user_data["Files"] as $y=>$arFile){
-                            list($protocol, $path) = explode('://', $arFile['FILE']);
+                            var_dump($arFile['FILE']);
+                            $_fififi = explode('://', $arFile['FILE']);
+                            var_dump($_fififi);
                             $auth = "u0831002_ip_limo:`e]Sy=7a@";
-                            $file = $protocol.'://'.$auth.$path;
+                            $file = $_fififi[0].'://'.$auth.$_fififi[1];
                             var_dump($file);
                             $arFiles = \CFile::MakeFileArray($file);
                             var_dump($arFiles);
