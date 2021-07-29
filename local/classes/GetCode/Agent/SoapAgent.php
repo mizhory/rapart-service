@@ -270,7 +270,7 @@ class SoapAgent {
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_INVOICE) {
-                //var_dump($data_step);
+                var_dump($data_step);
                 foreach($data_step as $user_xml_id=>$_user_data) {
                     foreach($_user_data as $d=>$user_data){
                         $files = [];
