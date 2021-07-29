@@ -94,12 +94,6 @@ class CustomerInvoiceTable extends DataManager
                     'title' => Loc::getMessage('INVOICE_ENTITY_UF_FORMAT_INVOICE_FIELD')
                 ]
             ),
-            new TextField(
-                'UF_FILE_INVOICE_REMOTE_SERVER',
-                [
-                    'title' => Loc::getMessage('INVOICE_ENTITY_UF_FILE_INVOICE_REMOTE_SERVER_FIELD')
-                ]
-            ),
             new IntegerField(
                 'UF_NULLED_INVOICE',
                 [
@@ -129,7 +123,13 @@ class CustomerInvoiceTable extends DataManager
                 [
                     'title' => Loc::getMessage('INVOICE_ENTITY_UF_USER_ID_FIELD')
                 ]
-            )
+            ),
+            new TextField(
+                'UF_FILES',
+                [
+                    'title' => Loc::getMessage('INVOICE_ENTITY_UF_FILES_FIELD')
+                ]
+            ),
         ];
     }
 }

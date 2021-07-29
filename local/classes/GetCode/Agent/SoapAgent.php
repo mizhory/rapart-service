@@ -270,10 +270,21 @@ class SoapAgent {
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_INVOICE) {
-                var_dump($data_step);
+                //var_dump($data_step);
                 foreach($data_step as $user_xml_id=>$_user_data) {
                     foreach($_user_data as $d=>$user_data){
+                        $files = [];
+                        foreach($user_data["Files"] as $y=>$arFile){
+                            list($protocol, $path) = explode('://', $arFile['FILE']);
+                            $auth = "u0831002_ip_limo:`e]Sy=7a@";
+                            $file = $protocol.'://'.$auth.$path;
+                            $arFiles = CFile::MakeFileArray($file);
+                            $fid = CFile::SaveFile($arFiles, "ftp_invoice");
+                            $files[] = intval($fid);
+                        }
+
                         $_data = array(
+                            "UF_FILES"          => $files,
                             "UF_KP_ID"          => static::getKPIDbyName($user_data["ID"]),
                             "UF_CURRENCY"       => $user_data["Currency"],
                             "UF_SUMM"           => $user_data["Summ"],
