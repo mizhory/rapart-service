@@ -143,6 +143,13 @@ th.sorted[data-order="1"]::after {
     <?foreach($arResult["ITEMS"] as $invoice_id=>$arItems):
         $file_status = \GetCode\Manager\StatusManager::getFileByStatusID($arItems['UF_STATUS']);
         $order = \GetCode\Manager\OrderManager::getOrderIDbyKPID($arItems['UF_KP_ID']);
+        $_files = unserialize($arItems['UF_FILES']);
+        $arFiles = [];
+        if(count($_files)>0) {
+            foreach($_files as $k=>$_file_id){
+                $arFiles[$k] = CFile::GetFileArray($_file_id);
+            }
+        }
         ?>
         <tr class="product__item">
             <td class="product__info"><?=$arItems['UF_NAME']?></td>
@@ -151,7 +158,11 @@ th.sorted[data-order="1"]::after {
             <td class="product__info"><img src="<?=$file_status['SRC']?>"></td>
             <td class="product__info"><?=$order['UF_NAME']?></td>
             <td class="product__info"><?if($arItems['UF_NULLED_INVOICE']=='1'):?>Да<?else:?>Нет<?endif?></td>
-            <td class="product__info"><a href="#">Скачать</a></td>
+            <td class="product__info">
+                <?if(count($arFiles)>=1):?><?foreach($arFiles as $k=>$f_item):?>
+                <a href="<?=$f_item['SRC']?>" download="download" title="Скачать"><?=$f_item['FILE_NAME']?></a>
+                <?endforeach;?><?endif;?>
+            </td>
         </tr>
     <?endforeach;?>
     </tbody>
