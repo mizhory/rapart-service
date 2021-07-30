@@ -28,7 +28,7 @@ class OrderManager
         while($s=$l->fetch()){
             $a[] = $s;
         }
-        return $a;return null;
+        return $a;
     }
     public static function getInvoiceIDbyORDERID($oid = false) {
         if(is_bool($oid)) return null;
