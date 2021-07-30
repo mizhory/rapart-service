@@ -199,7 +199,7 @@ class SoapAgent {
                             "UF_DATE"       => $user_data['Date'],
                             "UF_PERC_PAYMENT"   => $user_data['PercPayment'],
                             "UF_PERC_SHIPMENT"   => $user_data['PercShipment'],
-                            "UF_NUMBER_CUSTOMER"    => $user_data['NumberKontr'],
+                            "UF_NUMBER_CUSTOMER"    => $user_data['NumberCustomer'],
                             "UF_SUMM"               => $user_data['Summ'],
                         );
                         if(static::checkXMLID(StepingHelper::STEP_GET_REQUEST, $user_data["GUIDZayavka"])){
