@@ -25,7 +25,7 @@ class OrderManager
 
         $e = CustomerOfferTable::getList(['select' => ['ID'], 'filter' => ['UF_ORDER_ID' => $oid], 'order' => ['ID' => "ASC"]]);
         if($d=$e->fetch()){
-            if(isset($d['UF_ORDER_ID'])){
+            if(isset($d['ID'])){
                 $l = CustomerInvoiceTable::getList(['select' => ['*'], 'filter' => ['UF_KP_ID' => $d['ID']], 'order' => ['ID' => 'ASC']]);
                 while($s=$l->fetch()){
                     $a[] = $s;
