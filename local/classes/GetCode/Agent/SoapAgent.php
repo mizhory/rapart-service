@@ -118,6 +118,24 @@ class SoapAgent {
                     return true;
                 elseif(isset($e['ID']) && $flag!=false)
                     return $e['ID'];
+        } elseif ($method == StepingHelper::STEP_GET_RTIU){
+            $a = CustomerRTIUTable::getList(
+                [
+                    'select' => [
+                        'ID'
+                    ],
+                    'order' => [
+                        'ID' => 'ASC'
+                    ],
+                    'filter' => [
+                        'UF_XML_ID' => $xml_id
+                    ]
+                ]);
+            if($e=$a->fetch())
+                if(isset($e['ID']) && !$flag)
+                    return true;
+                elseif(isset($e['ID']) && $flag!=false)
+                    return $e['ID'];
         }
     }
     private static function getStatusIDbyName($status_name, $method) {
@@ -327,6 +345,26 @@ class SoapAgent {
                 }
             } elseif($method_step == StepingHelper::STEP_GET_RTIU) {
                 //var_dump($data_step);
+                foreach($data_step as $user_xml_id=>$_user_data) {
+                    foreach ($_user_data as $d => $user_data) {
+                        $files = [];
+                        $zid = static::checkXMLID(StepingHelper::STEP_GET_ORDER, $_user_data["GUIDZakaz"], 1);
+                        $_data = [
+                            'UF_XML_ID' => $user_data['GUIDDelivery'],
+                            'UF_NAME' => $user_data['ID'],
+                            'UF_ORDER_ID' => $zid,
+                            "UF_USER_ID"        => static::getUserIDbyXMLID($user_xml_id),
+                            "UF_FILES"          => serialize($files),
+                            'UF_SUMM'           => $user_data['Summ']
+                        ];
+                        if (static::checkXMLID(StepingHelper::STEP_GET_RTIU, $_user_data["GUIDDelivery"])) {
+                            $zid = static::checkXMLID(StepingHelper::STEP_GET_RTIU, $_user_data["GUIDDelivery"], 1);
+                            static::updElement(StepingHelper::STEP_GET_RTIU, $_data, $zid);
+                        } else {
+                            static::newElement(StepingHelper::STEP_GET_RTIU, $_data);
+                        }
+                    }
+                }
             }
         }
     }
