@@ -102,8 +102,8 @@ th.sorted[data-order="1"]::after {
                 <td class="product__info">
                         <ul class="nav-menu">
                             <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Посмотреть</a></li>
-                            <?if(\GetCode\Manager\OrderManager::checkIvoice($arItems['ID'])):?><li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-order product__btn">Счет</a></li><?endif;?>
-                            <?if(\GetCode\Manager\OrderManager::checkRTIU($arItems['ID'])):?><li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check_rtiu product__btn">Реализация</a></li><?endif;?>
+                            <?if(isset($arItems['INVOICE']) && count($arItems['INVOICE'])>0):?><li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-order product__btn">Счет</a></li><?endif;?>
+                            <?if(isset($arItems['RTIU']) && count($arItems['RTIU'])>0):?><li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check_rtiu product__btn">Реализация</a></li><?endif;?>
                             <!--<li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order product__btn" data-kid="<?=$k?>">Счет заказа</a></li>
                             <li><a href="javascript:void(0);" class="check-rtiu product__btn" data-kid="<?=$k?>">РТУ файлы</a></li>-->
                         </ul>
