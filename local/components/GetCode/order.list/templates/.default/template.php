@@ -102,8 +102,8 @@ th.sorted[data-order="1"]::after {
                 <td class="product__info">
                         <ul class="nav-menu">
                             <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="detail product__btn">Посмотреть</a></li>
-                            <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-order product__btn">Счет</a></li>
-                            <li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check_rtiu product__btn">Реализация</a></li>
+                            <?if(\GetCode\Manager\OrderManager::checkIvoice($arItems['ID'])):?><li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check-order product__btn">Счет</a></li><?endif;?>
+                            <?if(\GetCode\Manager\OrderManager::checkRTIU($arItems['ID'])):?><li style="margin-bottom: 10px;"><a href="javascript:void(0);" data-kid="<?=$k?>" class="check_rtiu product__btn">Реализация</a></li><?endif;?>
                             <!--<li style="margin-bottom: 10px;"><a href="javascript:void(0);" class="check-order product__btn" data-kid="<?=$k?>">Счет заказа</a></li>
                             <li><a href="javascript:void(0);" class="check-rtiu product__btn" data-kid="<?=$k?>">РТУ файлы</a></li>-->
                         </ul>
@@ -114,7 +114,7 @@ th.sorted[data-order="1"]::after {
 					<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
 					<thead>
 					 <tr>
-						<td colspan="11"><b>Детально Заказ <?=$arItems['UF_NAME']?></b></td>
+						<td colspan="11"><b>Детально Заказ - <?=$arItems['UF_NAME']?></b></td>
 					</tr>
 					<tr>
 						<th class="products__name">№</th>
@@ -146,45 +146,46 @@ th.sorted[data-order="1"]::after {
 				<?endforeach;?>
 				</tbody>
 				</table>
-				<table class="not-show order-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
+				<table class="not-show order-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;margin-bottom: 1rem;">
 				<thead>
 					<tr>
-						<th colspan="11"><b>Cчета Заказ <?=$arItems['UF_NAME']?></b></th>
+						<th colspan="7"><b>Cчета Заказа - <?=$arItems['UF_NAME']?></b></th>
 					</tr>
 					<tr>
-						<th class="products__name">№</th>
-						<th class="products__name">P/N</th>
-						<th class="products__name">Кол-во ЕИ</th>
-						<th class="products__name">Цена</th>
-						<th class="products__name">Сумма</th>
-						<th class="products__name">Ставка НДС</th>
-						<th class="products__name">Сумма с НДС</th>
-						<th class="products__name">Срок поставки</th>
-						<th class="products__name">Заявка</th>
-						<th class="products__name">Состояние</th>
-						<th class="products__name">В заказ</th>
+                        <th class="products__name">№</th>
+                        <th class="products__name">Дата</th>
+                        <th class="products__name">Сумма</th>
+                        <th class="products__name">Состояние</th>
+                        <th class="products__name">Заказ</th>
+                        <th class="products__name">Отменен</th>
+                        <th class="products__name">Файл</th>
 					</tr>
 				</thead>
 				<tbody>
-				<?foreach($arItems['INVOICE'] as $e=>$arElements):?>
-					<?
-					$nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]*0.2)*intval($arElements['COUNT']);
-					$currency_with_nds = ($arElements["PROPERTIES"]['PRICE']["PRICE"]+$nds) . $arElements["PROPERTIES"]['PRICE']['CURRENCY'];
-					$summ = $arElements["PROPERTIES"]['PRICE']["PRICE"]*intval($arElements['COUNT']);
-					?>
-					<tr>
-						<td><?=$arElements['ID']?></td>
-						<td><?=$arElements["PROPERTIES"]['PN']['VALUE']?></td>
-						<td><?=$arElements['COUNT']?></td>
-						<td><?=$arElements["PROPERTIES"]['PRICE']['PRICE']?></td>
-						<td><?=$summ?></td>
-						<td>20%</td>
-						<td><?=$currency_with_nds?></td>
-						<td><?=$arElements["PROPERTIES"]['SROK_POSTAVKI']['VALUE']?></td>
-						<td><?=$arElements["ID"]?></td>
-						<td>Состояние</td>
-						<td><input type="checkbox" name="detail[<?=$k?>]" /></td>
-					</tr>
+				<?foreach($arItems['INVOICE'] as $e=>$arElements):
+                    $_files = unserialize($arElements['UF_FILES']);
+                    $arFiles = [];
+                    if(count($_files)>0) {
+                    foreach($_files as $k=>$_file_id){
+                    $arFiles[$k] = \CFile::GetFileArray($_file_id);
+                    }
+                    }
+                    ?>
+                    <tr class="product__item">
+                        <td class="product__info"><?=$arElements['UF_NAME']?></td>
+                        <td class="product__info"><?=$arElements['UF_DATE']?></td>
+                        <td class="product__info"><?=$arElements['UF_SUMM']?></td>
+                        <td class="product__info"><img src="<?=$file_status['SRC']?>"></td>
+                        <td class="product__info"><?=$order['UF_NAME']?></td>
+                        <td class="product__info"><?if($arElements['UF_NULLED_INVOICE']=='1'):?>Да<?else:?>Нет<?endif?></td>
+                        <td class="product__info">
+                            <?if(count($arFiles)>=1):?><?foreach($arFiles as $k=>$f_item):?>
+                                <a href="<?=$f_item['SRC']?>" download="download" title="Скачать"><?=$f_item['FILE_NAME']?></a>
+                            <?endforeach;?><?else:?>
+                                Нет
+                            <?endif;?>
+                        </td>
+                    </tr>
 				<?endforeach;?>
 				</tbody>
 				</table>

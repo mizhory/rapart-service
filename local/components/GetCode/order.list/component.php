@@ -171,6 +171,10 @@ $r = CustomerOrderTable::getList([
 			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
 			}
+			$resInvoices = CustomerInvoiceTable::getList(['select' => ['*'], 'order' => ['ID' => 'DESC'], 'filter' => ['UF_ORDER_ID'=>$e['ID']]]);
+			while($arInvoices = $resInvoices->fetch()){
+			    $arResult['ITEMS'][$k]['INVOICE'][$arInvoices['ID']] = $arInvoices;
+            }
 		}
 
 	foreach($arResult['ITEMS'] as $k=>$arItems) {

@@ -42,17 +42,6 @@ if($arParams['PRIZNAK'] == 'KP'){
     $e = CustomerOfferTable::getList(['select' => ['*'], 'filter' => ['UF_USER_ID' => $USER->getID()], 'order' => ['ID' => 'DESC']]);
     while($a = $e->fetch()){
         if(intval($a["UF_ITEM_ID"])){
-            //$res = CIBlockElement::GetByID($a["UF_ITEM_ID"]);
-            /*
-             * "UF_COUNT"      => $arItems['KolVo'],
-                                "UF_SUMM"       => $arItems['Summ'],
-                                "UF_STAVKA_NDS"       => $arItems['StavkaNDS'],
-                                "UF_SUMM_NDS"       => $arItems['SummNDS'],
-                                "UF_SUMM_SNDS"       => $arItems['SummSNDS'],
-                                "UF_E_STATUS"       => static::getStatusIDbyName($arItems["Status"], StepingHelper::STEP_GET_KP),
-                                "UF_PRICE"          => $arItems['Cena'],
-                                "UF_DELIVERY_TIME"  => $arItems['DeliveryTime']
-             */
             $arResult['ITEMS'][$a['UF_CO_ID']]['CO_SUMM'] = $a['UF_CO_SUMM'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['CO_DATE'] = $a['UF_CO_DATE'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  OffersManager::getStatus($a['UF_STATUS']);
@@ -67,8 +56,6 @@ if($arParams['PRIZNAK'] == 'KP'){
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['DELIVERY_TIME'] = $a['UF_DELIVERY_TIME'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['COUNT'] = $a['UF_COUNT'];
         }
-        //UF_ITEM_ID
-        //if($ar_res = $res->GetNext())
 
     }
 } elseif($arParams['PRIZNAK'] == 'INVOICE'){
