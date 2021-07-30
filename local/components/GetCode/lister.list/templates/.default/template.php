@@ -141,7 +141,6 @@ th.sorted[data-order="1"]::after {
     <tbody>
     <?$i=0;?>
     <?foreach($arResult["ITEMS"] as $invoice_id=>$arItems):
-        var_dump($arItems);
         $file_status = \GetCode\Manager\StatusManager::getFileByStatusID($arItems['UF_STATUS']);
         $order = \GetCode\Manager\OrderManager::getOrderIDbyKPID($arItems['UF_KP_ID']);
         $_files = unserialize($arItems['UF_FILES']);
@@ -162,7 +161,9 @@ th.sorted[data-order="1"]::after {
             <td class="product__info">
                 <?if(count($arFiles)>=1):?><?foreach($arFiles as $k=>$f_item):?>
                 <a href="<?=$f_item['SRC']?>" download="download" title="Скачать"><?=$f_item['FILE_NAME']?></a>
-                <?endforeach;?><?endif;?>
+                <?endforeach;?><?else:?>
+                Нет
+                <?endif;?>
             </td>
         </tr>
     <?endforeach;?>
