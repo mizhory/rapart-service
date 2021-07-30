@@ -141,13 +141,14 @@ th.sorted[data-order="1"]::after {
     <tbody>
     <?$i=0;?>
     <?foreach($arResult["ITEMS"] as $invoice_id=>$arItems):
+        var_dump($arItems);
         $file_status = \GetCode\Manager\StatusManager::getFileByStatusID($arItems['UF_STATUS']);
         $order = \GetCode\Manager\OrderManager::getOrderIDbyKPID($arItems['UF_KP_ID']);
         $_files = unserialize($arItems['UF_FILES']);
         $arFiles = [];
         if(count($_files)>0) {
             foreach($_files as $k=>$_file_id){
-                $arFiles[$k] = CFile::GetFileArray($_file_id);
+                $arFiles[$k] = \CFile::GetFileArray($_file_id);
             }
         }
         ?>
