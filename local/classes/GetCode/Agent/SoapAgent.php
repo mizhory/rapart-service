@@ -232,7 +232,8 @@ class SoapAgent {
                                 "UF_SUMM_SNDS"       => $arItems['SummSNDS'],
                                 "UF_E_STATUS"       => static::getStatusIDbyName($arItems["Status"], StepingHelper::STEP_GET_KP),
                                 "UF_PRICE"          => $arItems['Cena'],
-                                "UF_DELIVERY_TIME"  => $arItems['DeliveryTime']
+                                "UF_DELIVERY_TIME"  => $arItems['DeliveryTime'],
+                                "UF_NUMBER_CUSTOMER" => $user_data['NumberCustomer']
                                 //"UF_CO_FILE_REMOTE" =>
                             );
                             if(static::checkXMLID(StepingHelper::STEP_GET_KP, $user_data["GUIDKP"])){
@@ -270,22 +271,16 @@ class SoapAgent {
                     }
                 }
             } elseif($method_step == StepingHelper::STEP_GET_INVOICE) {
-                //var_dump($data_step);
                 foreach($data_step as $user_xml_id=>$_user_data) {
                     foreach($_user_data as $d=>$user_data){
                         $files = [];
                         if(count($user_data["Files"])>=1){
                             foreach($user_data["Files"] as $y=>$arFile){
-                                var_dump($arFile);
                                 $_fififi = explode('://', $arFile["File"]);
-                                //var_dump($_fififi);
-                                $auth = "u0831002_ip_limo:`e]Sy=7a@";
+                                $auth = base64_decode('dTA4MzEwMDJfaXBfbGltbzpgZV1TeT03YUA=');
                                 $file = $_fififi[0].'://'.$auth.$_fififi[1];
-                                //var_dump($file);
                                 $arFiles = \CFile::MakeFileArray($file);
-                                //var_dump($arFiles);
                                 $fid = \CFile::SaveFile($arFiles, "ftp_invoice");
-                                //var_dump($fid);
                                 $files[] = intval($fid);
                             }
                         }
