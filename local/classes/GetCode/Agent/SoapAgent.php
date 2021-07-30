@@ -100,6 +100,24 @@ class SoapAgent {
                     return true;
                 elseif(isset($e['ID']) && $flag!=false)
                     return $e['ID'];
+        } elseif ($method == StepingHelper::STEP_GET_INVOICE){
+            $a = CustomerInvoiceTable::getList(
+                [
+                    'select' => [
+                        'ID'
+                    ],
+                    'order' => [
+                        'ID' => 'ASC'
+                    ],
+                    'filter' => [
+                        'UF_XML_ID' => $xml_id
+                    ]
+                ]);
+            if($e=$a->fetch())
+                if(isset($e['ID']) && !$flag)
+                    return true;
+                elseif(isset($e['ID']) && $flag!=false)
+                    return $e['ID'];
         }
     }
     private static function getStatusIDbyName($status_name, $method) {
