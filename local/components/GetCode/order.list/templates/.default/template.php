@@ -110,7 +110,7 @@ th.sorted[data-order="1"]::after {
                     </td>
                 </tr>
 				<tr>
-				<td colspan="6">
+				<td colspan="9">
 					<table class="not-show detail-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
 					<thead>
 					 <tr>
