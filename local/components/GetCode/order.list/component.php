@@ -171,7 +171,7 @@ $r = CustomerOrderTable::getList([
 			foreach($arResult['ITEMS'][$k]['ELEMENTS'] as $r){
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
 			}
-			$arInvoices = \GetCode\Manager\OrderManager::getInvoiceIDbyORDERID($e['ID']);
+			$arInvoices = \GetCode\Manager\OrderManager::getInvoiceIDbyORDERNAME($e['UF_NAME']);
 			$arResult['ITEMS'][$k]['INVOICE'][$arInvoices['ID']] = $arInvoices;
 
 		}

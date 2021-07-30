@@ -20,6 +20,16 @@ class OrderManager
         }
         return null;
     }
+    public static function getInvoiceIDbyORDERNAME($oid = false) {
+        if(is_bool($oid)) return null;
+
+        $l = CustomerInvoiceTable::getList(['select' => ['*'], 'filter' => ['UF_REQUEST' => '%'.$oid.'%'], 'order' => ['ID' => 'ASC']]);
+        $a = false;
+        while($s=$l->fetch()){
+            $a[] = $s;
+        }
+        return $a;return null;
+    }
     public static function getInvoiceIDbyORDERID($oid = false) {
         if(is_bool($oid)) return null;
 
