@@ -47,7 +47,7 @@ if($arParams['PRIZNAK'] == 'KP'){
             $arResult['ITEMS'][$a['UF_CO_ID']]['STATUS'] =  OffersManager::getStatus($a['UF_STATUS']);
             $arResult['ITEMS'][$a['UF_CO_ID']]['VALIDATY'] = $a['UF_VALIDATY'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]] = CIBlockElement::GetByID($a["UF_ITEM_ID"])->fetch();
-            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM'] = $a['UF_SUMM'];
+            $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM'] = $a['UF_CO_SUMM'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['STAVKA_NDS'] = $a['UF_STAVKA_NDS'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM_NDS'] = $a['UF_SUMM_NDS'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM_SNDS'] = $a['UF_SUMM_SNDS'];

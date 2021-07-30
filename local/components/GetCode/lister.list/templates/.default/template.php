@@ -89,6 +89,7 @@ th.sorted[data-order="1"]::after {
                 <tbody>
 				<?$f=0;foreach($arItems['ELEMENTS'] as $e=>$arElements):$f++;?>
 				<?
+                var_dump($arElements);
 					/*
 					 * $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['SUMM'] = $a['UF_SUMM'];
             $arResult['ITEMS'][$a['UF_CO_ID']]['ELEMENTS'][$a["UF_ITEM_ID"]]['STAVKA_NDS'] = $a['UF_STAVKA_NDS'];
