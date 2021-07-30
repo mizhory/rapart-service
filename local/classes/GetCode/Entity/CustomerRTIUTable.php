@@ -86,6 +86,12 @@ class CustomerRTIUTable extends DataManager
                     'title' => Loc::getMessage('RTIU_ENTITY_UF_USER_ID_FIELD')
                 ]
             ),
+            new TextField(
+                'UF_XML_ID',
+                [
+                    'title' => Loc::getMessage('RTIU_ENTITY_UF_XML_ID_FIELD')
+                ]
+            ),
         ];
     }
 }
