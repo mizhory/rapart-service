@@ -142,7 +142,8 @@ $nav->allowAllRecords(true)
 $arResult['NAV_OBJECT'] = $nav;
 
 if(strlen($search_string)>=1) {
-    $arFilter = array_merge($arFilter, ['UF_NAME' => '%'.$search_string.'%', ]);
+    $_arF = [['LOGIC' => 'OR', ['UF_OFFERS' => '%'.$search_string.'%'], ['UF_NAME' => '%'.$search_string.'%']]];
+    $arFilter = array_merge($arFilter, $_arF);
 }
 
 $r = CustomerOrderTable::getList([
@@ -172,7 +173,7 @@ $r = CustomerOrderTable::getList([
 				$arResult['ITEMS'][$k]['ELEMENTS'][$r['ID']] = $r;
 			}
 			$arInvoices = \GetCode\Manager\OrderManager::getInvoiceIDbyORDERNAME($e['UF_NAME']);
-			//var_dump($arInvoices);
+
 			$arResult['ITEMS'][$k]['INVOICE'] = $arInvoices;
 
 		}
