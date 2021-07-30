@@ -8,10 +8,11 @@
         <th class="products__name">Сумма</th>
         <th class="products__name">Срок действия</th>
         <th class="products__name">Состояние</th>
-        <th class="products__name">Действия</th>
     </tr>
     </thead>
     <tbody>
-
+        <tr>
+            <td><?=$arResult['ELEMENT']['UF_CO_ID']?></td>
+        </tr>
     </tbody>
 </table>

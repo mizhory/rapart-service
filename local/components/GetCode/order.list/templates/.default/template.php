@@ -268,7 +268,7 @@ th.sorted[data-order="1"]::after {
             <td class="product__info"><?=$arItems['UF_NAME']?></td>
             <td class="product__info"><?=$arItems['UF_DATE']?></td>
             <td class="product__info"><?=$arItems['UF_PRIORITY']?></td>
-            <td class="product__info"><?=$arItems['UF_USER_ID']?></td>
+            <td class="product__info"><?=$arItems['UF_NUMBER_CUSTOMER']?></td>
             <td class="product__info">
                 <img src="<?=$arItems['UF_STATUS']['PICTURE']?>" alt="<?=$arItems['UF_STATUS']['NAME']?>" title="<?=$arItems['UF_STATUS']['NAME']?>" />
                 <br />

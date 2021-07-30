@@ -58,7 +58,6 @@ if($arParams['PRIZNAK'] == 'KP'){
     while($arRet = $res->fetch()){
         if($BY == 'ELEMENT'){
             $arResult['ELEMENT'] = $arRet;
-            break;
         } else {
             $arResult['ITEMS'][$arRet['UF_CO_ID']][] = $arRet;
         }
