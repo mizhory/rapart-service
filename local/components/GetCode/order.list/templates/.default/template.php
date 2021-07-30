@@ -189,7 +189,7 @@ th.sorted[data-order="1"]::after {
 				<?endforeach;?>
 				</tbody>
 				</table>
-                    <table class="not-show order-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
+                    <table class="not-show rtiu-<?=$k?>" width="100%" style="text-align:center;border-bottom:1px solid #000;">
                         <thead>
                         <tr>
                             <th colspan="11"><b>Файлы реализации заказа - <?=$arItems['UF_NAME']?></b></th>
@@ -334,9 +334,9 @@ $APPLICATION->IncludeComponent(
             var marker = '.detail-'+did;
             $('body').find(marker).slideToggle('slow');
         });
-        $('body').on('click', ".check-kp", function (){
+        $('body').on('click', ".check-rtiu", function (){
             var did = $(this).data('kid');
-            var marker = '.kp-'+did;
+            var marker = '.rtiu-'+did;
             $('body').find(marker).slideToggle('slow');
         });
         $('body').on('click', ".check-order", function (){
